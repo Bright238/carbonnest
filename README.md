@@ -1,4 +1,4 @@
-##ECAP+ Program Management Platform is developed using - Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
+ECAP+ Program Management Platform is developed using - Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
 
 ![license](https://img.shields.io/badge/license-MIT-blue.svg)
 
