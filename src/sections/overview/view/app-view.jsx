@@ -2,7 +2,6 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
-import AppCurrentVisits from '../app-current-visits';
 import AppWebsiteVisits from '../app-website-visits';
 import AppWidgetSummary from '../app-widget-summary';
 
@@ -54,7 +53,7 @@ export default function AppView() {
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={8}>
+        <Grid xs={12} md={6} lg={12}>
           <AppWebsiteVisits
             title="Households, VCAs and Household Members assessed into months"
             subheader="(+23%) than last year"
@@ -90,11 +89,11 @@ export default function AppView() {
                 },
               ],
             }}
-            // style={{ height: 550 }}
+            style={{ height: 550 }}
           />
         </Grid>
 
-        <Grid xs={12} md={6} lg={4}>
+        {/* <Grid xs={12} md={6} lg={4}>
           <AppCurrentVisits
             title="VCAs Severity Chart"
             chart={{
@@ -105,7 +104,7 @@ export default function AppView() {
               ],
             }}
           />
-        </Grid>
+        </Grid> */}
       </Grid>
     </Container>
   );
