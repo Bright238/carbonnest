@@ -28,8 +28,8 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Households Assessed"
-            total={475}
+            title="Households"
+            total={119}
             color="info"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
           />
@@ -38,7 +38,7 @@ export default function AppView() {
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
             title="VCAs Assessed"
-            total={768}
+            total={188}
             color="warning"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
           />
@@ -46,8 +46,8 @@ export default function AppView() {
 
         <Grid xs={12} sm={6} md={3}>
           <AppWidgetSummary
-            title="Household Members Assessed"
-            total={234}
+            title="Household Members"
+            total={300}
             color="error"
             icon={<img alt="icon" src="/assets/icons/glass/ic_glass_users.png" />}
           />
