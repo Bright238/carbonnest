@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 
+import extraRecords from 'src/_mock/manual-user';
+
 import Scrollbar from 'src/components/scrollbar';
 
 import TableNoData from 'src/sections/user/table-no-data';
@@ -26,13 +28,17 @@ export default function VcaPage() {
   const [selected, setSelected] = useState([]);
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-        setUsers(response.data);
+        const fetchedUsers = response.data;
+
+        const allUsers = [...fetchedUsers, ...extraRecords];
+  
+        setUsers(allUsers);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
