@@ -10,6 +10,8 @@ import Typography from '@mui/material/Typography';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 
+import extraRecords from 'src/_mock/manual-user';
+
 import Scrollbar from 'src/components/scrollbar';
 
 import TableNoData from '../table-no-data';
@@ -19,6 +21,7 @@ import TableEmptyRows from '../table-empty-rows';
 import UserTableToolbar from '../user-table-toolbar';
 import { emptyRows, applyFilter, getComparator } from '../utils';
 
+
 export default function UserPage() {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(0);
@@ -26,13 +29,17 @@ export default function UserPage() {
   const [selected, setSelected] = useState([]);
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-        setUsers(response.data);
+        const fetchedUsers = response.data;
+
+        const allUsers = [...fetchedUsers, ...extraRecords];
+  
+        setUsers(allUsers);
       } catch (error) {
         console.error('Error fetching users:', error);
       }
@@ -171,7 +178,7 @@ export default function UserPage() {
           count={users.length}
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[10,20, 25]}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
       </Card>
