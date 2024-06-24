@@ -113,7 +113,7 @@ export const ScatterChart: React.FC = () => {
 
   return (
     <div style={{ position: 'relative' }}>
-    <BaseCard padding="0 0 30rem" title={t('District total score')}>
+    <BaseCard padding="0 0 30rem" title={t('Total score')}>
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', textAlign: 'center' }}>
           <Typography style={{ fontWeight: 'bold', fontSize: '32px' }}>97.50%</Typography>
           <Typography style={{ fontWeight: 'bold' }}>Date of Assessment</Typography>

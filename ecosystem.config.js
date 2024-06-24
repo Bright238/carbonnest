@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'achieve_dqa',
+      name: 'ecap-plus-pmp',
       script: 'npm',
       args: 'start',
       instances: 1,
@@ -10,7 +10,7 @@ module.exports = {
       max_memory_restart: '1G',
       env: {
         NODE_ENV: 'development',
-        PORT: 3004,
+        PORT: 3030,
       },
     },
   ],
