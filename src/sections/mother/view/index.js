@@ -1,1 +1,0 @@
-export { default as MotherView } from './mother-view';
