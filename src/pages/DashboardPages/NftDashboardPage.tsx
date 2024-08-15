@@ -167,7 +167,7 @@ const MedicalDashboardPage: React.FC = () => {
 
   return (
     <>
-      <PageTitle>ACHIEVE PMP</PageTitle>
+      <PageTitle>ECAP+ PMP</PageTitle>
       {isDesktop ? desktopLayout : mobileAndTabletLayout}
     </>
   );

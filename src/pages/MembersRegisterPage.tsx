@@ -4,6 +4,7 @@ import { BasicTable } from '@app/components/tables/BasicTable/BasicTable';
 import Typography from 'antd/lib/typography/Typography';
 import { Spin } from 'antd';
 import axios from 'axios';
+import { EditableTable } from '@app/components/tables/editableTable/EditableTable';
 
 interface User {
   id: string;
@@ -48,7 +49,8 @@ const MembersRegisterPage: React.FC = () => {
   return (
     <>
       {content}
-      <BasicTable />
+      <EditableTable />
+      {/* <BasicTable /> */}
     </>
   );
 };
