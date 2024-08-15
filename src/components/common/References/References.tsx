@@ -7,13 +7,13 @@ export const References: React.FC = () => {
       <br />
       <br />
       <S.Text>
-        ACHIEVE - MIS{' '}
-        <a href="https://www.mcdss.gov.zm/" rel="noreferrer">
+       ECAP+{' '}
+        <a href="" rel="noreferrer">
           Program Management Platform{' '}<br />
         </a>
         in 2024 &copy;.{' '}
-        <a href="https://www.mcdss.gov.zm/" rel="noreferrer">
-          Ministry of Community Development and Social Services.
+        <a href="" rel="noreferrer">
+        Project Concern Zambia
         </a>
       </S.Text>
     </S.ReferencesWrapper>

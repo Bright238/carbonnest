@@ -4,6 +4,7 @@ import Typography from 'antd/lib/typography/Typography';
 import { Spin } from 'antd';
 import { TreeTable } from '@app/components/tables/TreeTable/TreeTable';
 import axios from 'axios';
+import { EditableTable } from '@app/components/tables/editableTable/EditableTable';
 
 interface User {
   id: string;
@@ -48,7 +49,8 @@ const VcasRegisterPage: React.FC = () => {
   return (
     <>
       {content}
-      <TreeTable />
+      {/* <TreeTable /> */}
+      <EditableTable />
     </>
   );
 };
