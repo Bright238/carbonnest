@@ -13,7 +13,7 @@ export const References: React.FC = () => {
         </a>
         in 2024 &copy;.{' '}
         <a href="" rel="noreferrer">
-        Project Concern Zambia
+         Project Concern Zambia
         </a>
       </S.Text>
     </S.ReferencesWrapper>
