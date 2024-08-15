@@ -5,7 +5,6 @@ export const References: React.FC = () => {
   return (
     <S.ReferencesWrapper>
       <br />
-      <br />
       <S.Text>
        ECAP+{' '}
         <a href="" rel="noreferrer">
