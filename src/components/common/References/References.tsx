@@ -7,7 +7,7 @@ export const References: React.FC = () => {
       <br />
       <br />
       <S.Text>
-       ECAP+ PMP{' '}
+       ECAP+{' '}
         <a href="" rel="noreferrer">
           Program Management Platform{' '}<br />
         </a>
