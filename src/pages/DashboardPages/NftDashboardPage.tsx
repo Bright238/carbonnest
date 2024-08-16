@@ -10,6 +10,7 @@ import { VisitorsPieChart } from '@app/components/charts/VisitorsPieChart';
 import Typography from 'antd/lib/typography/Typography';
 import { Spin } from 'antd';
 import axios from 'axios';
+import { GradientStackedAreaChart } from '@app/components/charts/GradientStackedAreaChart/GradientStackedAreaChart';
 
 interface User {
   id: string;
@@ -52,7 +53,7 @@ const MedicalDashboardPage: React.FC = () => {
       try {
         setDistrictLoading(true);
         const response = await axios.get(
-          `https://server.achieve-dqa.bluecodeltd.com/household/households-count/${user.location}`
+          `https://ecapplus.server.dqa.bluecodeltd.com/household/households-count`
         );
         setHouseholdCount(response.data.count);
       } catch (error) {
@@ -69,7 +70,7 @@ const MedicalDashboardPage: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://server.achieve-dqa.bluecodeltd.com/child/vcas-count/${user && user.location}`
+          `https://ecapplus.server.dqa.bluecodeltd.com/child/vcas-count`
         );
         setVCAsCount(response.data.count);
       } catch (error) {
@@ -86,7 +87,7 @@ const MedicalDashboardPage: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://server.achieve-dqa.bluecodeltd.com/household/members-count/${user && user.location}`
+          `https://ecapplus.server.dqa.bluecodeltd.com/household/members-count`
         );
         setMembersCount(response.data.count);
       } catch (error) {
@@ -126,7 +127,7 @@ const MedicalDashboardPage: React.FC = () => {
             </div>
           </BaseCol>
           <BaseCol span={24}>
-            <VisitorsPieChart />
+           <GradientStackedAreaChart />
           </BaseCol>
         </BaseRow>
         <References />
@@ -159,7 +160,7 @@ const MedicalDashboardPage: React.FC = () => {
           </div>
         </BaseCol>
         <BaseCol span={24}>
-          <VisitorsPieChart />
+        <GradientStackedAreaChart />
         </BaseCol>
       </BaseRow>
     </BaseRow>

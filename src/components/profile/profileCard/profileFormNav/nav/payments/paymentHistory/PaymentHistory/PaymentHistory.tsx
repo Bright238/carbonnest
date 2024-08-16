@@ -37,7 +37,7 @@ export const PaymentHistory: React.FC<PaymentHistoryProps> = ({ household_id }) 
     const fetchHouseholdMembers = async () => {
       try {
         const response = await axios.get(
-          `https://server.achieve-dqa.bluecodeltd.com/household/household-members/${household_id}`
+          `https://ecapplus.server.dqa.bluecodeltd.com/household/household-members/${household_id}`
         );
         const members = response.data.data;
   

@@ -7,24 +7,31 @@ import { BaseSpace } from '@app/components/common/BaseSpace/BaseSpace';
 import axios from 'axios';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
-import { Input, Button, Tooltip, Spin, Space } from 'antd';
+import { Input, Tooltip, Space } from 'antd';
 import { BasicTableRow, Pagination } from 'api/table.api';
+import * as S from '@app/components/common/inputs/SearchInput/SearchInput.styles';
 
-interface Vcas {
-  unique_id: string;
+interface Vca {
+  uid: string;
+  firstname: string;
+  lastname: string;
+  caregiver_name: string;
+  caregiver_phone: string;
+  caregiver_hiv_status: string;
+  caregiver_birth_date: string;
+  household_id: string;
+  homeaddress: string | null;
+  facility: string;
   province: string;
   district: string;
-  cwac: string;
-  provider_name: string;
-  first_name: string;
-  last_name: string;
-  gender: string;
+  screening_location: string;
+  date_enrolled: string;
   date_created: string;
-  last_interacted_with: string;
-  year: number;
-  village: string;
-  ward: string;
-  cwac_member_name: string;
+  date_last_vl: string | null;
+  date_next_vl: string | null;
+  vca_gender: string;
+  is_hiv_positive: string;
+  vl_suppressed: string;
 }
 
 interface User {
@@ -37,11 +44,7 @@ const initialPagination: Pagination = {
 };
 
 export const BasicTable: React.FC = () => {
-
-  const [vcas, setVcas] = useState<Vcas[]>([]);
-  const [form] = BaseForm.useForm();
-  const navigate = useNavigate();
-
+  const [vcas, setVcas] = useState<Vca[]>([]);
   const [tableData, setTableData] = useState<{ data: BasicTableRow[]; pagination: Pagination; loading: boolean }>({
     data: [],
     pagination: initialPagination,
@@ -50,9 +53,8 @@ export const BasicTable: React.FC = () => {
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [clearingSearch, setClearingSearch] = useState<boolean>(false);
-
   const [user, setUser] = useState<User | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -71,15 +73,13 @@ export const BasicTable: React.FC = () => {
     fetchUserData();
   }, []);
 
-
   useEffect(() => {
     const fetchData = async () => {
-
       if (!user) return;
 
       try {
         const response = await axios.get(
-          `https://server.achieve-dqa.bluecodeltd.com/child/members-register/${user.location}`
+          `https://ecapplus.server.dqa.bluecodeltd.com/child/vcas-assessed-register`
         );
         setVcas(response.data.data);
         localStorage.setItem('vcas', JSON.stringify(response.data.data));
@@ -94,23 +94,33 @@ export const BasicTable: React.FC = () => {
   }, [user]);
 
   useEffect(() => {
-    const mappedData = vcas.map((vca, index) => ({
+    const mappedData: BasicTableRow[] = vcas.map((vca, index) => ({
       key: index,
-      unique_id: vca.unique_id,
-      name: `${vca.first_name} ${vca.last_name}`,
-      gender: vca.gender,
-      age: vca.year,
+      uid: vca.uid,
+      name: `${vca.firstname} ${vca.lastname}`,
+      caregiver_name: vca.caregiver_name,
+      caregiver_phone: vca.caregiver_phone,
+      caregiver_hiv_status: vca.caregiver_hiv_status,
+      caregiver_birth_date: vca.caregiver_birth_date,
+      household_id: vca.household_id,
       address: `
-        Province: ${vca.province}, 
-        District: ${vca.district},
-        CWAC Name: ${vca.cwac}, 
-        Date Case Created: ${vca.date_created}, 
-        Date Last Visited: ${moment(vca.last_interacted_with).format('DD/MM/YYYY')}
+        Address: ${vca.homeaddress || 'Not Applicable'}
+        Facility: ${vca.facility || 'Not Applicable'}
+        Province: ${vca.province || 'Not Applicable'}
+        District: ${vca.district || 'Not Applicable'}
+        Screening Location: ${vca.screening_location || 'Not Applicable'}
+        Date Enrolled: ${moment(vca.date_enrolled).format('DD/MM/YYYY')}
       `,
+      date_created: moment(vca.date_created).format('DD/MM/YYYY'),
+      date_last_vl: vca.date_last_vl ? moment(vca.date_last_vl).format('DD/MM/YYYY') : 'Not Applicable',
+      date_next_vl: vca.date_next_vl ? moment(vca.date_next_vl).format('DD/MM/YYYY') : 'Not Applicable',
+      vca_gender: vca.vca_gender,
+      is_hiv_positive: vca.is_hiv_positive,
+      vl_suppressed: vca.vl_suppressed,
     }));
 
     setTableData({ data: mappedData, pagination: initialPagination, loading: false });
-  }, ["vcas state", vcas]);
+  }, [vcas]);
 
   const fetch = useCallback(
     async (pagination: Pagination) => {
@@ -119,7 +129,7 @@ export const BasicTable: React.FC = () => {
       if (!user) return;
 
       try {
-        const response = await axios.get(`https://server.achieve-dqa.bluecodeltd.com/child/members-register/${user.location}`, {
+        const response = await axios.get(`https://ecapplus.server.dqa.bluecodeltd.com/child/vcas-assessed-register`, {
           params: {
             keyword: searchQuery,
             page: pagination.current,
@@ -127,19 +137,29 @@ export const BasicTable: React.FC = () => {
           },
         });
         const responseData = response.data.data;
-        const mappedData = responseData.map((vca: any, index: number) => ({
+        const mappedData: BasicTableRow[] = responseData.map((vca: any, index: number) => ({
           key: index,
-          unique_id: vca.unique_id,
-          name: `${vca.first_name} ${vca.last_name}`,
-          gender: vca.gender,
-          age: vca.year,
+          uid: vca.uid,
+          name: `${vca.firstname} ${vca.lastname}`,
+          caregiver_name: vca.caregiver_name,
+          caregiver_phone: vca.caregiver_phone,
+          caregiver_hiv_status: vca.caregiver_hiv_status,
+          caregiver_birth_date: vca.caregiver_birth_date,
+          household_id: vca.household_id,
           address: `
-            Province: ${vca.province}, 
-            District: ${vca.district},
-            CWAC Name: ${vca.cwac}, 
-            Date Case Created: ${vca.date_created}, 
-            Date Last Visited: ${moment(vca.last_interacted_with).format('DD/MM/YYYY')}
+            Address: ${vca.homeaddress || 'Not Applicable'}
+            Facility: ${vca.facility || 'Not Applicable'}
+            Province: ${vca.province || 'Not Applicable'}
+            District: ${vca.district || 'Not Applicable'}
+            Screening Location: ${vca.screening_location || 'Not Applicable'}
+            Date Enrolled: ${moment(vca.date_enrolled).format('DD/MM/YYYY')}
           `,
+          date_created: moment(vca.date_created).format('DD/MM/YYYY'),
+          date_last_vl: vca.date_last_vl ? moment(vca.date_last_vl).format('DD/MM/YYYY') : 'Not Applicable',
+          date_next_vl: vca.date_next_vl ? moment(vca.date_next_vl).format('DD/MM/YYYY') : 'Not Applicable',
+          vca_gender: vca.vca_gender,
+          is_hiv_positive: vca.is_hiv_positive,
+          vl_suppressed: vca.vl_suppressed,
         }));
         setTableData({ data: mappedData, pagination, loading: false });
       } catch (error) {
@@ -158,48 +178,65 @@ export const BasicTable: React.FC = () => {
     fetch(pagination);
   };
 
-  const handleView = (unique_id: string) => {
-    const selectedVca = vcas.find(vca => vca.unique_id === unique_id);
-    navigate(`/member-profile/${encodeURIComponent(unique_id)}`, { state: { vca: selectedVca } });
+  const handleView = (uid: string) => {
+    const selectedVca = vcas.find((vca) => vca.uid === uid);
+    navigate(`/vca-profile/${encodeURIComponent(uid)}`, { state: { vca: selectedVca } });
   };
 
   const clearSearch = () => {
-    setClearingSearch(true);
     setSearchQuery('');
     fetch(initialPagination);
-    setTimeout(() => {
-      setClearingSearch(false);
-    }, 1000);
   };
 
   const columns = [
     {
       title: t('Unique ID'),
-      dataIndex: 'unique_id',
-      width: '25%',
+      dataIndex: 'uid',
+      width: '15%',
     },
     {
       title: t('Full Name'),
       dataIndex: 'name',
-      width: '25%',
+      width: '20%',
     },
     {
-      title: t('Gender'),
-      dataIndex: 'gender',
-      width: '25%',
+      title: t('Caregiver Name'),
+      dataIndex: 'caregiver_name',
+      width: '20%',
     },
     {
-      title: t('Household Details'),
-      dataIndex: 'address',
-      width: '25%',
+      title: t('Caregiver Phone'),
+      dataIndex: 'caregiver_phone',
+      width: '15%',
+      render: (text: string) => text ? text : 'Not Applicable',
     },
     {
-      title: t('tables.actions'),
+      title: t('Caregiver HIV Status'),
+      dataIndex: 'caregiver_hiv_status',
+      width: '15%',
+    },
+    {
+      title: t('Date Created'),
+      dataIndex: 'date_created',
+      width: '15%',
+    },
+    {
+      title: t('Date Last VL'),
+      dataIndex: 'date_last_vl',
+      width: '15%',
+    },
+    {
+      title: t('Date Next VL'),
+      dataIndex: 'date_next_vl',
+      width: '15%',
+    },
+    {
+      title: t('Actions'),
       width: '15%',
       dataIndex: '',
       render: (text: string, record: BasicTableRow) => (
         <BaseSpace>
-          <BaseButton type="primary" onClick={() => handleView(record.unique_id)}>
+          <BaseButton type="primary" onClick={() => handleView(record.uid)}>
             {t('View')}
           </BaseButton>
         </BaseSpace>
@@ -207,37 +244,21 @@ export const BasicTable: React.FC = () => {
     },
   ];
 
-  const searchTooltipContent = (
-    <div>
-      {t('You can search by Unique ID, Full Name, Gender, Province, District, CWAC Name, Date Case Created, and Date Last Visited.')}
-    </div>
-  );
-
   return (
-    <div style={{ margin: '20px' }}>
-      <Space direction="vertical" style={{ width: '100%' }}>
-        <Tooltip title={searchTooltipContent}>
-          <Input
-            style={{ width: 400 }}
-            placeholder={t('Search for a member')}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </Tooltip>
-        <Button type="primary" onClick={clearSearch} loading={clearingSearch}>
-          {clearingSearch ? <Spin size="small" /> : t('Clear Search')}
-        </Button>
-        <BaseTable
-          bordered
-          dataSource={tableData.data}
-          columns={columns}
-          rowClassName="editable-row"
-          pagination={tableData.pagination}
-          onChange={handleTableChange}
-          loading={tableData.loading}
-          scroll={{ x: 800 }}
-        />
-      </Space>
-    </div>
+    <BaseTable
+      bordered
+      columns={columns}
+      dataSource={tableData.data}
+      pagination={tableData.pagination}
+      loading={loading}
+      onChange={handleTableChange}
+      rowKey="uid"
+      // searchProps={{
+      //   value: searchQuery,
+      //   onChange: setSearchQuery,
+      //   onSearch: () => fetch(initialPagination),
+      //   onClear: clearSearch,
+      // }}
+    />
   );
 };

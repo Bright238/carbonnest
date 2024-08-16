@@ -158,7 +158,7 @@ export const VcaProfile: React.FC = () => {
     const fetchVcaIdentification = async (uniqueId: string) => {
       try {
         const response = await axios.get(
-          `https://server.achieve-dqa.bluecodeltd.com/child/identification/${uniqueId}`
+          `https://ecapplus.server.dqa.bluecodeltd.com/child/identification/${uniqueId}`
         );
 
         setVcaIdentification(response.data.data[0]);
