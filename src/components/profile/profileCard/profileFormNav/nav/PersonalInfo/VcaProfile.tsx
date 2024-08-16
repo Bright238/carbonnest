@@ -1,520 +1,538 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BaseButtonsForm } from '@app/components/common/forms/BaseButtonsForm/BaseButtonsForm';
 import { BaseCard } from '@app/components/common/BaseCard/BaseCard';
 import { NicknameItem } from '@app/components/profile/profileCard/profileFormNav/nav/PersonalInfo/NicknameItem/NicknameItem';
-import { useAppSelector } from '@app/hooks/reduxHooks';
-import { Dates } from '@app/constants/Dates';
-import { notificationController } from '@app/controllers/notificationController';
-import { PaymentCard } from '@app/interfaces/interfaces';
-import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
-import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
+import { Typography } from 'antd';
 import { useLocation } from 'react-router-dom';
-import { Typography, Spin } from 'antd';
-import axios from 'axios';
-
-interface PersonalInfoFormValues {
-  firstName: string;
-  lastName: string;
-}
-
-const initialPersonalInfoValues: PersonalInfoFormValues = {
-  firstName: '',
-  lastName: '',
-};
+import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
+import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 
 interface Vca {
-  province: string;
-  district: string;
-  cwac: string;
-  unique_id: string;
-  household_id: string;
-  first_name: string;
-  last_name: string;
+  id: string;
+  uid: string;
+  case_status: string;
   birthdate: string;
-  age_estimate: string;
-  disability: string;
-  relationship: string;
-  other_relationship: string;
-  is_index: string;
+  caregiver_name: string;
+  caregiver_birth_date: string;
+  caregiver_hiv_status: string;
+  caregiver_sex: string;
+  caseworker_name: string;
+  caseworker_phone: string;
+  district: string;
+  facility: string;
+  firstname: string;
+  household_id: string;
+  landmark: string;
+  lastname: string;
+  member_type: string;
+  partner: string;
+  province: string;
+  relation: string;
+  school_name: string;
+  screening_location: string;
+  vca_gender: string;
+  ward: string;
   date_created: string;
-  month: string;
-  year: string;
-}
-
-interface VcaIdentification {
-  adhering: string | null;
-  art: string | null;
-  average_monthly_income: string | null;
-  birth_certificate: string | null;
-  child_concerns: string | null;
-  child_eat: string | null;
-  child_eat_daily: string | null;
-  child_enrolled: string | null;
-  child_enrolled_yes: string | null;
-  child_ill: string | null;
-  child_immunization: string | null;
-  child_missed: string | null;
-  child_not_enrolled: string | null;
-  child_pregnant: string | null;
-  child_pregnant_yes: string | null;
-  child_tested: string | null;
-  comments_education: string | null;
-  comments_health: string | null;
-  comments_hiv: string | null;
-  comments_household_income: string | null;
-  cwac: string | null;
-  date_created: string | null;
-  date_first_visit: string | null;
-  date_second_visit: string | null;
-  district: string | null;
-  family_benefit: string | null;
-  family_meals: string | null;
-  family_members_art: string | null;
-  family_members_hiv: string | null;
-  hiv_status: string | null;
-  household_id: string | null;
-  income_sufficient: string | null;
-  issues_reported: string | null;
-  known_status: string | null;
-  last_interacted_with: string | null;
-  month: string | null;
-  occupation_head: string | null;
-  other: string | null;
-  other_child_eats: string | null;
-  other_child_not_enrolled: string | null;
-  other_family_benefit: string | null;
-  other_not_reported: string | null;
-  other_unknown_status: string | null;
-  overall_concerns: string | null;
-  past_experience: string | null;
-  provider_id: string | null;
-  provider_name: string | null;
-  province: string | null;
-  reason_missed: string | null;
-  source_of_income: string | null;
-  stable_source_income: string | null;
-  street_time: string | null;
-  traditional_interventions: string | null;
-  under_6_card: string | null;
-  unique_id: string | null;
-  unknown_status: string | null;
-  viral_load: string | null;
-  vulnerability_status: string | null;
-  ward: string | null;
-  why_not_reported: string | null;
-  year: string | null;
+  date_enrolled: string;
+  abym: string;
+  acceptance: string;
+  agyw: string;
+  art_check_box: string | null;
+  art_number: string | null;
+  baseentityid: string;
+  been_tested_last_year: string | null;
+  birthdateapprox: string;
+  calhiv: string;
+  caregiver_art_number: string | null;
+  caregiver_nrc: string | null;
+  caregiver_phone: string | null;
+  child_adolescent_in_aged_headed_household: string;
+  child_adolescent_in_child_headed_household: string;
+  child_adolescent_in_chronically_ill_headed_household: string;
+  child_adolescent_in_female_headed_household: string;
+  child_adolescent_living_with_disability: string;
+  child_been_tested_for_hiv: string | null;
+  child_ever_experienced_sexual_violence: string;
+  child_mmd: string | null;
+  clientapplicationversion: string;
+  clientdatabaseversion: string;
+  consent_check_box: string;
+  csv: string;
+  cwlhiv: string;
+  date_edited: string;
+  date_edited_check: string;
+  date_last_vl: string | null;
+  date_next_vl: string | null;
+  date_offered_enrollment: string;
+  date_referred: string;
+  date_screened: string;
+  date_started_art: string | null;
+  date_subpop2: string | null;
+  datecreated: string;
+  dateedited: string;
+  de_registration_date: string | null;
+  deathdateapprox: string;
+  deleted: string | null;
+  hei: string;
+  hiv_test_date: string | null;
+  homeaddress: string;
+  identifiers: string;
+  is_biological: string;
+  is_biological_child: string | null;
+  is_hiv_positive: string;
+  is_index: string;
+  is_mother_adhering_to_treatment_wlhiv: string | null;
+  is_mother_currently_on_treatment_wlhiv: string | null;
+  is_mother_virally_suppressed_wlhiv: string | null;
+  is_pregnant_breastfeeding: string | null;
+  is_the_child_caregiver_an_fsw: string;
+  level_mmd: string | null;
+  mother_art_number_wlhiv: string | null;
+  pbfw: string;
+  physical_address: string | null;
+  received_birth_certificate: string | null;
+  received_results_last_hiv_test: string | null;
+  receiving_art: string | null;
+  relationships: string;
+  school: string;
+  serverversion: string;
+  survivors_of_other_form_of_violence: string;
+  takes_drugs_to_prevent_other_diseases: string | null;
+  takes_tb_preventive_therapy: string | null;
+  tb_screening: string | null;
+  time_art: string | null;
+  time_result: string | null;
+  time_vl: string | null;
+  under_5_malnourished: string;
+  updated_status: string;
+  vl_last_result: string | null;
+  vl_next_result: string | null;
+  vl_suppressed: string | null;
 }
 
 export const VcaProfile: React.FC = () => {
-
   const location = useLocation();
   const vca: Vca | undefined = location.state?.vca;
 
+  // Ensure vca is available
   if (!vca) {
     return <div>No VCA data available</div>;
   }
 
-  const user = useAppSelector((state) => state.user.user);
-
   const [isFieldsChanged, setFieldsChanged] = useState(false);
-  const [isLoading, setLoading] = useState(false);
-  const [vcaIdentification, setVcaIdentification] = useState<VcaIdentification | null>(null);
-
-  const userFormValues = useMemo(
-    () =>
-      user
-        ? {
-          firstName: user.first_name,
-          lastName: user.last_name,
-        }
-        : initialPersonalInfoValues,
-    [user],
-  );
-
-  const [form] = BaseButtonsForm.useForm();
 
   const { t } = useTranslation();
-
-  const onFinish = useCallback(
-    (values: PaymentCard) => {
-      // todo dispatch an action here
-      setLoading(true);
-      setTimeout(() => {
-        setLoading(false);
-        setFieldsChanged(false);
-        notificationController.success({ message: t('common.success') });
-      }, 1000);
-    },
-    [t],
-  );
 
   const date_created = useMemo(() => {
     const date = new Date(vca.date_created);
     return date.toLocaleDateString();
   }, [vca.date_created]);
 
-  useEffect(() => {
-    const fetchVcaIdentification = async (uniqueId: string) => {
-      try {
-        const response = await axios.get(
-          `https://ecapplus.server.dqa.bluecodeltd.com/child/identification/${uniqueId}`
-        );
-
-        setVcaIdentification(response.data.data[0]);
-
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (vca) {
-      setLoading(true);
-      fetchVcaIdentification(vca.unique_id);
-    }
-  }, [vca]);
-
-  if (isLoading || !vcaIdentification) {
-    return (
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
-        <Spin size="small" />
-        <Typography>Please Wait</Typography>
-      </div>
-    );
-  }
-
   return (
     <BaseCard>
       <BaseButtonsForm
-        form={form}
         name="info"
-        loading={isLoading}
-        initialValues={userFormValues}
+        initialValues={{}}  // Adjust as needed
         isFieldsChanged={isFieldsChanged}
         setFieldsChanged={setFieldsChanged}
         onFieldsChange={() => setFieldsChanged(true)}
-        onFinish={onFinish}
+        onFinish={() => {}}  // Add your onFinish logic
       >
         <BaseRow gutter={{ xs: 10, md: 16, xl: 30 }}>
-          <BaseButtonsForm
-            form={form}
-            name="info"
-            loading={isLoading}
-            initialValues={userFormValues}
-            isFieldsChanged={isFieldsChanged}
-            setFieldsChanged={setFieldsChanged}
-            onFieldsChange={() => setFieldsChanged(true)}
-            onFinish={onFinish}
-          >
-            <BaseRow gutter={{ xs: 10, md: 16, xl: 30 }}>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>VCA ID</Typography>
-                <NicknameItem name={vca.unique_id} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Household ID</Typography>
-                <NicknameItem name={vca.household_id} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>First Name</Typography>
-                <NicknameItem name={vca.first_name} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Last Name</Typography>
-                <NicknameItem name={vca.last_name} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>VCA Contact Phone</Typography>
-                <NicknameItem name={'None'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Birthdate</Typography>
-                <NicknameItem name={vca.birthdate} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Age Estimate</Typography>
-                <NicknameItem name={vca.age_estimate} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Is the Child Disabled?</Typography>
-                <NicknameItem name={vca.disability} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Relationship to Caregiver</Typography>
-                <NicknameItem name={vca.relationship} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Or other relation to caregiver</Typography>
-                <NicknameItem name={vca.other_relationship} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Is this the Index VCA in this household?</Typography>
-                <NicknameItem name={vca.is_index} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Province</Typography>
-                <NicknameItem name={vca.province} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>District</Typography>
-                <NicknameItem name={vca.district} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Provider ID</Typography>
-                <NicknameItem name={vcaIdentification?.provider_id ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>CWAC Name</Typography>
-                <NicknameItem name={vca.cwac} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>CWAC Code</Typography>
-                <NicknameItem name={'None'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Date Created</Typography>
-                <NicknameItem name={vca.date_created} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Month of Assessment</Typography>
-                <NicknameItem name={vca.month} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Year of Assessment</Typography>
-                <NicknameItem name={vca.year} />
-              </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>VCA ID</Typography>
+            <NicknameItem name={vca.id} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Household ID</Typography>
+            <NicknameItem name={vca.household_id} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>First Name</Typography>
+            <NicknameItem name={vca.firstname} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Last Name</Typography>
+            <NicknameItem name={vca.lastname} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Caregiver Name</Typography>
+            <NicknameItem name={vca.caregiver_name} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Caregiver Birthdate</Typography>
+            <NicknameItem name={vca.caregiver_birth_date} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Caregiver HIV Status</Typography>
+            <NicknameItem name={vca.caregiver_hiv_status} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Caregiver Sex</Typography>
+            <NicknameItem name={vca.caregiver_sex} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Caseworker Name</Typography>
+            <NicknameItem name={vca.caseworker_name} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Caseworker Phone</Typography>
+            <NicknameItem name={vca.caseworker_phone} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>District</Typography>
+            <NicknameItem name={vca.district} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Facility</Typography>
+            <NicknameItem name={vca.facility} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Is HIV Positive</Typography>
+            <NicknameItem name={vca.is_hiv_positive} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Is Index</Typography>
+            <NicknameItem name={vca.is_index} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Landmark</Typography>
+            <NicknameItem name={vca.landmark} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Member Type</Typography>
+            <NicknameItem name={vca.member_type} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Partner</Typography>
+            <NicknameItem name={vca.partner} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Province</Typography>
+            <NicknameItem name={vca.province} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Relation</Typography>
+            <NicknameItem name={vca.relation} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>School Name</Typography>
+            <NicknameItem name={vca.school_name} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Screening Location</Typography>
+            <NicknameItem name={vca.screening_location} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>VCA Gender</Typography>
+            <NicknameItem name={vca.vca_gender} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Ward</Typography>
+            <NicknameItem name={vca.ward} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Date Created</Typography>
+            <NicknameItem name={date_created} />
+          </BaseCol>
+          <BaseCol xs={24} md={6}>
+            <Typography style={{ color: "#006baf" }}>Date Enrolled</Typography>
+            <NicknameItem name={vca.date_enrolled} />
+          </BaseCol>
+      
+      
 
-              <BaseCol span={24}>
-                <BaseButtonsForm.Item>
-                  <BaseButtonsForm.Title>{t('VCA Identification Section')}</BaseButtonsForm.Title>
-                </BaseButtonsForm.Item>
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Birth Certificate</Typography>
-                <NicknameItem name={vcaIdentification?.birth_certificate ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Child Concerns</Typography>
-                <NicknameItem name={vcaIdentification?.child_concerns ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Child Eat</Typography>
-                <NicknameItem name={vcaIdentification?.child_eat ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Does the Child Eat Daily</Typography>
-                <NicknameItem name={vcaIdentification?.child_eat_daily ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Child Enrolled</Typography>
-                <NicknameItem name={vcaIdentification?.child_enrolled ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Child Enrolled Yes</Typography>
-                <NicknameItem name={vcaIdentification?.child_enrolled_yes ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Is the Child Ill</Typography>
-                <NicknameItem name={vcaIdentification?.child_ill ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Is the Child Immunization</Typography>
-                <NicknameItem name={vcaIdentification?.child_immunization ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Child Missed</Typography>
-                <NicknameItem name={vcaIdentification?.child_missed ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Child Not Enrolled</Typography>
-                <NicknameItem name={vcaIdentification?.child_not_enrolled ?? 'N/A'} />
-              </BaseCol>
 
-              {/* <BaseCol span={24}>
-                <BaseButtonsForm.Item>
-                  <BaseButtonsForm.Title>{t('Household VCA Identification')}</BaseButtonsForm.Title>
-                </BaseButtonsForm.Item>
-              </BaseCol> */}
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Date First Visit</Typography>
-                <NicknameItem name={vcaIdentification?.date_first_visit ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Date Second Visit</Typography>
-                <NicknameItem name={vcaIdentification?.date_second_visit ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Date Last Interacted With Household</Typography>
-                <NicknameItem name={vcaIdentification?.last_interacted_with ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Average Monthly Income</Typography>
-                <NicknameItem name={vcaIdentification?.average_monthly_income ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Comments Household Income</Typography>
-                <NicknameItem name={vcaIdentification?.comments_household_income ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Income Sufficient</Typography>
-                <NicknameItem name={vcaIdentification?.income_sufficient ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Source of Income</Typography>
-                <NicknameItem name={vcaIdentification?.source_of_income ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Stable Source Income</Typography>
-                <NicknameItem name={vcaIdentification?.stable_source_income ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Family Benefit</Typography>
-                <NicknameItem name={vcaIdentification?.family_benefit ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Family Meals</Typography>
-                <NicknameItem name={vcaIdentification?.family_meals ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Family Members Art</Typography>
-                <NicknameItem name={vcaIdentification?.family_members_art ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Family Members HIV</Typography>
-                <NicknameItem name={vcaIdentification?.family_members_hiv ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Family Member HIV Status</Typography>
-                <NicknameItem name={vcaIdentification?.hiv_status ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Other Family Benefit</Typography>
-                <NicknameItem name={vcaIdentification?.other_family_benefit ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Occupation Head</Typography>
-                <NicknameItem name={vcaIdentification?.occupation_head ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Other</Typography>
-                <NicknameItem name={vcaIdentification?.other ?? 'N/A'} />
-              </BaseCol>
-              {/* <BaseCol span={24}>
-                <BaseButtonsForm.Item>
-                  <BaseButtonsForm.Title>{t('Education')}</BaseButtonsForm.Title>
-                </BaseButtonsForm.Item>
-              </BaseCol> */}
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Comments Education</Typography>
-                <NicknameItem name={vcaIdentification?.comments_education ?? 'N/A'} />
-              </BaseCol>
+          <BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Base Entity ID</Typography>
+  <NicknameItem name={vca.baseentityid} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Been Tested Last Year</Typography>
+  <NicknameItem name={vca.been_tested_last_year} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Birthdate Approx</Typography>
+  <NicknameItem name={vca.birthdateapprox} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Cal HIV</Typography>
+  <NicknameItem name={vca.calhiv} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Caregiver Art Number</Typography>
+  <NicknameItem name={vca.caregiver_art_number} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Caregiver NRC</Typography>
+  <NicknameItem name={vca.caregiver_nrc} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Caregiver Phone</Typography>
+  <NicknameItem name={vca.caregiver_phone} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Case Status</Typography>
+  <NicknameItem name={vca.case_status} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Caseworker Phone</Typography>
+  <NicknameItem name={vca.caseworker_phone} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Child Adolescent in Aged Headed Household</Typography>
+  <NicknameItem name={vca.child_adolescent_in_aged_headed_household} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Child Adolescent in Child Headed Household</Typography>
+  <NicknameItem name={vca.child_adolescent_in_child_headed_household} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Child Adolescent in Chronically Ill Headed Household</Typography>
+  <NicknameItem name={vca.child_adolescent_in_chronically_ill_headed_household} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Child Adolescent in Female Headed Household</Typography>
+  <NicknameItem name={vca.child_adolescent_in_female_headed_household} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Child Adolescent Living with Disability</Typography>
+  <NicknameItem name={vca.child_adolescent_living_with_disability} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Child Ever Experienced Sexual Violence</Typography>
+  <NicknameItem name={vca.child_ever_experienced_sexual_violence} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Client Application Version</Typography>
+  <NicknameItem name={vca.clientapplicationversion} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Client Database Version</Typography>
+  <NicknameItem name={vca.clientdatabaseversion} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Consent Check Box</Typography>
+  <NicknameItem name={vca.consent_check_box} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>CSV</Typography>
+  <NicknameItem name={vca.csv} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>CW LHIV</Typography>
+  <NicknameItem name={vca.cwlhiv} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Date Edited</Typography>
+  <NicknameItem name={vca.date_edited} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Date Offered Enrollment</Typography>
+  <NicknameItem name={vca.date_offered_enrollment} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Date Referred</Typography>
+  <NicknameItem name={vca.date_referred} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Date Screened</Typography>
+  <NicknameItem name={vca.date_screened} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Date Started ART</Typography>
+  <NicknameItem name={vca.date_started_art} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Date Subpop2</Typography>
+  <NicknameItem name={vca.date_subpop2} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Date Created</Typography>
+  <NicknameItem name={date_created} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Date Edited</Typography>
+  <NicknameItem name={vca.dateedited} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Deathdate Approx</Typography>
+  <NicknameItem name={vca.deathdateapprox} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Deleted</Typography>
+  <NicknameItem name={vca.deleted} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Facility</Typography>
+  <NicknameItem name={vca.facility} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Home Address</Typography>
+  <NicknameItem name={vca.homeaddress} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Is Biological</Typography>
+  <NicknameItem name={vca.is_biological} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Is HIV Positive</Typography>
+  <NicknameItem name={vca.is_hiv_positive} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Is Index</Typography>
+  <NicknameItem name={vca.is_index} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Is Mother Adhering to Treatment WL HIV</Typography>
+  <NicknameItem name={vca.is_mother_adhering_to_treatment_wlhiv} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Is Mother Currently on Treatment WL HIV</Typography>
+  <NicknameItem name={vca.is_mother_currently_on_treatment_wlhiv} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Is Mother Virally Suppressed WL HIV</Typography>
+  <NicknameItem name={vca.is_mother_virally_suppressed_wlhiv} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Is Pregnant Breastfeeding</Typography>
+  <NicknameItem name={vca.is_pregnant_breastfeeding} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Is the Child Caregiver an FSW</Typography>
+  <NicknameItem name={vca.is_the_child_caregiver_an_fsw} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Landmark</Typography>
+  <NicknameItem name={vca.landmark} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Level MMD</Typography>
+  <NicknameItem name={vca.level_mmd} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Mother ART Number WL HIV</Typography>
+  <NicknameItem name={vca.mother_art_number_wlhiv} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Partner</Typography>
+  <NicknameItem name={vca.partner} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>PBFW</Typography>
+  <NicknameItem name={vca.pbfw} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Physical Address</Typography>
+  <NicknameItem name={vca.physical_address} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Reason</Typography>
+  <NicknameItem name={vca.reason} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Received Birth Certificate</Typography>
+  <NicknameItem name={vca.received_birth_certificate} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Received Results Last HIV Test</Typography>
+  <NicknameItem name={vca.received_results_last_hiv_test} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Receiving ART</Typography>
+  <NicknameItem name={vca.receiving_art} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Relation</Typography>
+  <NicknameItem name={vca.relation} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>School</Typography>
+  <NicknameItem name={vca.school} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>School Name</Typography>
+  <NicknameItem name={vca.school_name} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Screening Location</Typography>
+  <NicknameItem name={vca.screening_location} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Server Version</Typography>
+  <NicknameItem name={vca.serverversion} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Survivors of Other Forms of Violence</Typography>
+  <NicknameItem name={vca.survivors_of_other_form_of_violence} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Takes Drugs to Prevent Other Diseases</Typography>
+  <NicknameItem name={vca.takes_drugs_to_prevent_other_diseases} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Takes TB Preventive Therapy</Typography>
+  <NicknameItem name={vca.takes_tb_preventive_therapy} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>TB Screening</Typography>
+  <NicknameItem name={vca.tb_screening} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Time ART</Typography>
+  <NicknameItem name={vca.time_art} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Time Result</Typography>
+  <NicknameItem name={vca.time_result} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Time VL</Typography>
+  <NicknameItem name={vca.time_vl} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>UID</Typography>
+  <NicknameItem name={vca.uid} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Under 5 Malnourished</Typography>
+  <NicknameItem name={vca.under_5_malnourished} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Updated Status</Typography>
+  <NicknameItem name={vca.updated_status} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>VCA Gender</Typography>
+  <NicknameItem name={vca.vca_gender} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Virally Suppressed</Typography>
+  <NicknameItem name={vca.virally_suppressed} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>VL Last Result</Typography>
+  <NicknameItem name={vca.vl_last_result} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>VL Next Result</Typography>
+  <NicknameItem name={vca.vl_next_result} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>VL Suppressed</Typography>
+  <NicknameItem name={vca.vl_suppressed} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Ward</Typography>
+  <NicknameItem name={vca.ward} />
+</BaseCol>
+<BaseCol xs={24} md={6}>
+  <Typography style={{ color: "#006baf" }}>Home Address</Typography>
+  <NicknameItem name={vca.homeaddress} />
+</BaseCol>
 
-              <BaseCol span={24}>
-                {/* <BaseButtonsForm.Item>
-                  <BaseButtonsForm.Title>{t('Health and Wellness')}</BaseButtonsForm.Title>
-                </BaseButtonsForm.Item> */}
-                <BaseCol xs={24} md={6}>
-                  <Typography style={{ color: "#006baf" }}>Under 5 Card</Typography>
-                  <NicknameItem name={vcaIdentification?.under_6_card ?? 'N/A'} />
-                </BaseCol>
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Adhering</Typography>
-                <NicknameItem name={vcaIdentification?.adhering ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>ART</Typography>
-                <NicknameItem name={vcaIdentification?.art ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Comments Health</Typography>
-                <NicknameItem name={vcaIdentification?.comments_health ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Child Pregnant</Typography>
-                <NicknameItem name={vcaIdentification?.child_pregnant ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Child Pregnant Yes</Typography>
-                <NicknameItem name={vcaIdentification?.child_pregnant_yes ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Child Tested</Typography>
-                <NicknameItem name={vcaIdentification?.child_tested ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Comments HIV</Typography>
-                <NicknameItem name={vcaIdentification?.comments_hiv ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Viral Load</Typography>
-                <NicknameItem name={vcaIdentification?.viral_load ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Ward</Typography>
-                <NicknameItem name={vcaIdentification?.ward ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Issues Reported</Typography>
-                <NicknameItem name={vcaIdentification?.issues_reported ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Other Not Reported</Typography>
-                <NicknameItem name={vcaIdentification?.other_not_reported ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Known Status</Typography>
-                <NicknameItem name={vcaIdentification?.known_status ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Other Child Eats</Typography>
-                <NicknameItem name={vcaIdentification?.other_child_eats ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Other Child Not Enrolled</Typography>
-                <NicknameItem name={vcaIdentification?.other_child_not_enrolled ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Other Unknown Status</Typography>
-                <NicknameItem name={vcaIdentification?.other_unknown_status ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Overall Concerns</Typography>
-                <NicknameItem name={vcaIdentification?.overall_concerns ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Past Experience</Typography>
-                <NicknameItem name={vcaIdentification?.past_experience ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Reason Missed</Typography>
-                <NicknameItem name={vcaIdentification?.reason_missed ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Does the child spend time on the street?</Typography>
-                <NicknameItem name={vcaIdentification?.street_time ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Traditional Interventions</Typography>
-                <NicknameItem name={vcaIdentification?.traditional_interventions ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Unknown Status</Typography>
-                <NicknameItem name={vcaIdentification?.unknown_status ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Vulnerability Status</Typography>
-                <NicknameItem name={vcaIdentification?.vulnerability_status ?? 'N/A'} />
-              </BaseCol>
-              <BaseCol xs={24} md={6}>
-                <Typography style={{ color: "#006baf" }}>Why Not Reported</Typography>
-                <NicknameItem name={vcaIdentification?.why_not_reported ?? 'N/A'} />
-              </BaseCol>
-
-            </BaseRow>
-          </BaseButtonsForm>
         </BaseRow>
       </BaseButtonsForm>
     </BaseCard>
