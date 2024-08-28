@@ -7,9 +7,12 @@ import { BaseSpace } from '@app/components/common/BaseSpace/BaseSpace';
 import axios from 'axios';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
-import { Input, Tooltip, Space } from 'antd';
+import { Input, Button, Tooltip, Space, Row, Col } from 'antd';
 import { BasicTableRow, Pagination } from 'api/table.api';
 import * as S from '@app/components/common/inputs/SearchInput/SearchInput.styles';
+import { Parser } from 'json2csv';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 interface Vca {
   uid: string;
@@ -25,6 +28,7 @@ interface Vca {
   facility: string;
   province: string;
   district: string;
+  ward: string;
   screening_location: string;
   date_enrolled: string;
   date_created: string;
@@ -46,6 +50,7 @@ const initialPagination: Pagination = {
 
 export const TreeTable: React.FC = () => {
   const [vcas, setVcas] = useState<Vca[]>([]);
+  const [filteredVcas, setFilteredVcas] = useState<Vca[]>([]);
   const [tableData, setTableData] = useState<{ data: BasicTableRow[]; pagination: Pagination; loading: boolean }>({
     data: [],
     pagination: initialPagination,
@@ -83,6 +88,7 @@ export const TreeTable: React.FC = () => {
           `https://ecapplus.server.dqa.bluecodeltd.com/child/vcas-assessed-register`
         );
         setVcas(response.data.data);
+        console.log('vcas',response.data.data);
         localStorage.setItem('vcas', JSON.stringify(response.data.data));
       } catch (error) {
         console.error('Error fetching VCAs data:', error);
@@ -94,70 +100,82 @@ export const TreeTable: React.FC = () => {
     fetchData();
   }, [user]);
 
+   // Apply search filtering
+   useEffect(() => {
+    const lowerCaseQuery = searchQuery.toLowerCase();
+    const filtered = vcas.filter((vca) => 
+      (vca.uid?.toLowerCase() || '').includes(lowerCaseQuery) ||
+      (vca.firstname?.toLowerCase() || '').includes(lowerCaseQuery) ||
+      (vca.lastname?.toLowerCase() || '').includes(lowerCaseQuery) ||
+      (vca.homeaddress?.toLowerCase() || '').includes(lowerCaseQuery) ||
+      (vca.ward?.toLowerCase() || '').includes(lowerCaseQuery) ||
+      (vca.vca_gender?.toLowerCase() || '').includes(lowerCaseQuery) 
+    );
+    setFilteredVcas(filtered);
+  }, [searchQuery, vcas]);
+  
+
   useEffect(() => {
-    const mappedData = vcas.map((vca, index) => ({
+    const mappedData = filteredVcas.map((vca, index) => ({
       key: index,
       unique_id: vca.uid,
       name: `${vca.firstname} ${vca.lastname}`,
       gender: vca.vca_gender,
       age: vca.birthdate,
       address: `
-        Address: ${vca.homeaddress || 'Not Applicable'}
-        Facility: ${vca.facility || 'Not Applicable'}
-        Province: ${vca.province}, 
-        District: ${vca.district},
+        Address: ${vca.homeaddress || 'Unknown'} ,  
+        Facility: ${vca.facility || 'Unknown'} , 
+        Province: ${vca.province || 'Unknown'} , 
+        District: ${vca.district || 'Unknown'} , 
+        Ward: ${vca.ward || 'Unknown'} ,
         Date Last Visited: ${moment(vca.date_last_vl).format('DD/MM/YYYY')}
-      `,
+      `
     }));
-
+  
     setTableData({ data: mappedData, pagination: initialPagination, loading: false });
-  }, [vcas]);
+  }, [filteredVcas]);  
+  
+ 
 
-  const fetch = useCallback(
-    async (pagination: Pagination) => {
-      setLoading(true);
+  const exportToCSV = () => {
+    const fields = ['uid', 'firstname', 'lastname', 'vca_gender', 'homeaddress', 'province', 'district', 'ward' ];
+    const parser = new Parser({ fields });
+    const csv = parser.parse(vcas);
 
-      if (!user) return;
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', 'vcas.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
-      try {
-        const response = await axios.get(`https://ecapplus.server.dqa.bluecodeltd.com/child/vcas-assessed-register`, {
-          params: {
-            keyword: searchQuery,
-            page: pagination.current,
-            pageSize: pagination.pageSize,
-          },
-        });
-        const responseData = response.data.data;
-        console.log("vca data",responseData);
-        const mappedData = responseData.map((vca: any, index: number) => ({
-          key: index,
-          unique_id: vca.uid,
-          name: `${vca.firstname} ${vca.lastname}`,
-          gender: vca.vca_gender,
-          age: vca.birthdate,
-          address: `
-            Address: ${vca.homeaddress || 'Not Applicable'}
-            Facility: ${vca.facility || 'Not Applicable'}
-            Province: ${vca.province}, 
-            District: ${vca.district},
-            Date Last Visited: ${moment(vca.date_last_vl).format('DD/MM/YYYY')}
-          `,
-        }));
-        setTableData({ data: mappedData, pagination, loading: false });
-      } catch (error) {
-        console.error('Error fetching VCAs data:', error);
-        setLoading(false);
-      }
-    },
-    [searchQuery, user]
-  );
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    const tableColumn = ['Unique ID', ' First Name', 'Last Name', 'Gender', 'Address', 'Province', 'District', 'Ward'];
+    const tableRows: any[] = [];
 
-  useEffect(() => {
-    fetch(initialPagination);
-  }, [fetch]);
+    vcas.forEach((vca) => {
+      const rowData = [
+        vca.uid,
+        vca.firstname,
+        vca.lastname,
+        vca.vca_gender,
+        vca.homeaddress,
+        vca.province,
+        vca.district,
+        vca.ward,
+      ];
+      tableRows.push(rowData);
+    });
 
-  const handleTableChange = (pagination: Pagination) => {
-    fetch(pagination);
+    doc.autoTable({
+      head: [tableColumn],
+      body: tableRows,
+    });
+
+    doc.save('vca.pdf');
   };
 
   const handleView = (uid: string) => {
@@ -165,31 +183,27 @@ export const TreeTable: React.FC = () => {
     navigate(`/vca-profile/${encodeURIComponent(uid)}`, { state: { vca: selectedVca } });
   };
 
-  const clearSearch = () => {
-    setSearchQuery('');
-    fetch(initialPagination);
-  };
 
   const columns = [
     {
       title: t('Unique ID'),
       dataIndex: 'unique_id',
-      width: '25%',
+      width: '20%',
     },
     {
       title: t('Full Name'),
       dataIndex: 'name',
-      width: '25%',
+      width: '20%',
     },
     {
       title: t('Gender'),
       dataIndex: 'gender',
-      width: '25%',
+      width: '15%',
     },
     {
       title: t('Household Details'),
       dataIndex: 'address',
-      width: '25%',
+      width: '35%',
     },
     {
       title: t('Actions'),
@@ -205,21 +219,47 @@ export const TreeTable: React.FC = () => {
     },
   ];
 
+  const searchTooltipContent = (
+    <div>
+      {t('You can search by Unique ID, Name, Gender, Ward, and other fields.')}
+    </div>
+  );
+
   return (
-    <BaseTable
-      bordered
-      columns={columns}
-      dataSource={tableData.data}
-      pagination={tableData.pagination}
-      loading={loading}
-      onChange={handleTableChange}
-      rowKey="uid"
-      // searchProps={{
-      //   value: searchQuery,
-      //   onChange: setSearchQuery,
-      //   onSearch: () => fetch(initialPagination),
-      //   onClear: clearSearch,
-      // }}
-    />
+    <div style={{ margin: '20px' }}>
+    <Space direction="vertical" style={{ width: '100%' }}>
+      <Tooltip title={searchTooltipContent}>
+        <Space>
+          <S.SearchInput
+            style={{ width: 400 }}
+            placeholder={t('Search')}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </Space>
+      </Tooltip>
+      <Row justify="end" style={{ marginBottom: 16 }}>
+        <Col>
+          <Space>
+            <Button type="primary" onClick={exportToCSV}>
+              {t('Export CSV')}
+            </Button>
+            <Button type="primary" onClick={exportToPDF}>
+              {t('Export PDF')}
+            </Button>
+          </Space>
+        </Col>
+      </Row>
+      <BaseTable
+        bordered
+        dataSource={tableData.data}
+        columns={columns}
+        pagination={tableData.pagination}
+        onChange={(pagination) => {}}
+        loading={tableData.loading}
+        tableLayout="fixed"
+      />
+    </Space>
+  </div>
   );
 };

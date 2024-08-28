@@ -2,59 +2,24 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { useTranslation } from 'react-i18next';
-import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { BaseSpace } from '@app/components/common/BaseSpace/BaseSpace';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Input, Button, Tooltip, Space } from 'antd';
+import { Input, Button, Tooltip, Space, Row, Col } from 'antd';
 import { BasicTableRow, Pagination } from 'api/table.api';
 import * as S from '@app/components/common/inputs/SearchInput/SearchInput.styles';
+import { Parser } from 'json2csv';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 
 interface Household {
   household_id: string;
-  province: string;
-  district: string;
   caregiver_name: string;
-  caregiver_phone: string;
-  caregiver_sex: string;
-  case_status: string;
-  caseworker_name: string;
-  caseworker_phone: string;
-  contact_number: string;
-  emergency_name: string;
-  facility: string;
   homeaddress: string;
-  partner: string;
-  provider_id: string;
-  adolescent_birthdate: string;
-  caregiver_birthdate: string;
-  screening_date: string;
-  screening_location: string;
-  screening_location_home: string;
-  unique_id: string;
-  vca_gender: string;
+  facility: string;
+  province: string;
   ward: string;
-  screened: string;
-  acceptance: string;
-  active_on_treatment: string | null;
-  agyw: string;
-  approved_family: string;
-  art_check_box: string | null;
-  art_number: string | null;
-  beds: string;
-  biological_children: string | null;
-  calhiv: string;
-  caregiver_art_number: string | null;
-  caregiver_hiv_status: string;
-  consent_check_box: string;
-  date_enrolled: string;
-  education: string;
-  marital_status: string;
-  monthlyexpenses: string;
-}
-
-interface User {
-  location: string;
+  caseworker_name: string;
 }
 
 const initialPagination: Pagination = {
@@ -63,22 +28,17 @@ const initialPagination: Pagination = {
 };
 
 export const EditableTable: React.FC = () => {
-
   const [households, setHouseholds] = useState<Household[]>([]);
-  const [form] = BaseForm.useForm();
-  const navigate = useNavigate();
-
+  const [filteredHouseholds, setFilteredHouseholds] = useState<Household[]>([]);
   const [tableData, setTableData] = useState<{ data: BasicTableRow[]; pagination: Pagination; loading: boolean }>({
     data: [],
     pagination: initialPagination,
     loading: false,
   });
-
   const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-  const [clearingSearch, setClearingSearch] = useState<boolean>(false);
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<any | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -98,28 +58,38 @@ export const EditableTable: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchHouseholds = async () => {
       if (!user) return;
-
       try {
-        const response = await axios.get(
-          `https://ecapplus.server.dqa.bluecodeltd.com/household/all-households`
-        );
-
+        setTableData((prev) => ({ ...prev, loading: true }));
+        const response = await axios.get(`https://ecapplus.server.dqa.bluecodeltd.com/household/all-households`);
         setHouseholds(response.data.data);
-        localStorage.setItem('households', JSON.stringify(response.data.data));
       } catch (error) {
         console.error('Error fetching households data:', error);
       } finally {
-        setLoading(false);
+        setTableData((prev) => ({ ...prev, loading: false }));
       }
     };
 
-    fetchData();
+    fetchHouseholds();
   }, [user]);
 
+  // Apply search filtering
   useEffect(() => {
-    const mappedData: BasicTableRow[] = households.map((household, index) => ({
+    const lowerCaseQuery = searchQuery.toLowerCase();
+    const filtered = households.filter((household) => 
+      (household.household_id?.toLowerCase() || '').includes(lowerCaseQuery) ||
+      (household.caregiver_name?.toLowerCase() || '').includes(lowerCaseQuery) ||
+      (household.homeaddress?.toLowerCase() || '').includes(lowerCaseQuery) ||
+      (household.ward?.toLowerCase() || '').includes(lowerCaseQuery) ||
+      (household.caseworker_name?.toLowerCase() || '').includes(lowerCaseQuery)
+    );
+    setFilteredHouseholds(filtered);
+  }, [searchQuery, households]);
+  
+
+  useEffect(() => {
+    const mappedData: BasicTableRow[] = filteredHouseholds.map((household, index) => ({
       key: index,
       name: household.caregiver_name,
       address: `
@@ -133,65 +103,51 @@ export const EditableTable: React.FC = () => {
     }));
 
     setTableData({ data: mappedData, pagination: initialPagination, loading: false });
-  }, [households]);
+  }, [filteredHouseholds]);
 
-  const fetch = useCallback(
-    async (pagination: Pagination) => {
-      setLoading(true);
+  const exportToCSV = () => {
+    const fields = ['household_id', 'caregiver_name', 'homeaddress', 'facility', 'province', 'ward', 'caseworker_name'];
+    const parser = new Parser({ fields });
+    const csv = parser.parse(households);
 
-      if (!user) return;
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', 'households.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
-      try {
-        const response = await axios.get(`https://ecapplus.server.dqa.bluecodeltd.com/household/all-households`, {
-          params: {
-            keyword: searchQuery,
-            page: pagination.current,
-            pageSize: pagination.pageSize,
-          },
-        });
-        const responseData = response.data.data;
-        console.log("household data",responseData);
-        const mappedData: BasicTableRow[] = responseData.map((household: any, index: number) => ({
-          key: index,
-          name: household.caregiver_name,
-          address: `
-            Address: ${household.homeaddress || 'Not Applicable'}
-            Facility: ${household.facility || 'Not Applicable'}
-            Province: ${household.province || 'Not Applicable'}
-            Ward: ${household.ward || 'Not Applicable'}
-          `,
-          household_id: household.household_id,
-          caseworker_name: household.caseworker_name,
-        }));
-        setTableData({ data: mappedData, pagination, loading: false });
-      } catch (error) {
-        console.error('Error fetching households data:', error);
-        setLoading(false);
-      }
-    },
-    [searchQuery, user]
-  );
+  const exportToPDF = () => {
+    const doc = new jsPDF();
+    const tableColumn = ['Household ID', 'Caregiver Name', 'Address', 'Facility', 'Province', 'Ward', 'Caseworker Name'];
+    const tableRows: any[] = [];
 
-  useEffect(() => {
-    fetch(initialPagination);
-  }, [fetch]);
+    households.forEach((household) => {
+      const rowData = [
+        household.household_id,
+        household.caregiver_name,
+        household.homeaddress,
+        household.facility,
+        household.province,
+        household.ward,
+        household.caseworker_name,
+      ];
+      tableRows.push(rowData);
+    });
 
-  const handleTableChange = (pagination: Pagination) => {
-    fetch(pagination);
+    doc.autoTable({
+      head: [tableColumn],
+      body: tableRows,
+    });
+
+    doc.save('households.pdf');
   };
 
   const handleView = (household_id: string) => {
     const selectedHousehold = households.find(household => household.household_id === household_id);
     navigate(`/household-profile/${encodeURIComponent(household_id)}`, { state: { household: selectedHousehold } });
-  };
-
-  const clearSearch = () => {
-    setClearingSearch(true);
-    setSearchQuery('');
-    fetch(initialPagination);
-    setTimeout(() => {
-      setClearingSearch(false);
-    }, 1000);
   };
 
   const columns = [
@@ -204,7 +160,6 @@ export const EditableTable: React.FC = () => {
       title: t('Caregiver Name'),
       dataIndex: 'name',
       width: '20%',
-      render: (text: string) => text,
     },
     {
       title: t('Household Details'),
@@ -230,7 +185,6 @@ export const EditableTable: React.FC = () => {
       ),
     },
   ];
-  
 
   const searchTooltipContent = (
     <div>
@@ -238,7 +192,7 @@ export const EditableTable: React.FC = () => {
     </div>
   );
 
-  return (   
+  return (
     <div style={{ margin: '20px' }}>
       <Space direction="vertical" style={{ width: '100%' }}>
         <Tooltip title={searchTooltipContent}>
@@ -247,18 +201,30 @@ export const EditableTable: React.FC = () => {
               style={{ width: 400 }}
               placeholder={t('Search')}
               value={searchQuery}
-              onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setSearchQuery(e.target.value)} />
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </Space>
         </Tooltip>
+        <Row justify="end" style={{ marginBottom: 16 }}>
+          <Col>
+            <Space>
+              <Button type="primary" onClick={exportToCSV}>
+                {t('Export CSV')}
+              </Button>
+              <Button type="primary" onClick={exportToPDF}>
+                {t('Export PDF')}
+              </Button>
+            </Space>
+          </Col>
+        </Row>
         <BaseTable
           bordered
           dataSource={tableData.data}
           columns={columns}
-          rowClassName="editable-row"
           pagination={tableData.pagination}
-          onChange={handleTableChange}
+          onChange={(pagination) => {}}
           loading={tableData.loading}
-          tableLayout="fixed" // Ensures fixed layout for table
+          tableLayout="fixed"
         />
       </Space>
     </div>

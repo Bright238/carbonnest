@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { NFTCard } from '@app/components/nft-dashboard/common/NFTCard/NFTCard';
-import { TopUpBalanceModal } from './components/TopUpBalanceModal/TopUpBalanceModal'; // Import TopUpBalanceModal
 import { TopUpBalanceButton } from './components/TopUpBalanceButton/TopUpBalanceButton';
-import { TopUpData } from './interfaces/interfaces';
-import * as S from './Balance.styles';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
+import * as S from './Balance.styles';
 
 interface BalanceProps {
   title: string;
@@ -36,11 +34,8 @@ export const Balance: React.FC<BalanceProps> = ({
             </BaseCol>
 
             <BaseCol span={24}>
-              <S.TitleBalanceText level={5} style={{ textAlign: "center" }}>
-                      {count}
-              </S.TitleBalanceText>
+              <TopUpBalanceButton onClick={handleModal} count={count} />
             </BaseCol>
-            
           </BaseRow>
         </NFTCard>
       </BaseCol>
