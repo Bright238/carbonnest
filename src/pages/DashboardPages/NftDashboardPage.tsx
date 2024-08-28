@@ -55,7 +55,7 @@ const MedicalDashboardPage: React.FC = () => {
         const response = await axios.get(
           `https://ecapplus.server.dqa.bluecodeltd.com/household/households-count`
         );
-        setHouseholdCount(response.data.count);
+        setHouseholdCount(response.data.count.count);
       } catch (error) {
         console.error('Error fetching household count data:', error);
       } finally {
@@ -72,7 +72,7 @@ const MedicalDashboardPage: React.FC = () => {
         const response = await axios.get(
           `https://ecapplus.server.dqa.bluecodeltd.com/child/vcas-count`
         );
-        setVCAsCount(response.data.count);
+        setVCAsCount(response.data.count.count);
       } catch (error) {
         console.error('Error fetching VCAs data:', error);
       }
@@ -89,7 +89,7 @@ const MedicalDashboardPage: React.FC = () => {
         const response = await axios.get(
           `https://ecapplus.server.dqa.bluecodeltd.com/household/members-count`
         );
-        setMembersCount(response.data.count);
+        setMembersCount(response.data.count.count);
       } catch (error) {
         console.error('Error fetching household members data:', error);
       }

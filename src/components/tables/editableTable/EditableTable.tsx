@@ -129,17 +129,7 @@ export const EditableTable: React.FC = () => {
         Ward: ${household.ward || 'Not Applicable'}
       `,
       household_id: household.household_id,
-      unique_id: household.unique_id,
-      vca_gender: household.vca_gender,
-      screened: household.screened === 'true' ? 'Yes' : 'No',
-      acceptance: household.acceptance || 'Not Applicable',
-      active_on_treatment: household.active_on_treatment || 'Not Applicable',
-      beds: household.beds || 'Not Applicable',
-      caregiver_hiv_status: household.caregiver_hiv_status || 'Not Applicable',
-      consent_check_box: household.consent_check_box || 'Not Applicable',
-      date_enrolled: household.date_enrolled || 'Not Applicable',
-      education: household.education || 'Not Applicable',
-      marital_status: household.marital_status || 'Not Applicable',
+      caseworker_name: household.caseworker_name,
     }));
 
     setTableData({ data: mappedData, pagination: initialPagination, loading: false });
@@ -160,6 +150,7 @@ export const EditableTable: React.FC = () => {
           },
         });
         const responseData = response.data.data;
+        console.log("household data",responseData);
         const mappedData: BasicTableRow[] = responseData.map((household: any, index: number) => ({
           key: index,
           name: household.caregiver_name,
@@ -170,17 +161,7 @@ export const EditableTable: React.FC = () => {
             Ward: ${household.ward || 'Not Applicable'}
           `,
           household_id: household.household_id,
-          unique_id: household.unique_id,
-          vca_gender: household.vca_gender,
-          screened: household.screened === 'true' ? 'Yes' : 'No',
-          acceptance: household.acceptance || 'Not Applicable',
-          active_on_treatment: household.active_on_treatment || 'Not Applicable',
-          beds: household.beds || 'Not Applicable',
-          caregiver_hiv_status: household.caregiver_hiv_status || 'Not Applicable',
-          consent_check_box: household.consent_check_box || 'Not Applicable',
-          date_enrolled: household.date_enrolled || 'Not Applicable',
-          education: household.education || 'Not Applicable',
-          marital_status: household.marital_status || 'Not Applicable',
+          caseworker_name: household.caseworker_name,
         }));
         setTableData({ data: mappedData, pagination, loading: false });
       } catch (error) {
@@ -215,70 +196,30 @@ export const EditableTable: React.FC = () => {
 
   const columns = [
     {
-      title: t('Screened'),
-      dataIndex: 'screened',
-      width: '10%',
-    },
-    {
       title: t('Household ID'),
       dataIndex: 'household_id',
-      width: '10%',
+      width: '20%',
     },
     {
-      title: t('Caregiver Details'),
+      title: t('Caregiver Name'),
       dataIndex: 'name',
       width: '20%',
       render: (text: string) => text,
     },
     {
-      title: t('Address Details'),
+      title: t('Household Details'),
       dataIndex: 'address',
       width: '30%',
       render: (text: string) => <div style={{ whiteSpace: 'pre-line' }}>{text}</div>,
     },
     {
-      title: t('Acceptance'),
-      dataIndex: 'acceptance',
-      width: '10%',
-    },
-    {
-      title: t('Active on Treatment'),
-      dataIndex: 'active_on_treatment',
-      width: '15%',
-    },
-    {
-      title: t('Beds'),
-      dataIndex: 'beds',
-      width: '10%',
-    },
-    {
-      title: t('Caregiver HIV Status'),
-      dataIndex: 'caregiver_hiv_status',
-      width: '15%',
-    },
-    {
-      title: t('Consent Check Box'),
-      dataIndex: 'consent_check_box',
-      width: '15%',
-    },
-    {
-      title: t('Date Enrolled'),
-      dataIndex: 'date_enrolled',
-      width: '15%',
-    },
-    {
-      title: t('Education'),
-      dataIndex: 'education',
-      width: '15%',
-    },
-    {
-      title: t('Marital Status'),
-      dataIndex: 'marital_status',
-      width: '15%',
+      title: t('Case Worker'),
+      dataIndex: 'caseworker_name',
+      width: '20%',
     },
     {
       title: t('Actions'),
-      width: '15%',
+      width: '10%',
       dataIndex: '',
       render: (text: string, record: BasicTableRow) => (
         <BaseSpace>
@@ -289,6 +230,7 @@ export const EditableTable: React.FC = () => {
       ),
     },
   ];
+  
 
   const searchTooltipContent = (
     <div>
@@ -296,7 +238,7 @@ export const EditableTable: React.FC = () => {
     </div>
   );
 
-  return (
+  return (   
     <div style={{ margin: '20px' }}>
       <Space direction="vertical" style={{ width: '100%' }}>
         <Tooltip title={searchTooltipContent}>
@@ -316,7 +258,7 @@ export const EditableTable: React.FC = () => {
           pagination={tableData.pagination}
           onChange={handleTableChange}
           loading={tableData.loading}
-          scroll={{ x: 2000 }} // Adjust width according to your columns
+          tableLayout="fixed" // Ensures fixed layout for table
         />
       </Space>
     </div>

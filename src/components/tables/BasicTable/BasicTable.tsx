@@ -15,6 +15,7 @@ interface Vca {
   uid: string;
   firstname: string;
   lastname: string;
+  birthdate: string;
   caregiver_name: string;
   caregiver_phone: string;
   caregiver_hiv_status: string;
@@ -79,7 +80,7 @@ export const BasicTable: React.FC = () => {
 
       try {
         const response = await axios.get(
-          `https://ecapplus.server.dqa.bluecodeltd.com/child/vcas-assessed-register`
+          `https://ecapplus.server.dqa.bluecodeltd.com/child/household-members-register`
         );
         setVcas(response.data.data);
         localStorage.setItem('vcas', JSON.stringify(response.data.data));
@@ -94,29 +95,19 @@ export const BasicTable: React.FC = () => {
   }, [user]);
 
   useEffect(() => {
-    const mappedData: BasicTableRow[] = vcas.map((vca, index) => ({
+    const mappedData = vcas.map((vca, index) => ({
       key: index,
-      uid: vca.uid,
+      unique_id: vca.uid,
       name: `${vca.firstname} ${vca.lastname}`,
-      caregiver_name: vca.caregiver_name,
-      caregiver_phone: vca.caregiver_phone,
-      caregiver_hiv_status: vca.caregiver_hiv_status,
-      caregiver_birth_date: vca.caregiver_birth_date,
-      household_id: vca.household_id,
+      gender: vca.vca_gender,
+      age: vca.birthdate,
       address: `
         Address: ${vca.homeaddress || 'Not Applicable'}
         Facility: ${vca.facility || 'Not Applicable'}
-        Province: ${vca.province || 'Not Applicable'}
-        District: ${vca.district || 'Not Applicable'}
-        Screening Location: ${vca.screening_location || 'Not Applicable'}
-        Date Enrolled: ${moment(vca.date_enrolled).format('DD/MM/YYYY')}
+        Province: ${vca.province}, 
+        District: ${vca.district},
+        Date Last Visited: ${moment(vca.date_last_vl).format('DD/MM/YYYY')}
       `,
-      date_created: moment(vca.date_created).format('DD/MM/YYYY'),
-      date_last_vl: vca.date_last_vl ? moment(vca.date_last_vl).format('DD/MM/YYYY') : 'Not Applicable',
-      date_next_vl: vca.date_next_vl ? moment(vca.date_next_vl).format('DD/MM/YYYY') : 'Not Applicable',
-      vca_gender: vca.vca_gender,
-      is_hiv_positive: vca.is_hiv_positive,
-      vl_suppressed: vca.vl_suppressed,
     }));
 
     setTableData({ data: mappedData, pagination: initialPagination, loading: false });
@@ -129,7 +120,7 @@ export const BasicTable: React.FC = () => {
       if (!user) return;
 
       try {
-        const response = await axios.get(`https://ecapplus.server.dqa.bluecodeltd.com/child/vcas-assessed-register`, {
+        const response = await axios.get(`https://ecapplus.server.dqa.bluecodeltd.com/child/household-members-register`, {
           params: {
             keyword: searchQuery,
             page: pagination.current,
@@ -137,29 +128,20 @@ export const BasicTable: React.FC = () => {
           },
         });
         const responseData = response.data.data;
-        const mappedData: BasicTableRow[] = responseData.map((vca: any, index: number) => ({
+        console.log("vca member data",responseData);
+        const mappedData = responseData.map((vca: any, index: number) => ({
           key: index,
-          uid: vca.uid,
+          unique_id: vca.uid,
           name: `${vca.firstname} ${vca.lastname}`,
-          caregiver_name: vca.caregiver_name,
-          caregiver_phone: vca.caregiver_phone,
-          caregiver_hiv_status: vca.caregiver_hiv_status,
-          caregiver_birth_date: vca.caregiver_birth_date,
-          household_id: vca.household_id,
+          gender: vca.vca_gender,
+          age: vca.birthdate,
           address: `
             Address: ${vca.homeaddress || 'Not Applicable'}
             Facility: ${vca.facility || 'Not Applicable'}
-            Province: ${vca.province || 'Not Applicable'}
-            District: ${vca.district || 'Not Applicable'}
-            Screening Location: ${vca.screening_location || 'Not Applicable'}
-            Date Enrolled: ${moment(vca.date_enrolled).format('DD/MM/YYYY')}
+            Province: ${vca.province}, 
+            District: ${vca.district},
+            Date Last Visited: ${moment(vca.date_last_vl).format('DD/MM/YYYY')}
           `,
-          date_created: moment(vca.date_created).format('DD/MM/YYYY'),
-          date_last_vl: vca.date_last_vl ? moment(vca.date_last_vl).format('DD/MM/YYYY') : 'Not Applicable',
-          date_next_vl: vca.date_next_vl ? moment(vca.date_next_vl).format('DD/MM/YYYY') : 'Not Applicable',
-          vca_gender: vca.vca_gender,
-          is_hiv_positive: vca.is_hiv_positive,
-          vl_suppressed: vca.vl_suppressed,
         }));
         setTableData({ data: mappedData, pagination, loading: false });
       } catch (error) {
@@ -191,44 +173,23 @@ export const BasicTable: React.FC = () => {
   const columns = [
     {
       title: t('Unique ID'),
-      dataIndex: 'uid',
-      width: '15%',
+      dataIndex: 'unique_id',
+      width: '25%',
     },
     {
       title: t('Full Name'),
       dataIndex: 'name',
-      width: '20%',
+      width: '25%',
     },
     {
-      title: t('Caregiver Name'),
-      dataIndex: 'caregiver_name',
-      width: '20%',
+      title: t('Gender'),
+      dataIndex: 'gender',
+      width: '25%',
     },
     {
-      title: t('Caregiver Phone'),
-      dataIndex: 'caregiver_phone',
-      width: '15%',
-      render: (text: string) => text ? text : 'Not Applicable',
-    },
-    {
-      title: t('Caregiver HIV Status'),
-      dataIndex: 'caregiver_hiv_status',
-      width: '15%',
-    },
-    {
-      title: t('Date Created'),
-      dataIndex: 'date_created',
-      width: '15%',
-    },
-    {
-      title: t('Date Last VL'),
-      dataIndex: 'date_last_vl',
-      width: '15%',
-    },
-    {
-      title: t('Date Next VL'),
-      dataIndex: 'date_next_vl',
-      width: '15%',
+      title: t('Household Details'),
+      dataIndex: 'address',
+      width: '25%',
     },
     {
       title: t('Actions'),

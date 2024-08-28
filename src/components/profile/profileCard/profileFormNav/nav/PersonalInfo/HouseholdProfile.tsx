@@ -161,10 +161,10 @@ export const HouseholdProfile: React.FC = () => {
               <NicknameItem name={formatDate(household.caregiver_birthdate)} />
             </BaseCol>
 
-            <BaseCol xs={24} md={6}>
+            {/* <BaseCol xs={24} md={6}>
               <Typography style={{ color: "#006baf" }}>Caregiver HIV Status</Typography>
               <NicknameItem name={household.caregiver_hiv_status} />
-            </BaseCol>
+            </BaseCol> */}
 
             <BaseCol xs={24} md={6}>
               <Typography style={{ color: "#006baf" }}>Case Status</Typography>

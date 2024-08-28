@@ -36,15 +36,11 @@ export const Balance: React.FC<BalanceProps> = ({
             </BaseCol>
 
             <BaseCol span={24}>
-              <TopUpBalanceButton onClick={handleModal} />
-              <TopUpBalanceModal
-                isOpen={isModalOpen}
-                onOpenChange={handleModal}
-                count={count} // Pass the count data to the modal
-                cards={[]} loading={false} onFinish={function (data: TopUpData): void {
-                  throw new Error('Function not implemented.');
-                } }              />
+              <S.TitleBalanceText level={5} style={{ textAlign: "center" }}>
+                      {count}
+              </S.TitleBalanceText>
             </BaseCol>
+            
           </BaseRow>
         </NFTCard>
       </BaseCol>
