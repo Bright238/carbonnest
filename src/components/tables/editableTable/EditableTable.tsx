@@ -147,7 +147,7 @@ export const EditableTable: React.FC = () => {
 
   const handleView = (household_id: string) => {
     const selectedHousehold = households.find(household => household.household_id === household_id);
-    navigate(`/household-profile/${encodeURIComponent(household_id)}`, { state: { household: selectedHousehold } });
+    navigate(`/profile/household-profile/${encodeURIComponent(household_id)}`, { state: { household: selectedHousehold } });
   };
 
   const columns = [

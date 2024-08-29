@@ -180,10 +180,8 @@ export const BasicTable: React.FC = () => {
 
   const handleView = (uid: string) => {
     const selectedVca = vcas.find((vca) => vca.uid === uid);
-    navigate(`/vca-profile/${encodeURIComponent(uid)}`, { state: { vca: selectedVca } });
+    navigate(`/profile/vca-profile/${encodeURIComponent(uid)}`, { state: { vca: selectedVca } });
   };
-
-
 
   const columns = [
     {
