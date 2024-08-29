@@ -5,10 +5,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 import Papa from 'papaparse';
 import { jsPDF } from 'jspdf';  // Import jsPDF
-import 'jspdf-autotable'; 
+import 'jspdf-autotable';  // Import jsPDF autoTable
 
 const { Title } = Typography;
-
 
 const Wrapper = styled.div`
   width: 100%;
@@ -23,27 +22,27 @@ const ExportWrapper = styled.div`
 
 const columns = [
   {
-    title: 'Service Date',
-    dataIndex: 'service_date',
-    key: 'service_date',
+    title: 'Referral Date',
+    dataIndex: 'referred_date',
+    key: 'referred_date',
     render: (text: string | null) => text ? text : 'Not Applicable',
   },
   {
-    title: 'Health Services',
-    dataIndex: 'health_services',
-    key: 'health_services',
+    title: 'Case Worker',
+    dataIndex: 'caseworker_name',
+    key: 'caseworker_name',
     render: (text: string | null) => text ? text : 'Not Applicable',
   },
   {
-    title: 'HIV Services',
-    dataIndex: 'hiv_services',
-    key: 'hiv_services',
+    title: 'Phone',
+    dataIndex: 'phone',
+    key: 'phone',
     render: (text: string | null) => text ? text : 'Not Applicable',
   },
   {
-    title: 'Other Health Services',
-    dataIndex: 'other_health_services',
-    key: 'other_health_services',
+    title: 'Receiving Organisation',
+    dataIndex: 'receiving_organization',
+    key: 'receiving_organization',
     render: (text: string | null) => text ? text : 'Not Applicable',
   },
   {
@@ -70,7 +69,6 @@ const cleanData = (data: any[]) => {
   return data.map((record) => {
     const cleanedRecord = { ...record };
 
-    // Replace null or undefined values with 'Not Applicable'
     Object.keys(cleanedRecord).forEach((key) => {
       if (cleanedRecord[key] === null || cleanedRecord[key] === undefined) {
         cleanedRecord[key] = 'Not Applicable';
@@ -81,19 +79,19 @@ const cleanData = (data: any[]) => {
   });
 };
 
-export const CaregiverServicesInfo: React.FC = () => {
+export const VcaReferals: React.FC = () => {
   const location = useLocation();
-  const householdId = location.state?.household.household_id;
+  const vcaId = location.state?.vca.uid;
 
   const [isLoading, setLoading] = useState(false);
   const [serviceRecords, setServiceRecords] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (householdId) {
+    if (vcaId) {
       setLoading(true);
       axios
-        .get(`https://ecapplus.server.dqa.bluecodeltd.com/household/caregiver-services/${householdId}`)
+        .get(`https://ecapplus.server.dqa.bluecodeltd.com/child/all-referrals/527853143`)
         .then((response) => {
           const data = cleanData(response.data.data);
           setServiceRecords(data);
@@ -104,7 +102,7 @@ export const CaregiverServicesInfo: React.FC = () => {
           setLoading(false);
         });
     }
-  }, [householdId]);
+  }, [vcaId]);
 
   const exportCSV = () => {
     const csv = Papa.unparse(serviceRecords);
@@ -112,7 +110,7 @@ export const CaregiverServicesInfo: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'household-referrals.csv');
+    link.setAttribute('download', 'vca-referrals.csv');
     link.click();
   };
 
@@ -125,7 +123,6 @@ export const CaregiverServicesInfo: React.FC = () => {
     });
     doc.save('vca-referrals.pdf');
   };
-
 
   if (isLoading) {
     return (
@@ -149,7 +146,7 @@ export const CaregiverServicesInfo: React.FC = () => {
 
   return (
     <Wrapper>
-      <Title>Caregiver Services</Title>
+      <Title>Vca Referrals</Title>
       <ExportWrapper>
         <Button onClick={exportCSV} type="primary" style={{ marginRight: 8 }}>
           Export CSV
@@ -163,7 +160,7 @@ export const CaregiverServicesInfo: React.FC = () => {
         dataSource={serviceRecords}
         pagination={false}
         scroll={{ x: 'max-content' }}
-        rowKey="service_date"
+        rowKey="referred_date"
       />
     </Wrapper>
   );

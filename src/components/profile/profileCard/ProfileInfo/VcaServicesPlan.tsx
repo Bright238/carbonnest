@@ -4,11 +4,10 @@ import { Skeleton, Typography, Alert, Table, Button } from 'antd';
 import axios from 'axios';
 import styled from 'styled-components';
 import Papa from 'papaparse';
-import { jsPDF } from 'jspdf';  // Import jsPDF
-import 'jspdf-autotable'; 
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 
 const { Title } = Typography;
-
 
 const Wrapper = styled.div`
   width: 100%;
@@ -26,43 +25,43 @@ const columns = [
     title: 'Service Date',
     dataIndex: 'service_date',
     key: 'service_date',
-    render: (text: string | null) => text ? text : 'Not Applicable',
+    render: (text: string | null) => (text ? text : 'Not Applicable'),
   },
   {
     title: 'Health Services',
     dataIndex: 'health_services',
     key: 'health_services',
-    render: (text: string | null) => text ? text : 'Not Applicable',
+    render: (text: string | null) => (text ? text : 'Not Applicable'),
   },
   {
     title: 'HIV Services',
     dataIndex: 'hiv_services',
     key: 'hiv_services',
-    render: (text: string | null) => text ? text : 'Not Applicable',
+    render: (text: string | null) => (text ? text : 'Not Applicable'),
   },
   {
     title: 'Other Health Services',
     dataIndex: 'other_health_services',
     key: 'other_health_services',
-    render: (text: string | null) => text ? text : 'Not Applicable',
+    render: (text: string | null) => (text ? text : 'Not Applicable'),
   },
   {
     title: 'Safe Services',
     dataIndex: 'safe_services',
     key: 'safe_services',
-    render: (text: string | null) => text ? text : 'Not Applicable',
+    render: (text: string | null) => (text ? text : 'Not Applicable'),
   },
   {
     title: 'School Services',
     dataIndex: 'schooled_services',
     key: 'schooled_services',
-    render: (text: string | null) => text ? text : 'Not Applicable',
+    render: (text: string | null) => (text ? text : 'Not Applicable'),
   },
   {
     title: 'Stable Services',
     dataIndex: 'stable_services',
     key: 'stable_services',
-    render: (text: string | null) => text ? text : 'Not Applicable',
+    render: (text: string | null) => (text ? text : 'Not Applicable'),
   },
 ];
 
@@ -75,25 +74,30 @@ const cleanData = (data: any[]) => {
       if (cleanedRecord[key] === null || cleanedRecord[key] === undefined) {
         cleanedRecord[key] = 'Not Applicable';
       }
+
+      // Remove '[' and ']' from string values
+      if (typeof cleanedRecord[key] === 'string') {
+        cleanedRecord[key] = cleanedRecord[key].replace(/[\[\]"]/g, '');
+      }
     });
 
     return cleanedRecord;
   });
 };
 
-export const CaregiverServicesInfo: React.FC = () => {
+export const VcaServicesPlan: React.FC = () => {
   const location = useLocation();
-  const householdId = location.state?.household.household_id;
+  const vcaId = location.state?.vca.uid;
 
   const [isLoading, setLoading] = useState(false);
   const [serviceRecords, setServiceRecords] = useState<any[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (householdId) {
+    if (vcaId) {
       setLoading(true);
       axios
-        .get(`https://ecapplus.server.dqa.bluecodeltd.com/household/caregiver-services/${householdId}`)
+        .get(`https://ecapplus.server.dqa.bluecodeltd.com/child/vca-services/${vcaId}`)
         .then((response) => {
           const data = cleanData(response.data.data);
           setServiceRecords(data);
@@ -104,7 +108,7 @@ export const CaregiverServicesInfo: React.FC = () => {
           setLoading(false);
         });
     }
-  }, [householdId]);
+  }, [vcaId]);
 
   const exportCSV = () => {
     const csv = Papa.unparse(serviceRecords);
@@ -112,20 +116,19 @@ export const CaregiverServicesInfo: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'household-referrals.csv');
+    link.setAttribute('download', 'vca-services.csv');
     link.click();
   };
 
   const exportPDF = () => {
     const doc = new jsPDF();
-    doc.text('Vca Referrals', 14, 10);
+    doc.text('Vca Services', 14, 10);
     doc.autoTable({
       head: [columns.map(col => col.title)],
       body: serviceRecords.map(record => columns.map(col => record[col.dataIndex])),
     });
-    doc.save('vca-referrals.pdf');
+    doc.save('vca-services.pdf');
   };
-
 
   if (isLoading) {
     return (
@@ -149,7 +152,7 @@ export const CaregiverServicesInfo: React.FC = () => {
 
   return (
     <Wrapper>
-      <Title>Caregiver Services</Title>
+      <Title>Vca Services</Title>
       <ExportWrapper>
         <Button onClick={exportCSV} type="primary" style={{ marginRight: 8 }}>
           Export CSV

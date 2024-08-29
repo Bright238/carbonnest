@@ -12,6 +12,8 @@ import { BaseRow } from '../common/BaseRow/BaseRow';
 import { BaseCol } from '../common/BaseCol/BaseCol';
 import { Skeleton, Tabs } from 'antd';
 import { VcaPersonalInfo } from './profileCard/ProfileInfo/VcaPersonalInfo';
+import { VcaServicesPlan } from './profileCard/ProfileInfo/VcaServicesPlan';
+import { VcaReferals } from './profileCard/ProfileInfo/VcaReferals';
 
 const VcaProfileLayout: React.FC = () => {
   const user = useAppSelector((state) => state.user.user);
@@ -40,13 +42,13 @@ const VcaProfileLayout: React.FC = () => {
     },
     {
       key: 'vca-case-plans',
-      label: t('VCA Case Plans and Services'),
-      children: <Skeleton active />, 
+      label: t('VCA Services'),
+      children: <VcaServicesPlan profileData={user} />, 
     },
     {
       key: 'referrals',
       label: t('Referrals'),
-      children: <Skeleton active />, 
+      children: <VcaReferals profileData={user} />, 
     },
   ];
 

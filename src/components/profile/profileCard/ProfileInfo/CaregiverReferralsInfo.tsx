@@ -82,7 +82,7 @@ export const CaregiverReferralsInfo: React.FC = () => {
     if (householdId) {
       setLoading(true);
       axios
-        .get(`https://ecapplus.server.dqa.bluecodeltd.com/household/all-referrals/${householdId}`)
+        .get(`https://ecapplus.server.dqa.bluecodeltd.com/household/all-referrals/527853143`)
         .then((response) => {
           const data = cleanData(response.data.data);
           console.log("referrals:::",response.data.data)

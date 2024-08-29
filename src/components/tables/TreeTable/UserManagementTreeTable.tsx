@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import axios from 'axios';
-import { Button, Space, Tooltip, Spin, message, Modal, Form, Input, Popconfirm, Divider, Alert, Tabs } from 'antd';
+import { Button, Space, Tooltip, Spin, message, Modal, Form, Input, Popconfirm, Divider, Alert, Tabs, Tag } from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import * as S from '@app/components/common/inputs/SearchInput/SearchInput.styles';
 import TabPane from 'antd/lib/tabs/TabPane';
@@ -192,11 +192,11 @@ export const UserManagementTreeTable: React.FC = () => {
       dataIndex: 'location',
       width: '25%',
     },
-    {
-      title: 'Department',
-      dataIndex: 'description',
-      width: '25%',
-    },
+    // {
+    //   title: 'Department',
+    //   dataIndex: 'description',
+    //   width: '25%',
+    // },
     {
       title: 'Last Accessed PMP',
       dataIndex: 'last_access',
@@ -211,6 +211,30 @@ export const UserManagementTreeTable: React.FC = () => {
       title: 'Status',
       dataIndex: 'status',
       width: '25%',
+      render: (status: string) => {
+        let color = '';
+        let text = '';
+  
+        switch (status.toLowerCase()) {
+          case 'active':
+            color = '#198754';
+            text = 'Active';
+            break;
+          case 'inactive':
+            color = '#ffc107';
+            text = 'Inactive';
+            break;
+          case 'suspended':
+            color = '#dc3545';
+            text = 'Suspended';
+            break;
+          default:
+            color = 'default';
+            text = status;
+        }
+  
+        return <Tag color={color}>{text}</Tag>;
+      },
     },
     {
       title: 'Actions',

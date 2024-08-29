@@ -149,8 +149,8 @@ export const CaregiverPersonalInfo: React.FC<PersonalInfoProps> = ({ profileData
           <Title>{household.caregiver_name}</Title>
           <Typography>Household ID</Typography>
           <Subtitle>{household.household_id}</Subtitle>
-          <Typography>Consent Date</Typography>
-          <Subtitle>{household.consent_date}</Subtitle>
+          {/* <Typography>Consent Date</Typography>
+          <Subtitle>{household.consent_date}</Subtitle> */}
           <br />
           <br />
           <Alert

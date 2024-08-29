@@ -40,7 +40,7 @@ const MemberProfileLayout: React.FC = () => {
     },
     {
       key: 'member-case-plans',
-      label: t('Member Case Plans and Services'),
+      label: t('Member Services'), 
       children: <Skeleton active />, 
     },
     {

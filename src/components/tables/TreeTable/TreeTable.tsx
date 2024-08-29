@@ -180,7 +180,9 @@ export const TreeTable: React.FC = () => {
   };
 
   const handleView = (uid: string) => {
+    console.log("selected uid", uid);
     const selectedVca = vcas.find((vca) => vca.uid === uid);
+    console.log("selected vca", selectedVca);
     navigate(`/profile/vca-profile/${encodeURIComponent(uid)}`, { state: { vca: selectedVca } });
   };
 
@@ -212,7 +214,7 @@ export const TreeTable: React.FC = () => {
       dataIndex: '',
       render: (text: string, record: BasicTableRow) => (
         <BaseSpace>
-          <BaseButton type="primary" onClick={() => handleView(record.uid)}>
+          <BaseButton type="primary" onClick={() => handleView(record.unique_id)}>
             {t('View')}
           </BaseButton>
         </BaseSpace>
