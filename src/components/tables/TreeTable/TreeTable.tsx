@@ -84,6 +84,7 @@ export const TreeTable: React.FC = () => {
       if (!user) return;
 
       try {
+        setTableData((prev) => ({ ...prev, loading: true }));
         const response = await axios.get(
           `https://ecapplus.server.dqa.bluecodeltd.com/child/vcas-assessed-register`
         );
@@ -93,7 +94,7 @@ export const TreeTable: React.FC = () => {
       } catch (error) {
         console.error('Error fetching VCAs data:', error);
       } finally {
-        setLoading(false);
+        setTableData((prev) => ({ ...prev, loading: false }));
       }
     };
 

@@ -84,6 +84,7 @@ export const BasicTable: React.FC = () => {
       if (!user) return;
 
       try {
+        setTableData((prev) => ({ ...prev, loading: true }));
         const response = await axios.get(
           `https://ecapplus.server.dqa.bluecodeltd.com/child/household-members-register`
         );
@@ -93,6 +94,7 @@ export const BasicTable: React.FC = () => {
         console.error('Error fetching VCAs data:', error);
       } finally {
         setLoading(false);
+        setTableData((prev) => ({ ...prev, loading: true }));
       }
     };
 
