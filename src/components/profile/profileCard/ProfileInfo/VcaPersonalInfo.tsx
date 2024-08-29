@@ -8,7 +8,7 @@ import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { notificationController } from '@app/controllers/notificationController';
 import styled from 'styled-components';
-import { convertToYesNo } from '@app/utils/utils';
+import { convertToYesNo, isoToDate } from '@app/utils/utils';
 
 
 const SectionTitle = styled(Typography.Title)`
@@ -29,6 +29,7 @@ const InfoValue = styled(Typography.Text)`
 
 const Wrapper = styled.div`
   width: 100%;
+   text-transform: capitalize;
 `;
 
 const Title = styled(Typography.Title)`
@@ -239,7 +240,7 @@ export const VcaPersonalInfo: React.FC<PersonalInfoProps> = ({ profileData }) =>
               <Typography.Text strong>Partner:</Typography.Text> {vca.partner}
             </Col>
             <Col span={24}>
-              <Typography.Text strong>Date Created:</Typography.Text> {vca.datecreated}
+              <Typography.Text strong>Date Created:</Typography.Text> {isoToDate(vca.datecreated).toLocaleDateString()}
             </Col>
           </Row>
           <br />
@@ -328,17 +329,6 @@ export const VcaPersonalInfo: React.FC<PersonalInfoProps> = ({ profileData }) =>
             {renderCol('Is the Child Caregiver an FSW', vca.is_the_child_caregiver_an_fsw, 8)}
             {renderCol('Reason', vca.reason, 8)}
 
-
-            <Divider />
-
-            <BaseCol span={24}>
-              <SectionTitle level={5}>{t('Caseworker Information')}</SectionTitle>
-            </BaseCol>
-
-            {renderCol('Name', vca.caseworker_name, 8)}
-            {renderCol('Phone', vca.caseworker_phone, 8)}
-          
-
             <Divider />
 
             <BaseCol span={24}>
@@ -393,10 +383,19 @@ export const VcaPersonalInfo: React.FC<PersonalInfoProps> = ({ profileData }) =>
             {renderCol('Date Screened', vca.date_screened, 8)}
             {renderCol('Date Started ART', vca.date_started_art, 8)}
             {renderCol('Date Subpop2', vca.date_subpop2, 8)}
-            {renderCol('Date Created', vca.datecreated, 8)}
-            {renderCol('Date Edited', vca.dateedited, 8)}
+            {renderCol('Date Edited', isoToDate(vca.dateedited).toLocaleDateString(), 8)}
             {renderCol('De-Registration Date', vca.de_registration_date, 8)}
             {renderCol('Death Date Approx', vca.deathdateapprox, 8)}
+
+
+            <Divider />
+
+            <BaseCol span={24}>
+              <SectionTitle level={5}>{t('Caseworker Information')}</SectionTitle>
+            </BaseCol>
+
+            {renderCol('Name', vca.caseworker_name, 8)}
+            {renderCol('Phone', vca.caseworker_phone, 8)}
 
 
            

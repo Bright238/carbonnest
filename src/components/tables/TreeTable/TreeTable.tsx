@@ -123,14 +123,15 @@ export const TreeTable: React.FC = () => {
       name: `${vca.firstname} ${vca.lastname}`,
       gender: vca.vca_gender,
       age: vca.birthdate,
-      address: `
-        Address: ${vca.homeaddress || 'Unknown'} ,  
-        Facility: ${vca.facility || 'Unknown'} , 
-        Province: ${vca.province || 'Unknown'} , 
-        District: ${vca.district || 'Unknown'} , 
-        Ward: ${vca.ward || 'Unknown'} ,
-        Date Last Visited: ${moment(vca.date_last_vl).format('DD/MM/YYYY')}
-      `
+      address: (
+        <div>
+          <div>Address: {vca.homeaddress || 'Unknown'}</div>
+          <div>Facility: {vca.facility || 'Unknown'}</div>
+          <div>Province: {vca.province || 'Unknown'}</div>
+          <div>District: {vca.district || 'Unknown'}</div>
+          <div>Ward: {vca.ward || 'Unknown'}</div>
+        </div>
+      )
     }));
   
     setTableData({ data: mappedData, pagination: initialPagination, loading: false });
@@ -229,7 +230,7 @@ export const TreeTable: React.FC = () => {
   );
 
   return (
-    <div style={{ margin: '20px' }}>
+    <div style={{ margin: '20px', textTransform: 'capitalize' }}>
     <Space direction="vertical" style={{ width: '100%' }}>
       <Tooltip title={searchTooltipContent}>
         <Space>

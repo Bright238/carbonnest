@@ -56,7 +56,7 @@ const cleanData = (data: any[]) => {
   });
 };
 
-export const VcaServicesPlan: React.FC = () => {
+export const MembersServicesPlan: React.FC = () => {
   const location = useLocation();
   const vcaId = location.state?.vca.uid;
   const [currentPage, setCurrentPage] = useState(1);
@@ -354,7 +354,7 @@ export const VcaServicesPlan: React.FC = () => {
         ]}
       >
       <Wrapper>
-        <Title>Vca Services</Title>
+        <Title>Members Services</Title>
         <ExportWrapper>
           <Button onClick={exportToCSV} type="primary" style={{ marginRight: 8 }}>
             Export CSV

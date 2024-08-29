@@ -12,6 +12,9 @@ import { BaseRow } from '../common/BaseRow/BaseRow';
 import { BaseCol } from '../common/BaseCol/BaseCol';
 import { Skeleton, Tabs } from 'antd';
 import { MemberPersonalInfo } from './profileCard/ProfileInfo/MemberPersonalInfo';
+import { MembersServicesPlan } from './profileCard/ProfileInfo/MembersServicesPlan';
+import { MembersReferals } from './profileCard/ProfileInfo/MembersReferals';
+
 
 const MemberProfileLayout: React.FC = () => {
   const user = useAppSelector((state) => state.user.user);
@@ -40,13 +43,13 @@ const MemberProfileLayout: React.FC = () => {
     },
     {
       key: 'member-case-plans',
-      label: t('Member Services'), 
-      children: <Skeleton active />, 
+      label: t('Members Services'), 
+      children: <MembersServicesPlan profileData={user} />, 
     },
     {
       key: 'referrals',
       label: t('Referrals'),
-      children: <Skeleton active />, 
+      children: <MembersReferals profileData={user} />, 
     },
   ];
 

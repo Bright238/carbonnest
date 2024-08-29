@@ -193,7 +193,7 @@ export const EditableTable: React.FC = () => {
   );
 
   return (
-    <div style={{ margin: '20px' }}>
+    <div style={{ margin: '20px', textTransform: 'capitalize' }}>
       <Space direction="vertical" style={{ width: '100%' }}>
         <Tooltip title={searchTooltipContent}>
           <Space>

@@ -12,7 +12,6 @@ const { Title } = Typography;
 const Wrapper = styled.div`
   width: 100%;
   padding: 20px;
-  text-transform: capitalize;
 `;
 
 const ExportWrapper = styled.div`
@@ -80,7 +79,7 @@ const cleanData = (data: any[]) => {
   });
 };
 
-export const VcaReferals: React.FC = () => {
+export const MembersReferals: React.FC = () => {
   const location = useLocation();
   const vcaId = location.state?.vca.uid;
 
@@ -147,7 +146,7 @@ export const VcaReferals: React.FC = () => {
 
   return (
     <Wrapper>
-      <Title>Vca Referrals</Title>
+      <Title>Members Referrals</Title>
       <ExportWrapper>
         <Button onClick={exportCSV} type="primary" style={{ marginRight: 8 }}>
           Export CSV
