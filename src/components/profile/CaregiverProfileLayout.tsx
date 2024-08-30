@@ -14,6 +14,8 @@ import { Skeleton, Tabs } from 'antd';
 import { CaregiverPersonalInfo } from './profileCard/ProfileInfo/CaregiverPersonalInfo';
 import { CaregiverServicesInfo } from './profileCard/ProfileInfo/CaregiverServicesInfo';
 import { CaregiverReferralsInfo } from './profileCard/ProfileInfo/CaregiverReferralsInfo';
+import { CaregiverCasePlans } from './profileCard/ProfileInfo/CaregiverCasePlans';
+import { HouseholdMembersInfo } from './profileCard/ProfileInfo/HouseholdMembersInfo';
 
 const CaregiverProfileLayout: React.FC = () => {
   const user = useAppSelector((state) => state.user.user);
@@ -41,9 +43,14 @@ const CaregiverProfileLayout: React.FC = () => {
       ),
     },
     {
+      key: 'household-members',
+      label: t('Caregiver Family Members'),
+      children: <HouseholdMembersInfo profileData={user} />, 
+    },
+    {
       key: 'caregiver-services',
-      label: t('Caregiver Services'),
-      children: <CaregiverServicesInfo profileData={user} />, 
+      label: t('Caregiver Caseplans'),
+      children: <CaregiverCasePlans profileData={user} />, 
     },
     {
       key: 'referrals',
