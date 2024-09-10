@@ -42,7 +42,7 @@ const VcaProfileLayout: React.FC = () => {
     },
     {
       key: 'vca-case-plans',
-      label: t('VCA Services'),
+      label: t('Case Plans'),
       children: <VcaServicesPlan profileData={user} />, 
     },
     {

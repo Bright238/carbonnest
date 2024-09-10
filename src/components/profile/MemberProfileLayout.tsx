@@ -43,7 +43,7 @@ const MemberProfileLayout: React.FC = () => {
     },
     {
       key: 'member-case-plans',
-      label: t('Members Services'), 
+      label: t('Case Plans'), 
       children: <MembersServicesPlan profileData={user} />, 
     },
     {

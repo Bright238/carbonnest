@@ -12,6 +12,7 @@ const { Title } = Typography;
 const Wrapper = styled.div`
   width: 100%;
   padding: 20px;
+  text-transform: capitalize;
 `;
 
 const ExportWrapper = styled.div`
@@ -46,9 +47,243 @@ const columns = [
     render: (text: string | null) => text ? text : 'Not Applicable',
   },
   {
-    title: 'Safe Services',
-    dataIndex: 'safe_services',
-    key: 'safe_services',
+    title: 'Date Referred',
+    dataIndex: 'referred_date',
+    key: 'referred_date',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Covid-19',
+    dataIndex: 'covid_19',
+    key: 'covid_19',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'CD4',
+    dataIndex: 'cd4',
+    key: 'cd4',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'HIV Adherence',
+    dataIndex: 'hiv_adherence',
+    key: 'hiv_adherence',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'HIV Counselling Testing',
+    dataIndex: 'hiv_counseling_testing',
+    key: 'hiv_counseling_testing',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Post GBV',
+    dataIndex: 'post_gbv',
+    key: 'post_gbv',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Post GBV',
+    dataIndex: 'post_gbv',
+    key: 'post_gbv',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Substance Abuse',
+    dataIndex: 'substance_abuse',
+    key: 'substance_abuse',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'TB Screening',
+    dataIndex: 'tb_screening',
+    key: 'tb_screening',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'TB Supplementary',
+    dataIndex: 'supplementary',
+    key: 'supplementary',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Post GBV',
+    dataIndex: 'post_gbv',
+    key: 'post_gbv',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Supplementary',
+    dataIndex: 'supplementary',
+    key: 'supplementary',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Family Planning',
+    dataIndex: 'f_planning',
+    key: 'f_planning',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Insecticide',
+    dataIndex: 'insecticide',
+    key: 'insecticide',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Hiv Aids Treatment',
+    dataIndex: 'hiv_aids_treatment',
+    key: 'hiv_aids_treatment',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'F W Health',
+    dataIndex: 'f_w_health',
+    key: 'f_w_health',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'VMMC',
+    dataIndex: 'vmmc',
+    key: 'vmmc',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Immunization',
+    dataIndex: 'immunization',
+    key: 'immunization',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Condom',
+    dataIndex: 'condom',
+    key: 'condom',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Routine Care',
+    dataIndex: 'routine_care',
+    key: 'routine_care',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Emmegency Care',
+    dataIndex: 'emergency_care',
+    key: 'emergency_care',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Age Counselling',
+    dataIndex: 'age_counselling',
+    key: 'age_counselling',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'H Treatment Care',
+    dataIndex: 'h_treatment_care',
+    key: 'h_treatment_care',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'PMTCT',
+    dataIndex: 'pmtct',
+    key: 'pmtct',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Hygiene Counselling',
+    dataIndex: 'hygiene_counselling',
+    key: 'hygiene_counselling',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Transmitted Infections',
+    dataIndex: 'transmitted_infections',
+    key: 'transmitted_infections',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'PLHA',
+    dataIndex: 'plha',
+    key: 'plha',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Viral Load',
+    dataIndex: 'viral_load',
+    key: 'viral_load',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Other Health Services',
+    dataIndex: 'other_health_services',
+    key: 'other_health_services',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Other Education',
+    dataIndex: 'other_education',
+    key: 'other_education',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Care Facility',
+    dataIndex: 'care_facility',
+    key: 'care_facility',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Post Violence Trauma',
+    dataIndex: 'post_violence_trauma',
+    key: 'post_violence_trauma',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Legal Assistance',
+    dataIndex: 'legal_assistance',
+    key: 'legal_assistance',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Other Safety Services',
+    dataIndex: 'other_safety_services',
+    key: 'other_safety_services',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'VCA Uniforms Books',
+    dataIndex: 'vca_uniforms_books',
+    key: 'vca_uniforms_books',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Re Enrollment',
+    dataIndex: 're_enrollment',
+    key: 're_enrollment',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Bursaries',
+    dataIndex: 'bursaries',
+    key: 'bursaries',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Cash Transfers',
+    dataIndex: 'cash_transfer',
+    key: 'cash_transfer',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Cash Support',
+    dataIndex: 'cash_support',
+    key: 'cash_support',
+    render: (text: string | null) => text ? text : 'Not Applicable',
+  },
+  {
+    title: 'Food Security',
+    dataIndex: 'food_security',
+    key: 'food_security',
     render: (text: string | null) => text ? text : 'Not Applicable',
   },
   {
@@ -69,9 +304,14 @@ const cleanData = (data: any[]) => {
   return data.map((record) => {
     const cleanedRecord = { ...record };
 
+
     Object.keys(cleanedRecord).forEach((key) => {
       if (cleanedRecord[key] === null || cleanedRecord[key] === undefined) {
         cleanedRecord[key] = 'Not Applicable';
+      }
+
+      if (typeof cleanedRecord[key] === 'string') {
+        cleanedRecord[key] = cleanedRecord[key].replace(/[\[\]"]/g, '');
       }
     });
 
@@ -91,7 +331,7 @@ export const MembersReferals: React.FC = () => {
     if (vcaId) {
       setLoading(true);
       axios
-        .get(`https://ecapplus.server.dqa.bluecodeltd.com/child/all-referrals/527853143`)
+        .get(`https://ecapplus.server.dqa.bluecodeltd.com/child/all-referrals/${vcaId}`)
         .then((response) => {
           const data = cleanData(response.data.data);
           setServiceRecords(data);
@@ -146,7 +386,7 @@ export const MembersReferals: React.FC = () => {
 
   return (
     <Wrapper>
-      <Title>Members Referrals</Title>
+      <Title>Vca Referrals</Title>
       <ExportWrapper>
         <Button onClick={exportCSV} type="primary" style={{ marginRight: 8 }}>
           Export CSV

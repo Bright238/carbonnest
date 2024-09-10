@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { BaseSpace } from '@app/components/common/BaseSpace/BaseSpace';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Input, Button, Tooltip, Space, Row, Col } from 'antd';
+import { Input, Button, Tooltip, Space, Row, Col, Select } from 'antd';
 import { BasicTableRow, Pagination } from 'api/table.api';
 import * as S from '@app/components/common/inputs/SearchInput/SearchInput.styles';
 import { Parser } from 'json2csv';
@@ -39,6 +39,27 @@ export const EditableTable: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [user, setUser] = useState<any | null>(null);
   const navigate = useNavigate();
+
+  
+  const [subPopulationFilters, setSubPopulationFilters] = useState({
+    calhiv: 'all',
+    hei: 'all',
+    cwlhiv: 'all',
+    agyw: 'all',
+    csv: 'all',
+    cfsw: 'all',
+    abym: 'all',
+  });
+
+  const subPopulationFilterLabels = {
+    calhiv: 'CALHIV',
+    hei: 'HEI',
+    cwlhiv: 'CWLHIV',
+    agyw: 'AGYW',
+    csv: 'CSV',
+    cfsw: 'CFSW',
+    abym: 'ABYM',
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -77,15 +98,27 @@ export const EditableTable: React.FC = () => {
   // Apply search filtering
   useEffect(() => {
     const lowerCaseQuery = searchQuery.toLowerCase();
-    const filtered = households.filter((household) => 
+    const filtered = households.filter((household) => {
+      const matchesSearch = 
       (household.household_id?.toLowerCase() || '').includes(lowerCaseQuery) ||
       (household.caregiver_name?.toLowerCase() || '').includes(lowerCaseQuery) ||
       (household.homeaddress?.toLowerCase() || '').includes(lowerCaseQuery) ||
       (household.ward?.toLowerCase() || '').includes(lowerCaseQuery) ||
-      (household.caseworker_name?.toLowerCase() || '').includes(lowerCaseQuery)
-    );
-    setFilteredHouseholds(filtered);
-  }, [searchQuery, households]);
+      (household.caseworker_name?.toLowerCase() || '').includes(lowerCaseQuery);
+    
+
+    const matchesSubPopulationFilters = Object.entries(subPopulationFilters).every(([key, value]) => {
+      if (value === 'all') return true;
+      const vcaValue = household[key as keyof Household];
+      return value === 'yes' ? vcaValue === '1' || vcaValue === 'true' || vcaValue === true
+                              : vcaValue === '0' || vcaValue === 'false' || vcaValue === false;
+    });
+
+    return matchesSearch && matchesSubPopulationFilters  ;
+  });
+  
+  setFilteredHouseholds(filtered);
+  }, [searchQuery, households, subPopulationFilters]);
   
 
   useEffect(() => {
@@ -150,6 +183,14 @@ export const EditableTable: React.FC = () => {
     navigate(`/profile/household-profile/${encodeURIComponent(household_id)}`, { state: { household: selectedHousehold } });
   };
 
+  const handleSubPopulationFilterChange = (filterName: keyof typeof subPopulationFilters, value: string) => {
+    setSubPopulationFilters(prevFilters => ({
+      ...prevFilters,
+      [filterName]: value
+    }));
+  };
+
+
   const columns = [
     {
       title: t('Household ID'),
@@ -195,16 +236,44 @@ export const EditableTable: React.FC = () => {
   return (
     <div style={{ margin: '20px', textTransform: 'capitalize' }}>
       <Space direction="vertical" style={{ width: '100%' }}>
-        <Tooltip title={searchTooltipContent}>
-          <Space>
-            <S.SearchInput
-              style={{ width: 400 }}
-              placeholder={t('Search')}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </Space>
-        </Tooltip>
+      <Row gutter={[16, 16]} >
+          {/* Column for the sub-population filters */}
+          <Col span={16}>
+            <h3>{t('Filter by Sub Population')}</h3>
+            <Row gutter={[16, 16]} style={{fontSize: "12px" }}>
+              {Object.entries(subPopulationFilterLabels).map(([key, label]) => (
+                <Col key={key} span={6}>
+                  <Space direction="vertical" size="small">
+                    <span>{label}</span>
+                    <Select
+                      style={{ width: '100%',  }}
+                      value={subPopulationFilters[key as keyof typeof subPopulationFilters]}
+                      onChange={(newValue) => handleSubPopulationFilterChange(key as keyof typeof subPopulationFilters, newValue)}
+                    >
+                      <Select.Option value="all">{t('All')}</Select.Option>
+                      <Select.Option value="yes">{t('Yes')}</Select.Option>
+                      <Select.Option value="no">{t('No')}</Select.Option>
+                    </Select>
+                  </Space>
+                </Col>
+              ))}
+            </Row>
+          </Col>
+
+         {/* Search input */}
+          <Col span={8} style={{fontSize: "12px" }}>
+            <Tooltip title={t('You can search by Household ID, Caregiver Name, Caseworker Name, and other fields.')}>
+              <S.SearchInput
+                style={{ width: '100%' }}
+                placeholder={t('Search')}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </Tooltip>
+          </Col>
+          
+        </Row>
+       
         <Row justify="end" style={{ marginBottom: 16 }}>
           <Col>
             <Space>

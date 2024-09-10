@@ -310,7 +310,7 @@ export const VcaServicesPlan: React.FC = () => {
   return (
     <div style={{ margin: '20px' }}>
       <Space direction="vertical" style={{ width: '100%' }}>
-        <Tooltip title={searchTooltipContent}>
+        {/* <Tooltip title={searchTooltipContent}>
           <Space>
             <S.SearchInput
               style={{ width: 400 }}
@@ -319,7 +319,7 @@ export const VcaServicesPlan: React.FC = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </Space>
-        </Tooltip>
+        </Tooltip> */}
         <Row justify="end" style={{ marginBottom: 16 }}>
           <Col>
             <Space>
