@@ -11,7 +11,7 @@ export const GradientStackedAreaChart: React.FC = () => {
   const { t } = useTranslation();
   const theme = useAppSelector((state) => state.theme.theme);
 
-  // Sample months data
+  // Sample months data (ensuring all 12 months are covered)
   const months = [
     t('January'),
     t('February'),
@@ -27,11 +27,11 @@ export const GradientStackedAreaChart: React.FC = () => {
     t('December'),
   ];
 
-  // Data arrays truncated to only include up to August
-  const monthlyData = [120, 132, 101, 134, 90, 230, 210, 230];
-  const vcaServicesData = [150, 230, 224, 218, 135, 147, 260, 220];
-  const householdServicesData = [220, 182, 191, 234, 290, 330, 310, 320];
-  const referralsData = [320, 332, 301, 334, 390, 330, 320, 310];
+  // Extended data arrays to cover all 12 months
+  const monthlyData = [120, 132, 101, 134, 90, 230, 210, 230, 145, 155, 166, 180];
+  const vcaServicesData = [150, 230, 224, 218, 135, 147, 260, 220, 180, 190, 200, 210];
+  const householdServicesData = [220, 182, 191, 234, 290, 330, 310, 320, 340, 350, 360, 370];
+  const referralsData = [320, 332, 301, 334, 390, 330, 320, 310, 315, 325, 335, 345];
 
   const option = {
     tooltip: {
@@ -45,11 +45,11 @@ export const GradientStackedAreaChart: React.FC = () => {
     },
     legend: {
       data: [
-        'caregiverServices',
-        'vcaServices',
-        'householdServices',
-        'referrals'
-      ].map((item) => t(`charts.${item}`)),
+        'Caregiver Services',
+        'VCA Services',
+        'Household Services',
+        'Referrals'
+      ],
       top: 0,
       left: 10,
       textStyle: {
@@ -78,7 +78,6 @@ export const GradientStackedAreaChart: React.FC = () => {
     yAxis: [
       {
         type: 'value',
-        // Removed 'name' to discard the 'Units' label
         axisLabel: {
           fontSize: FONT_SIZE.xxs,
           fontWeight: FONT_WEIGHT.light,
@@ -88,7 +87,7 @@ export const GradientStackedAreaChart: React.FC = () => {
     ],
     series: [
       {
-        name: t('charts.caregiverServices'),
+        name: 'Caregiver Services',
         type: 'line',
         stack: 'Total',
         smooth: true,
@@ -112,11 +111,10 @@ export const GradientStackedAreaChart: React.FC = () => {
         emphasis: {
           focus: 'series',
         },
-        // Truncated data for 8 months
         data: monthlyData,
       },
       {
-        name: t('charts.vcaServices'),
+        name: 'VCA Services',
         type: 'line',
         stack: 'Total',
         smooth: true,
@@ -140,11 +138,10 @@ export const GradientStackedAreaChart: React.FC = () => {
         emphasis: {
           focus: 'series',
         },
-        // Truncated data for 8 months
         data: vcaServicesData,
       },
       {
-        name: t('charts.householdServices'),
+        name: 'Household Services',
         type: 'line',
         stack: 'Total',
         smooth: true,
@@ -168,11 +165,10 @@ export const GradientStackedAreaChart: React.FC = () => {
         emphasis: {
           focus: 'series',
         },
-        // Truncated data for 8 months
         data: householdServicesData,
       },
       {
-        name: t('charts.referrals'),
+        name: 'Referrals',
         type: 'line',
         stack: 'Total',
         smooth: true,
@@ -196,14 +192,13 @@ export const GradientStackedAreaChart: React.FC = () => {
         emphasis: {
           focus: 'series',
         },
-        // Truncated data for 8 months
         data: referralsData,
       },
     ],
   };
 
   return (
-    <BaseCard padding="0 0 1.875rem" title={t('Services provided into months')}>
+    <BaseCard padding="0 0 1.875rem" title="Services provided in a month">
       <BaseChart option={option} />
     </BaseCard>
   );
