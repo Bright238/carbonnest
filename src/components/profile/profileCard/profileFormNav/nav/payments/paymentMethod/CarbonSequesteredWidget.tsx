@@ -28,7 +28,7 @@ export const CarbonSequesteredWidget: React.FC<PaymentCardsWidgetProps> = ({ car
       Credit Sale Retirements in 2024
     </>
   );
-  
+
 
   return (
     <BaseRow justify={justify} gutter={[16, 16]}>
@@ -46,6 +46,7 @@ export const CarbonSequesteredWidget: React.FC<PaymentCardsWidgetProps> = ({ car
           <BaseForm.Title style={{ fontSize: "30px", textAlign: "center" }}>{t('30 tCO₂e')}</BaseForm.Title>
         </div>
       </BaseCol>
+      
     </BaseRow>
   );
 };
