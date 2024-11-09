@@ -9,10 +9,10 @@ export const SupervisoryModulesPieChart: React.FC = () => {
   // Data array with each department and its corresponding value and color
   const data = [
     { value: 67, name: t('Case Management'), itemStyle: { color: '#7D0000' } }, // Orange
-    { value: 34, name: t('Finance'), itemStyle: { color: '#5DA5DA' } },         // Blue
-    { value: 78, name: t('Human Resource'), itemStyle: { color: '#FAA43A' } },   // Yellow
-    { value: 68, name: t('Procurement'), itemStyle: { color: '#60BD68' } },      // Green
-    { value: 88, name: t('Stores'), itemStyle: { color: '#F17CB0' } },           // Pink
+    { value: 34, name: t('Finance'), itemStyle: { color: '#5DA5DA' } }, // Blue
+    { value: 78, name: t('Human Resource'), itemStyle: { color: '#FAA43A' } }, // Yellow
+    { value: 68, name: t('Procurement'), itemStyle: { color: '#60BD68' } }, // Green
+    { value: 88, name: t('Stores'), itemStyle: { color: '#F17CB0' } }, // Pink
   ];
 
   return (

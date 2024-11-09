@@ -25,8 +25,7 @@ export const convertToYesNo = (value: string): string => {
 
 export const isoToDate = (isoString: string): Date => {
   return new Date(isoString);
-}
-
+};
 
 export const getCurrencyPrice = (price: number | string, currency: CurrencyTypeEnum, isIcon = true): string => {
   const currencySymbol = currencies[currency][isIcon ? 'icon' : 'text'];

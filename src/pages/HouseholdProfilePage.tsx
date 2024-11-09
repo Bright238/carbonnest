@@ -8,7 +8,7 @@ const HouseholdProfilePage: React.FC = () => {
 
   return (
     <>
-   <Typography style={{ fontWeight: "bold", fontSize: "25px" }}>Caregiver Profile</Typography>
+      <Typography style={{ fontWeight: 'bold', fontSize: '25px' }}>Caregiver Profile</Typography>
       <HouseholdProfile />
     </>
   );

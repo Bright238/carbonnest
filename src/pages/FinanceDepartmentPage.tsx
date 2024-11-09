@@ -15,7 +15,6 @@ interface User {
 }
 
 const FinanceDepartmentPage: React.FC = () => {
- 
   const { t } = useTranslation();
 
   const [user, setUser] = useState<User | null>(null);
@@ -26,7 +25,7 @@ const FinanceDepartmentPage: React.FC = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`, {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
         });
         setUser(response.data.data);
@@ -42,14 +41,13 @@ const FinanceDepartmentPage: React.FC = () => {
 
   return (
     <>
-      <Typography style={{ fontWeight: 'bold', fontSize: "30px" }}>
-          {loading ? <Spin size="small" /> : `${user?.location}`} District
-        </Typography>
-      <Typography style={{fontWeight: "bold", fontSize: "30px"}}>Finance Department</Typography>
+      <Typography style={{ fontWeight: 'bold', fontSize: '30px' }}>
+        {loading ? <Spin size="small" /> : `${user?.location}`} District
+      </Typography>
+      <Typography style={{ fontWeight: 'bold', fontSize: '30px' }}>Finance Department</Typography>
       <BaseRow gutter={[30, 30]}>
         <BaseCol xs={24} sm={24} md={24} lg={24} xl={24}>
-          <BaseCard id="step-form" title={t('forms.stepForm')} padding="1.25rem">
-          </BaseCard>
+          <BaseCard id="step-form" title={t('forms.stepForm')} padding="1.25rem"></BaseCard>
         </BaseCol>
       </BaseRow>
     </>

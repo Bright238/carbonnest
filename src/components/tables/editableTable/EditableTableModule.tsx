@@ -9,7 +9,6 @@ import axios from 'axios';
 import moment from 'moment';
 
 interface Household {
-
   household_id: string;
   province: string;
   district: string;
@@ -23,7 +22,6 @@ interface Household {
   village: string;
   ward: string;
   cwac_member_name: string;
-
 }
 
 const initialPagination: Pagination = {
@@ -61,24 +59,20 @@ export const EditableTableModule: React.FC = () => {
       name: household.caregiver_name,
       cwac_member_name: household.cwac_member_name, // Add cwac_member_name
       age: household.year, // Assuming "year" represents age
-      address:
-      `Province: ${household.province}, 
+      address: `Province: ${household.province}, 
        District: ${household.district},
        CWAC Name: ${household.cwac}, 
        Date Case Created: ${household.date_created}, 
-       Date Last Visited: ${moment(household.last_interacted_with).format('DD/MM/YYYY')}`, 
+       Date Last Visited: ${moment(household.last_interacted_with).format('DD/MM/YYYY')}`,
     }));
 
     setTableData({ data: mappedData, pagination: initialPagination, loading: false });
   }, [households]);
 
-  const fetch = useCallback(
-    (pagination: Pagination) => {
-      setTableData((tableData) => ({ ...tableData, loading: true }));
-      // Implement getEditableTableData function as per your API structure
-    },
-    []
-  );
+  const fetch = useCallback((pagination: Pagination) => {
+    setTableData((tableData) => ({ ...tableData, loading: true }));
+    // Implement getEditableTableData function as per your API structure
+  }, []);
 
   useEffect(() => {
     fetch(initialPagination);
@@ -99,7 +93,7 @@ export const EditableTableModule: React.FC = () => {
       dataIndex: 'name',
       width: '25%',
     },
-      {
+    {
       title: t('Household Details'),
       dataIndex: 'address',
       width: '25%',

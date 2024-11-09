@@ -70,23 +70,21 @@ export interface LoginResponse {
   };
 }
 
-
 export const login = async (loginPayload: LoginRequest): Promise<LoginResponse> => {
-  const response = await axios.post<LoginResponse>(
-    `${process.env.REACT_APP_BASE_URL}/auth/login`,
-    loginPayload
-  );
+  const response = await axios.post<LoginResponse>(`${process.env.REACT_APP_BASE_URL}/auth/login`, loginPayload);
   return response.data;
 };
 
-export const signUp = (signUpData: SignUpRequest): Promise<void> => 
+export const signUp = (signUpData: SignUpRequest): Promise<void> =>
   axios.post<void>(`${process.env.REACT_APP_BASE_URL}/users`, signUpData).then(({ data }) => data);
 
-export const resetPassword = (resetPasswordPayload: ResetPasswordRequest): Promise<void> => 
-  axios.post<void>(`${process.env.REACT_APP_BASE_URL}/auth/password/request`, resetPasswordPayload).then(({ data }) => data);
+export const resetPassword = (resetPasswordPayload: ResetPasswordRequest): Promise<void> =>
+  axios
+    .post<void>(`${process.env.REACT_APP_BASE_URL}/auth/password/request`, resetPasswordPayload)
+    .then(({ data }) => data);
 
-export const verifySecurityCode = (securityCodePayload: SecurityCodePayload): Promise<void> => 
+export const verifySecurityCode = (securityCodePayload: SecurityCodePayload): Promise<void> =>
   axios.post<void>(`${process.env.REACT_APP_BASE_URL}/auth/verify`, securityCodePayload).then(({ data }) => data);
 
-export const setNewPassword = (newPasswordData: NewPasswordData): Promise<void> => 
+export const setNewPassword = (newPasswordData: NewPasswordData): Promise<void> =>
   axios.post<void>(`${process.env.REACT_APP_BASE_URL}/auth/password/reset`, newPasswordData).then(({ data }) => data);

@@ -34,7 +34,7 @@ export const getDoctorsData = (): Promise<Doctor[]> => {
         {
           id: 7,
           name: 'Reporting',
-        }
+        },
       ]);
     }, 0);
   });

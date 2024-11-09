@@ -44,12 +44,7 @@ export const GradientStackedAreaChart: React.FC = () => {
       },
     },
     legend: {
-      data: [
-        'Caregiver Services',
-        'VCA Services',
-        'Household Services',
-        'Referrals'
-      ],
+      data: ['Caregiver Services', 'VCA Services', 'Household Services', 'Referrals'],
       top: 0,
       left: 10,
       textStyle: {

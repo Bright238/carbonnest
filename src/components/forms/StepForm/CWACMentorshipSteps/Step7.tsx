@@ -21,7 +21,7 @@ const SignatureCard = styled(Card)`
 `;
 
 const NarrowPicker = styled(BaseDatePicker)`
-  width: 400px !important;  
+  width: 400px !important;
 `;
 
 interface Step2Props {
@@ -46,20 +46,14 @@ export const Step7: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          AGREED NEXT STEPS
-        </Typography.Title>
-        <Typography.Title level={5}>
-          Please indicate in the details box below.
-        </Typography.Title>
+        <Typography.Title level={4}>AGREED NEXT STEPS</Typography.Title>
+        <Typography.Title level={5}>Please indicate in the details box below.</Typography.Title>
       </Dragger>
       <NarrowFormItem name="agreedNextSteps" label={t('Provide details')}>
         <S.StyledTextArea />
       </NarrowFormItem>
 
-      <Typography.Title level={5}>
-        Date of next meeting
-      </Typography.Title>
+      <Typography.Title level={5}>Date of next meeting</Typography.Title>
       <NarrowFormItem
         name="date_of_assessment"
         label={t('Date of Assessment')}
@@ -69,18 +63,14 @@ export const Step7: React.FC<Step2Props> = ({ handleChange }) => {
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          MENTORS OVERALL REMARKS
-        </Typography.Title>
+        <Typography.Title level={4}>MENTORS OVERALL REMARKS</Typography.Title>
       </Dragger>
       <NarrowFormItem name="supervisorOverallRemarks" label={t('Provide details')}>
         <S.StyledTextArea />
       </NarrowFormItem>
       <br />
-      <Typography.Title level={5}>
-        Full names of Community Development Assistant (CDA)
-      </Typography.Title>
-      <Input style={{ width: "400px" }} />
+      <Typography.Title level={5}>Full names of Community Development Assistant (CDA)</Typography.Title>
+      <Input style={{ width: '400px' }} />
       <br />
       <br />
       <SignatureCard title="Signature">
@@ -92,17 +82,12 @@ export const Step7: React.FC<Step2Props> = ({ handleChange }) => {
       </SignatureCard>
       <br />
       <br />
-      <Typography.Title level={5}>
-        Full names of Community welfare Assistant Committee (CWAC)
-      </Typography.Title>
-      <Input style={{ width: "400px" }} />
+      <Typography.Title level={5}>Full names of Community welfare Assistant Committee (CWAC)</Typography.Title>
+      <Input style={{ width: '400px' }} />
       <br />
       <br />
       <SignatureCard title="Signature">
-        <SignatureCanvas
-          ref={cdaSignatureRef}
-          canvasProps={{ width: 500, height: 200, className: 'sigCanvas' }}
-        />
+        <SignatureCanvas ref={cdaSignatureRef} canvasProps={{ width: 500, height: 200, className: 'sigCanvas' }} />
         <Button onClick={() => clearSignature(cdaSignatureRef)}>Clear Signature</Button>
       </SignatureCard>
     </S.FormContent>

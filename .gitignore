@@ -48,3 +48,6 @@ yarn-error.log*
 
 # generated files
 /public/themes
+
+# Local Netlify folder
+.netlify

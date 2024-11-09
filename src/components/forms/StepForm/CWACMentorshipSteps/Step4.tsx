@@ -8,7 +8,7 @@ import { Typography } from 'antd';
 import Dragger from 'antd/lib/upload/Dragger';
 
 const WideLikert = styled(Likert)`
-  width: 400px !important; 
+  width: 400px !important;
 `;
 
 const NarrowFormItem = styled(BaseForm.Item)`
@@ -35,7 +35,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
     { value: 50, text: t('To a good extent') },
     { value: 25, text: t('To some extent') },
     { value: 0, text: t('No') },
-    { value: "N/A", text: t('Not Applicable') },
+    { value: 'N/A', text: t('Not Applicable') },
   ];
 
   const handleLikertChange = (name: string) => (event: any) => {
@@ -48,11 +48,10 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
         <Typography.Title level={4}>
           SECTION C: CASE PLANNING, MONITORING AND FOLLOW UP, AND CASE CLOSURE
         </Typography.Title>
-        Action: Review a sample of case plans of the CWAC
-        from the previous period before
-        engaging in the conversation.
+        Action: Review a sample of case plans of the CWAC from the previous period before engaging in the conversation.
         <Typography.Title level={5}>
-          Question 1: What difficulties do you face in case planning? (Identifying problems setting, monitoring, follow up)
+          Question 1: What difficulties do you face in case planning? (Identifying problems setting, monitoring, follow
+          up)
         </Typography.Title>
       </Dragger>
 
@@ -62,7 +61,8 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
 
       <Dragger>
         <Typography.Title level={5}>
-          Question 2: What is your experience with documenting progress of the agreed actions? Do you review, for example, the VCA`s health card?
+          Question 2: What is your experience with documenting progress of the agreed actions? Do you review, for
+          example, the VCA`s health card?
         </Typography.Title>
       </Dragger>
       <NarrowFormItem name="storesCommentQ2" label={t('Comments (optional)')}>
@@ -71,7 +71,8 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
 
       <Dragger>
         <Typography.Title level={5}>
-          Question 3: How many active cases do you have (newly identified VCA or households? What issues or challenges do you face)?
+          Question 3: How many active cases do you have (newly identified VCA or households? What issues or challenges
+          do you face)?
         </Typography.Title>
       </Dragger>
       <NarrowFormItem name="storesCommentQ2" label={t('Comments (optional)')}>
@@ -79,9 +80,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={5}>
-          Question 4: How is often do you follow up on VCA?
-        </Typography.Title>
+        <Typography.Title level={5}>Question 4: How is often do you follow up on VCA?</Typography.Title>
       </Dragger>
       <NarrowFormItem name="storesCommentQ2" label={t('Comments (optional)')}>
         <S.StyledTextArea />
@@ -89,13 +88,13 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
 
       <Dragger>
         <Typography.Title level={5}>
-          Question 5: How many cases have you closed during this period? What do you think about the cases you closed? How could you have managed the closing differently?
+          Question 5: How many cases have you closed during this period? What do you think about the cases you closed?
+          How could you have managed the closing differently?
         </Typography.Title>
       </Dragger>
       <NarrowFormItem name="storesCommentQ2" label={t('Comments (optional)')}>
         <S.StyledTextArea />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

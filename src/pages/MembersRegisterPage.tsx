@@ -25,10 +25,10 @@ const MembersRegisterPage: React.FC = () => {
       try {
         setLoadingUserData(true);
         // Simulate a 5-second delay before fetching user data
-        await new Promise(resolve => setTimeout(resolve, 5000)); // 5 seconds delay
+        await new Promise((resolve) => setTimeout(resolve, 5000)); // 5 seconds delay
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`, {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
         });
         setUser(response.data.data);
@@ -45,19 +45,16 @@ const MembersRegisterPage: React.FC = () => {
   }, []);
 
   const content = (
-    <Typography style={{ fontWeight: "bold", fontSize: "30px" }}>
-      {loadingUserData ? <Skeleton.Input active size="small" /> : `${user?.location}`} District Household Members Register
+    <Typography style={{ fontWeight: 'bold', fontSize: '30px' }}>
+      {loadingUserData ? <Skeleton.Input active size="small" /> : `${user?.location}`} District Household Members
+      Register
     </Typography>
   );
 
   return (
     <>
       {content}
-      {loadingTable ? (
-        <Skeleton active paragraph={{ rows: 2 }} />
-      ) : (
-        <BasicTable />
-      )}
+      {loadingTable ? <Skeleton active paragraph={{ rows: 2 }} /> : <BasicTable />}
     </>
   );
 };

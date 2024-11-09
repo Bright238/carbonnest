@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const StandardTitle = styled(Typography.Title)`
@@ -45,15 +45,9 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <StandardTitle level={4}>
-          Staff
-        </StandardTitle>
-        <HighlightedQuestion>
-          1: Are staff conducting procurement work procurement professionals?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Presence of Professional Certificates or Appointment Letters
-        </Typography>
+        <StandardTitle level={4}>Staff</StandardTitle>
+        <HighlightedQuestion>1: Are staff conducting procurement work procurement professionals?</HighlightedQuestion>
+        <Typography>Indicator: Presence of Professional Certificates or Appointment Letters</Typography>
         <Typography>
           Source of Information/Means of Verification: Professional Certificates/ Appointment letter
         </Typography>
@@ -69,7 +63,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementStaffStaffQ1Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -78,19 +72,15 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="staffCommentQ1" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('staffCommentQ1', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('staffCommentQ1', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <HighlightedQuestion>
           2: Are staff conducting procurement work members of the Zambia Institute of Purchasing & Supply?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Certificate from ZIPS
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Certificate from ZIPS
-        </Typography>
+        <Typography>Indicator: Certificate from ZIPS</Typography>
+        <Typography>Source of Information/Means of Verification: Certificate from ZIPS</Typography>
       </Dragger>
 
       <Form.Item
@@ -103,7 +93,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementStaffStaffQ2Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -112,16 +102,15 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="staffCommentQ2" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('staffCommentQ2', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('staffCommentQ2', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <HighlightedQuestion>
-          3: Do staff conducting procurement work understood the Public Procurement Act (PPA) and Public Procurement Regulations (PPR)?
+          3: Do staff conducting procurement work understood the Public Procurement Act (PPA) and Public Procurement
+          Regulations (PPR)?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Number of workshops attended in the last quarter
-        </Typography>
+        <Typography>Indicator: Number of workshops attended in the last quarter</Typography>
         <Typography>
           Source of Information/Means of Verification: Certificate of attendance or activity report
         </Typography>
@@ -137,7 +126,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementStaffStaffQ3Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -146,19 +135,16 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="staffCommentQ3" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('staffCommentQ3', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('staffCommentQ3', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <HighlightedQuestion>
-          4: Are standard bidding documents issued by the Zambia Public Procurement Authority (ZPPA) used in all procurements?
+          4: Are standard bidding documents issued by the Zambia Public Procurement Authority (ZPPA) used in all
+          procurements?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Filled copies of standard bidding documents
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Soft copy of the documents from ZPPA
-        </Typography>
+        <Typography>Indicator: Filled copies of standard bidding documents</Typography>
+        <Typography>Source of Information/Means of Verification: Soft copy of the documents from ZPPA</Typography>
       </Dragger>
 
       <Form.Item
@@ -171,7 +157,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementStaffStaffQ4Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -180,7 +166,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="staffCommentQ4" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('staffCommentQ4', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('staffCommentQ4', e.target.value)} />
       </NarrowFormItem>
     </S.FormContent>
   );

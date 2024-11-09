@@ -8,7 +8,7 @@ import { Typography } from 'antd';
 import Dragger from 'antd/lib/upload/Dragger';
 
 const WideLikert = styled(Likert)`
-  width: 400px !important; 
+  width: 400px !important;
 `;
 
 const NarrowFormItem = styled(BaseForm.Item)`
@@ -35,7 +35,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
     { value: 50, text: t('To a good extent') },
     { value: 25, text: t('To some extent') },
     { value: 0, text: t('No') },
-    { value: "N/A", text: t('Not Applicable') },
+    { value: 'N/A', text: t('Not Applicable') },
   ];
 
   const handleLikertChange = (name: string) => (event: any) => {
@@ -45,12 +45,10 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          SECTION C:  SUPPLIES
-        </Typography.Title>
+        <Typography.Title level={4}>SECTION C: SUPPLIES</Typography.Title>
         <Typography.Title level={5}>
-          Question 1. Do you have the mentorship and supervision forms?
-          No (If No, probe whether they have requested for more forms)
+          Question 1. Do you have the mentorship and supervision forms? No (If No, probe whether they have requested for
+          more forms)
         </Typography.Title>
         <Typography.Title level={5}>
           (If yes, probe whether the available forms will last for the month)
@@ -63,13 +61,13 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
 
       <Dragger>
         <Typography.Title level={5}>
-          Question 2: What supplies do you need to support case management in the upcoming month? (Check what supplies the CDA has received and the status of the supplies e.g. bicycles, Boots, Raincoats, PPEs, etc.)
+          Question 2: What supplies do you need to support case management in the upcoming month? (Check what supplies
+          the CDA has received and the status of the supplies e.g. bicycles, Boots, Raincoats, PPEs, etc.)
         </Typography.Title>
       </Dragger>
       <NarrowFormItem name="storesCommentQ2" label={t('Comments (optional)')}>
         <S.StyledTextArea />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

@@ -15,7 +15,6 @@ interface PaymentCardsWidgetProps {
 }
 
 export const CarbonSequesteredWidget: React.FC<PaymentCardsWidgetProps> = ({ cards, onCardRemove, onCardAdd }) => {
-
   const { t } = useTranslation();
   const { useMediaQuery } = useResponsive();
 
@@ -23,12 +22,7 @@ export const CarbonSequesteredWidget: React.FC<PaymentCardsWidgetProps> = ({ car
   const isBreakpoint = useMediaQuery({ query: `(min-width: ${breakpoint}px)` });
   const justify = isBreakpoint ? 'start' : 'space-around';
 
-  const retirementInfo = (
-    <>
-      Credit Sale Retirements in 2024
-    </>
-  );
-
+  const retirementInfo = <>Credit Sale Retirements in 2024</>;
 
   return (
     <BaseRow justify={justify} gutter={[16, 16]}>
@@ -42,11 +36,10 @@ export const CarbonSequesteredWidget: React.FC<PaymentCardsWidgetProps> = ({ car
 
       <BaseCol>
         <div className="carbon-sequestered-amount">
-          <p style={{ fontSize: "20px", textAlign: "center" }}>{retirementInfo}</p>
-          <BaseForm.Title style={{ fontSize: "30px", textAlign: "center" }}>{t('30 tCO₂e')}</BaseForm.Title>
+          <p style={{ fontSize: '20px', textAlign: 'center' }}>{retirementInfo}</p>
+          <BaseForm.Title style={{ fontSize: '30px', textAlign: 'center' }}>{t('30 tCO₂e')}</BaseForm.Title>
         </div>
       </BaseCol>
-      
     </BaseRow>
   );
 };

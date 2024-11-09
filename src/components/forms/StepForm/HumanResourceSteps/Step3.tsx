@@ -10,7 +10,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -36,21 +36,15 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          Equipment and Logistics
-        </Typography.Title>
+        <Typography.Title level={4}>Equipment and Logistics</Typography.Title>
         <Typography.Title level={4}>
           Standard 1: At least 1 vehicle for each department at the district
         </Typography.Title>
         <HighlightedQuestion>
           Question: Does the district have at least 1 running Motor Vehicle for each department?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Running motor vehicles
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Presence of running motor vehicles
-        </Typography>
+        <Typography>Indicator: Running motor vehicles</Typography>
+        <Typography>Source of Information/Means of Verification: Presence of running motor vehicles</Typography>
       </Dragger>
 
       <Form.Item
@@ -63,7 +57,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('equipmentLogisticsQ1Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -72,7 +66,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="equipmentLogisticsCommentQ1" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('equipmentLogisticsCommentQ1', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('equipmentLogisticsCommentQ1', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -82,12 +76,8 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Question: Does the district have at least 1 computer for each department?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Computer
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Physical check
-        </Typography>
+        <Typography>Indicator: Computer</Typography>
+        <Typography>Source of Information/Means of Verification: Physical check</Typography>
       </Dragger>
 
       <Form.Item
@@ -100,7 +90,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('equipmentLogisticsQ2Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -109,22 +99,16 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="equipmentLogisticsCommentQ2" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('equipmentLogisticsCommentQ2', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('equipmentLogisticsCommentQ2', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <Typography.Title level={4}>
           Standard 3: Should have at least 1 printer per department at the district office
         </Typography.Title>
-        <HighlightedQuestion>
-          Question: Does the district have at least 1 printer per department?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Printer
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Physical check
-        </Typography>
+        <HighlightedQuestion>Question: Does the district have at least 1 printer per department?</HighlightedQuestion>
+        <Typography>Indicator: Printer</Typography>
+        <Typography>Source of Information/Means of Verification: Physical check</Typography>
       </Dragger>
 
       <Form.Item
@@ -137,7 +121,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('equipmentLogisticsQ3Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -146,7 +130,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="equipmentLogisticsCommentQ3" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('equipmentLogisticsCommentQ3', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('equipmentLogisticsCommentQ3', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -156,12 +140,8 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Question: Does the district have at least 1 motor bike for each department?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Motor Bike
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Physical check
-        </Typography>
+        <Typography>Indicator: Motor Bike</Typography>
+        <Typography>Source of Information/Means of Verification: Physical check</Typography>
       </Dragger>
 
       <Form.Item
@@ -174,7 +154,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('equipmentLogisticsQ4Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -183,22 +163,16 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="equipmentLogisticsCommentQ4" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('equipmentLogisticsCommentQ4', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('equipmentLogisticsCommentQ4', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <Typography.Title level={4}>
           Standard 5: Each officer at the district office should have a workstation
         </Typography.Title>
-        <HighlightedQuestion>
-          Question: Does each officer at the district office got a workstation?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Workstation
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Physical check
-        </Typography>
+        <HighlightedQuestion>Question: Does each officer at the district office got a workstation?</HighlightedQuestion>
+        <Typography>Indicator: Workstation</Typography>
+        <Typography>Source of Information/Means of Verification: Physical check</Typography>
       </Dragger>
 
       <Form.Item
@@ -211,7 +185,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('equipmentLogisticsQ5Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -220,7 +194,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="equipmentLogisticsCommentQ5" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('equipmentLogisticsCommentQ5', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('equipmentLogisticsCommentQ5', e.target.value)} />
       </NarrowFormItem>
     </S.FormContent>
   );

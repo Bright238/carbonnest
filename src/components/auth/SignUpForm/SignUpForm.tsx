@@ -51,53 +51,65 @@ export const SignUpForm: React.FC = () => {
 
   return (
     <Auth.FormWrapper>
-      <BaseForm
-        layout="vertical"
-        onFinish={handleSubmit}
-        requiredMark="optional"
-        initialValues={initValues}
-      >
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <img
-            src="/carbonnest-logo.png"
-            alt="logo"
-            style={{ width: '280px', height: 'auto' }}
-          />
+      <BaseForm layout="vertical" onFinish={handleSubmit} requiredMark="optional" initialValues={initValues}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <img src="/carbonnest-logo.png" alt="logo" style={{ width: '280px', height: 'auto' }} />
         </div>
-        
+
         <S.Title>{t('common.signUp')}</S.Title>
 
         {/* Grouped Name Inputs */}
-        <Auth.FormItem label={t('common.firstName')} name="firstName" rules={[{ required: true, message: t('common.requiredField') }]}>
+        <Auth.FormItem
+          label={t('common.firstName')}
+          name="firstName"
+          rules={[{ required: true, message: t('common.requiredField') }]}
+        >
           <Auth.FormInput placeholder={t('common.firstName')} />
         </Auth.FormItem>
-        
-        <Auth.FormItem label={t('common.lastName')} name="lastName" rules={[{ required: true, message: t('common.requiredField') }]}>
+
+        <Auth.FormItem
+          label={t('common.lastName')}
+          name="lastName"
+          rules={[{ required: true, message: t('common.requiredField') }]}
+        >
           <Auth.FormInput placeholder={t('common.lastName')} />
         </Auth.FormItem>
 
-        <Auth.FormItem label={t('common.email')} name="email" rules={[
-          { required: true, message: t('common.requiredField') },
-          { type: 'email', message: t('common.notValidEmail') },
-        ]}>
+        <Auth.FormItem
+          label={t('common.email')}
+          name="email"
+          rules={[
+            { required: true, message: t('common.requiredField') },
+            { type: 'email', message: t('common.notValidEmail') },
+          ]}
+        >
           <Auth.FormInput placeholder={t('common.email')} />
         </Auth.FormItem>
 
-        <Auth.FormItem label={t('common.password')} name="password" rules={[{ required: true, message: t('common.requiredField') }]}>
+        <Auth.FormItem
+          label={t('common.password')}
+          name="password"
+          rules={[{ required: true, message: t('common.requiredField') }]}
+        >
           <Auth.FormInputPassword placeholder={t('common.password')} />
         </Auth.FormItem>
 
-        <Auth.FormItem label={t('common.confirmPassword')} name="confirmPassword" dependencies={['password']} rules={[
-          { required: true, message: t('common.requiredField') },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error(t('common.confirmPasswordError')));
-            },
-          }),
-        ]}>
+        <Auth.FormItem
+          label={t('common.confirmPassword')}
+          name="confirmPassword"
+          dependencies={['password']}
+          rules={[
+            { required: true, message: t('common.requiredField') },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('password') === value) {
+                  return Promise.resolve();
+                }
+                return Promise.reject(new Error(t('common.confirmPasswordError')));
+              },
+            }),
+          ]}
+        >
           <Auth.FormInputPassword placeholder={t('common.confirmPassword')} />
         </Auth.FormItem>
 

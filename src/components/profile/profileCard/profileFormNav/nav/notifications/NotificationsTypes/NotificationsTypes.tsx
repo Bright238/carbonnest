@@ -101,7 +101,7 @@ export const NotificationsTypes: React.FC = () => {
       footer={<BaseButtonsGroup loading={isLoading} onCancel={onCancel} />}
     >
       <S.Wrapper>
-      <TreeTable />
+        <TreeTable />
       </S.Wrapper>
     </BaseButtonsForm>
   );

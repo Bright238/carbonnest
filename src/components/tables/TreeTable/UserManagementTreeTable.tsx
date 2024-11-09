@@ -2,7 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import axios from 'axios';
-import { Button, Space, Tooltip, Spin, message, Modal, Form, Input, Select, Popconfirm, Divider, Tabs, notification } from 'antd';
+import {
+  Button,
+  Space,
+  Tooltip,
+  Spin,
+  message,
+  Modal,
+  Form,
+  Input,
+  Select,
+  Popconfirm,
+  Divider,
+  Tabs,
+  notification,
+} from 'antd';
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons';
 import * as S from '@app/components/common/inputs/SearchInput/SearchInput.styles';
 import TabPane from 'antd/lib/tabs/TabPane';
@@ -36,10 +50,44 @@ const provinceOptions = [
 
 // Define districts in each province
 const districtOptions: Record<Province, string[]> = {
-  'All': ['All'],
-  'Central Province': ['Serenje', 'Kapiri Mposhi', 'Mkushi', 'Mumbwa', 'Chibombo', 'Chisamba', 'Ngabwe', 'Shibuyunji', 'Chitambo'],
-  'Southern Province': ['Monze', 'Mazabuka', 'Kazungula', 'Choma', 'Gwembe', 'Kalomo', 'Livingstone', 'Namwala', 'Siavonga', 'Zimba', 'Sesheke', 'Mwandi'],
-  'Western Province': ['Mongu', 'Limulunga', 'Kalabo', 'Sesheke', 'Barotse', 'Nkeyema', 'Shangombo', 'Liunga', 'Senanga', 'Kaoma'],
+  All: ['All'],
+  'Central Province': [
+    'Serenje',
+    'Kapiri Mposhi',
+    'Mkushi',
+    'Mumbwa',
+    'Chibombo',
+    'Chisamba',
+    'Ngabwe',
+    'Shibuyunji',
+    'Chitambo',
+  ],
+  'Southern Province': [
+    'Monze',
+    'Mazabuka',
+    'Kazungula',
+    'Choma',
+    'Gwembe',
+    'Kalomo',
+    'Livingstone',
+    'Namwala',
+    'Siavonga',
+    'Zimba',
+    'Sesheke',
+    'Mwandi',
+  ],
+  'Western Province': [
+    'Mongu',
+    'Limulunga',
+    'Kalabo',
+    'Sesheke',
+    'Barotse',
+    'Nkeyema',
+    'Shangombo',
+    'Liunga',
+    'Senanga',
+    'Kaoma',
+  ],
 };
 
 const roleOptions = [
@@ -64,7 +112,7 @@ export const UserManagementTreeTable: React.FC = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`, {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
         });
         setCurrentUser(response.data.data);
@@ -258,7 +306,8 @@ export const UserManagementTreeTable: React.FC = () => {
       title: 'Province',
       dataIndex: 'title',
       width: '25%',
-    }, {
+    },
+    {
       title: 'District',
       dataIndex: 'location',
       width: '25%',
@@ -289,7 +338,9 @@ export const UserManagementTreeTable: React.FC = () => {
       render: (text: any, record: User) => (
         <Space>
           <Tooltip title="Edit">
-            <Button type="primary" onClick={() => showEditModal(record)}>Edit</Button>
+            <Button type="primary" onClick={() => showEditModal(record)}>
+              Edit
+            </Button>
           </Tooltip>
           <Popconfirm
             title="Are you sure delete this user?"
@@ -332,11 +383,12 @@ export const UserManagementTreeTable: React.FC = () => {
           <Spin spinning={loading}>
             <BaseTable
               bordered
-              dataSource={users.filter(user =>
-                (user.first_name && user.first_name.toLowerCase().includes(searchText.toLowerCase())) ||
-                (user.last_name && user.last_name.toLowerCase().includes(searchText.toLowerCase())) ||
-                (user.location && user.location.toLowerCase().includes(searchText.toLowerCase())) ||
-                (user.email && user.email.toLowerCase().includes(searchText.toLowerCase()))
+              dataSource={users.filter(
+                (user) =>
+                  (user.first_name && user.first_name.toLowerCase().includes(searchText.toLowerCase())) ||
+                  (user.last_name && user.last_name.toLowerCase().includes(searchText.toLowerCase())) ||
+                  (user.location && user.location.toLowerCase().includes(searchText.toLowerCase())) ||
+                  (user.email && user.email.toLowerCase().includes(searchText.toLowerCase())),
               )}
               columns={columns}
               rowClassName="editable-row"
@@ -356,11 +408,7 @@ export const UserManagementTreeTable: React.FC = () => {
         okText={editingUser ? 'Update' : 'Create'}
         cancelText="Cancel"
       >
-        <Form
-          form={form}
-          layout="vertical"
-          name="user_form"
-        >
+        <Form form={form} layout="vertical" name="user_form">
           <Form.Item
             name="first_name"
             label="First Name"
@@ -378,7 +426,10 @@ export const UserManagementTreeTable: React.FC = () => {
           <Form.Item
             name="email"
             label="Email"
-            rules={[{ required: true, message: 'Please input the email!' }, { type: 'email', message: 'The input is not valid E-mail!' }]}
+            rules={[
+              { required: true, message: 'Please input the email!' },
+              { type: 'email', message: 'The input is not valid E-mail!' },
+            ]}
           >
             <Input />
           </Form.Item>
@@ -387,21 +438,10 @@ export const UserManagementTreeTable: React.FC = () => {
             label="User Role"
             rules={[{ required: true, message: 'Please select a user role!' }]}
           >
-            <Select
-              options={roleOptions}
-              placeholder="Select a user role"
-            />
+            <Select options={roleOptions} placeholder="Select a user role" />
           </Form.Item>
-          <Form.Item
-            name="title"
-            label="Province"
-            rules={[{ required: true, message: 'Please select the province!' }]}
-          >
-            <Select
-              options={provinceOptions}
-              onChange={handleProvinceChange}
-              placeholder="Select a province"
-            />
+          <Form.Item name="title" label="Province" rules={[{ required: true, message: 'Please select the province!' }]}>
+            <Select options={provinceOptions} onChange={handleProvinceChange} placeholder="Select a province" />
           </Form.Item>
           <Form.Item
             name="location"

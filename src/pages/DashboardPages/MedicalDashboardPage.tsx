@@ -15,11 +15,11 @@ const MedicalDashboardPage: React.FC = () => {
   const { isDesktop } = useResponsive();
 
   const tips = [
-    "Biochar can improve soil health and increase agricultural productivity.",
-    "Using biochar in compost can enhance nutrient retention.",
-    "Incorporate biochar into your land management practices to sequester carbon effectively.",
-    "Research local regulations on biochar use to maximize its benefits in your area.",
-    "Consider partnering with agricultural organizations to promote biochar adoption."
+    'Biochar can improve soil health and increase agricultural productivity.',
+    'Using biochar in compost can enhance nutrient retention.',
+    'Incorporate biochar into your land management practices to sequester carbon effectively.',
+    'Research local regulations on biochar use to maximize its benefits in your area.',
+    'Consider partnering with agricultural organizations to promote biochar adoption.',
   ];
 
   const renderUserTipsCarousel = () => (
@@ -67,8 +67,7 @@ const MedicalDashboardPage: React.FC = () => {
       <BaseCol span={24}>
         <RecentActivity />
       </BaseCol>
-      <BaseCol span={24}>
-      </BaseCol>
+      <BaseCol span={24}></BaseCol>
     </BaseRow>
   );
 

@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-  width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -45,20 +45,17 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          Staff Performance and Equipment
-        </Typography.Title>
+        <Typography.Title level={4}>Staff Performance and Equipment</Typography.Title>
         <Typography.Title level={4}>
           Standard 1: Individual workplans should be prepared by each member of staff annually
         </Typography.Title>
         <HighlightedQuestion>
           Question: Did all staff prepare individual workplans in the previous year?
         </HighlightedQuestion>
+        <Typography>Indicator: Availability of copies of individual workplan</Typography>
         <Typography>
-          Indicator: Availability of copies of individual workplan
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Copies of signed individual workplans for the previous year on individual files
+          Source of Information/Means of Verification: Copies of signed individual workplans for the previous year on
+          individual files
         </Typography>
       </Dragger>
 
@@ -72,7 +69,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('staffPerformanceQ1Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -81,19 +78,16 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="staffPerformanceCommentQ1" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('staffPerformanceCommentQ1', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('staffPerformanceCommentQ1', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <Typography.Title level={4}>
-          Standard 2: Performance Appraisal should be conducted for every member of staff at the district office annually
+          Standard 2: Performance Appraisal should be conducted for every member of staff at the district office
+          annually
         </Typography.Title>
-        <HighlightedQuestion>
-          Question: Were all staff appraised in the previous year?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Availability of copies of performance appraisal
-        </Typography>
+        <HighlightedQuestion>Question: Were all staff appraised in the previous year?</HighlightedQuestion>
+        <Typography>Indicator: Availability of copies of performance appraisal</Typography>
         <Typography>
           Source of Information/Means of Verification: Copies of signed performance appraisals for the previous year
         </Typography>
@@ -109,7 +103,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('staffPerformanceQ2Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -118,7 +112,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="staffPerformanceCommentQ2" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('staffPerformanceCommentQ2', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('staffPerformanceCommentQ2', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -128,12 +122,8 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Question: Are all the staff at the district office according to the Establishment?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Number of staff at the district
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Previous Staff Head Count Report
-        </Typography>
+        <Typography>Indicator: Number of staff at the district</Typography>
+        <Typography>Source of Information/Means of Verification: Previous Staff Head Count Report</Typography>
       </Dragger>
 
       <Form.Item
@@ -146,7 +136,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('staffPerformanceQ3Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -155,7 +145,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="staffPerformanceCommentQ3" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('staffPerformanceCommentQ3', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('staffPerformanceCommentQ3', e.target.value)} />
       </NarrowFormItem>
     </S.FormContent>
   );

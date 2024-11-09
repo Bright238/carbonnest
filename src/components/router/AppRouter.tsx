@@ -162,7 +162,6 @@ export const AppRouter: React.FC = () => {
             <Route path="households-register" element={<HouseholdsRegister />} />
             <Route path="vcas-register" element={<VcasRegister />} />
             <Route path="households-members-register" element={<MembersRegister />} />
-
           </Route>
           <Route path="forms">
             <Route path="case-management-district-self-assessment" element={<AdvancedForm />} />
@@ -182,7 +181,7 @@ export const AppRouter: React.FC = () => {
           <Route path="404" element={<Error404 />} />
 
           <Route path="profile" element={<ProfileLayout />}>
-          <Route path="upload" element={<StoresAdvancedForm />} />
+            <Route path="upload" element={<StoresAdvancedForm />} />
             <Route path="personal-info" element={<PersonalInfo />} />
             <Route path="security-settings" element={<SecuritySettings />} />
             <Route path="notifications" element={<Notifications />} />

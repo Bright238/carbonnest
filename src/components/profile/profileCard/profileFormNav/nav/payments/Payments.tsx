@@ -51,7 +51,9 @@ export const Payments: React.FC = () => {
 
   const content = useMemo(
     () => (
-      <BaseRow gutter={[16, 30]}>      {/* Second row with TotalEarning */}
+      <BaseRow gutter={[16, 30]}>
+        {' '}
+        {/* Second row with TotalEarning */}
         {/* <BaseCol span={24}>
           <BaseCard>
             <BaseRow wrap={false} justify="space-between">
@@ -88,9 +90,6 @@ export const Payments: React.FC = () => {
             </BaseCol>
           </BaseRow>
         </BaseCol>
-
-  
-
         {/* Third row with PaymentHistory */}
         <BaseCol span={24}>
           <PaymentHistory />

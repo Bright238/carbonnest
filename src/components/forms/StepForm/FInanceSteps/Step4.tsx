@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -45,15 +45,9 @@ export const Step4: React.FC<Step4Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          Standard: The District should have an approved Annual Budget.
-        </Typography.Title>
-        <HighlightedQuestion>
-          Does the office have a copy of an approved Annual Budget?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical copy of Approved Annual Budget.
-        </Typography>
+        <Typography.Title level={4}>Standard: The District should have an approved Annual Budget.</Typography.Title>
+        <HighlightedQuestion>Does the office have a copy of an approved Annual Budget?</HighlightedQuestion>
+        <Typography>Indicator: Physical copy of Approved Annual Budget.</Typography>
         <Typography>
           Source of Information/Means of Verification: Review expenditure against approved budget.
         </Typography>
@@ -61,13 +55,14 @@ export const Step4: React.FC<Step4Props> = ({ handleChange }) => {
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="approvedAnnualBudgetResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('approvedAnnualBudgetResponse', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -75,19 +70,13 @@ export const Step4: React.FC<Step4Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="approvedAnnualBudgetComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('approvedAnnualBudgetComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('approvedAnnualBudgetComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Standard: The District should have Bi-monthly budgets.
-        </Typography.Title>
-        <HighlightedQuestion>
-          Does the office have copies of Bi-monthly budgets?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical copies of Bi-monthly budgets.
-        </Typography>
+        <Typography.Title level={4}>Standard: The District should have Bi-monthly budgets.</Typography.Title>
+        <HighlightedQuestion>Does the office have copies of Bi-monthly budgets?</HighlightedQuestion>
+        <Typography>Indicator: Physical copies of Bi-monthly budgets.</Typography>
         <Typography>
           Source of Information/Means of Verification: Review expenditure against approved budgets.
         </Typography>
@@ -95,13 +84,14 @@ export const Step4: React.FC<Step4Props> = ({ handleChange }) => {
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="biMonthlyBudgetsResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('biMonthlyBudgetsResponse', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -109,9 +99,8 @@ export const Step4: React.FC<Step4Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="biMonthlyBudgetsComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('biMonthlyBudgetsComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('biMonthlyBudgetsComment', e.target.value)} />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

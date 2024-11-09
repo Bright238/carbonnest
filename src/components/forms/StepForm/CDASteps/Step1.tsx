@@ -9,15 +9,15 @@ import { Skeleton } from 'antd';
 import axios from 'axios';
 import { DynamicForm } from './DynamicForm';
 const NarrowInput = styled(BaseInput)`
-  width: 400px !important; 
+  width: 400px !important;
 `;
 
 const NarrowPicker = styled(BaseDatePicker)`
-  width: 400px !important;  
+  width: 400px !important;
 `;
 
 const NarrowFormItem = styled(BaseForm.Item)`
-  width: 400px !important;  
+  width: 400px !important;
 `;
 
 interface Step1Props {
@@ -43,7 +43,7 @@ export const Step1: React.FC<Step1Props> = ({ handleChange }) => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`, {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
         });
 
@@ -68,52 +68,51 @@ export const Step1: React.FC<Step1Props> = ({ handleChange }) => {
 
   return (
     <>
-    
-    <BaseForm
-      initialValues={{
-        province: user.title,
-        district: user.location,
-      }}
-      onValuesChange={(changedValues, allValues) => {
-        Object.keys(changedValues).forEach((key) => {
-          handleChange(key, changedValues[key]);
-        });
-      }}
-    >
-      <S.FormContent>
-        <NarrowFormItem
-          name="date_of_assessment"
-          label={t('Date of Assessment')}
-          rules={[{ required: true, message: t('Date is a required field') }]}
-        >
-          <NarrowPicker format="DD-MM-YYYY" />
-        </NarrowFormItem>
+      <BaseForm
+        initialValues={{
+          province: user.title,
+          district: user.location,
+        }}
+        onValuesChange={(changedValues, allValues) => {
+          Object.keys(changedValues).forEach((key) => {
+            handleChange(key, changedValues[key]);
+          });
+        }}
+      >
+        <S.FormContent>
+          <NarrowFormItem
+            name="date_of_assessment"
+            label={t('Date of Assessment')}
+            rules={[{ required: true, message: t('Date is a required field') }]}
+          >
+            <NarrowPicker format="DD-MM-YYYY" />
+          </NarrowFormItem>
 
-        <NarrowFormItem
-          name="province"
-          label={t('Province')}
-          rules={[{ required: true, message: t('Province is a required field') }]}
-        >
-          <NarrowInput />
-        </NarrowFormItem>
+          <NarrowFormItem
+            name="province"
+            label={t('Province')}
+            rules={[{ required: true, message: t('Province is a required field') }]}
+          >
+            <NarrowInput />
+          </NarrowFormItem>
 
-        <NarrowFormItem
-          name="district"
-          label={t('District')}
-          rules={[{ required: true, message: t('District is a required field') }]}
-        >
-          <NarrowInput />
-        </NarrowFormItem>
+          <NarrowFormItem
+            name="district"
+            label={t('District')}
+            rules={[{ required: true, message: t('District is a required field') }]}
+          >
+            <NarrowInput />
+          </NarrowFormItem>
 
-        <NarrowFormItem
-          name="list_of_district_participants"
-          label={t('List of District Participants')}
-          rules={[{ required: true, message: t('This is a required field') }]}
-        >
-          <DynamicForm />
-        </NarrowFormItem>
-      </S.FormContent>
-    </BaseForm>
+          <NarrowFormItem
+            name="list_of_district_participants"
+            label={t('List of District Participants')}
+            rules={[{ required: true, message: t('This is a required field') }]}
+          >
+            <DynamicForm />
+          </NarrowFormItem>
+        </S.FormContent>
+      </BaseForm>
     </>
   );
 };

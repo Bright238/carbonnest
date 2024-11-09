@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -39,21 +39,15 @@ export const Step4: React.FC<Step4Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          Staff
-        </Typography.Title>
+        <Typography.Title level={4}>Staff</Typography.Title>
         <Typography.Title level={4}>
           Standard 1: Staff managing stock and inventory should be oriented in Asset Management & Stores guidelines
         </Typography.Title>
         <HighlightedQuestion>
           Question: Are staff managing stock and inventory oriented in Asset Management & Stores guidelines?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Stores Manual
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check the physical document
-        </Typography>
+        <Typography>Indicator: Stores Manual</Typography>
+        <Typography>Source of Information/Means of Verification: Check the physical document</Typography>
       </Dragger>
 
       <Form.Item
@@ -66,7 +60,7 @@ export const Step4: React.FC<Step4Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesStaffQ1Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -75,7 +69,7 @@ export const Step4: React.FC<Step4Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesStaffCommentQ1" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesStaffCommentQ1', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesStaffCommentQ1', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -85,9 +79,7 @@ export const Step4: React.FC<Step4Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Question: Are staff managing stores independent of procurement within the procuring entity?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: There should be segregation of duties
-        </Typography>
+        <Typography>Indicator: There should be segregation of duties</Typography>
         <Typography>
           Source of Information/Means of Verification: By physical checking of signature and titles on the documents
         </Typography>
@@ -103,7 +95,7 @@ export const Step4: React.FC<Step4Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesStaffQ2Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -112,9 +104,8 @@ export const Step4: React.FC<Step4Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesStaffCommentQ2" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesStaffCommentQ2', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesStaffCommentQ2', e.target.value)} />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

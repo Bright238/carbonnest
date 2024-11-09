@@ -23,7 +23,7 @@ export const ScreeningsHeader: React.FC = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`, {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
         });
         setUser(response.data.data);

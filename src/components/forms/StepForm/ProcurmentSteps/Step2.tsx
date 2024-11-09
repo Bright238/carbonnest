@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -45,21 +45,11 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          Legislation & Guidelines
-        </Typography.Title>
-        <Typography.Title level={4}>
-          Public Procurement Act (PPA) of 2020
-        </Typography.Title>
-        <HighlightedQuestion>
-          Question 1: Does the office have a copy of the PPA 2020?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical or Soft copy of the Act
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check filed or saved copy
-        </Typography>
+        <Typography.Title level={4}>Legislation & Guidelines</Typography.Title>
+        <Typography.Title level={4}>Public Procurement Act (PPA) of 2020</Typography.Title>
+        <HighlightedQuestion>Question 1: Does the office have a copy of the PPA 2020?</HighlightedQuestion>
+        <Typography>Indicator: Physical or Soft copy of the Act</Typography>
+        <Typography>Source of Information/Means of Verification: Check filed or saved copy</Typography>
       </Dragger>
 
       <Form.Item
@@ -72,7 +62,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementGuidelinesQ1aResponse', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -81,19 +71,15 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="commentQ1a" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('commentQ1a', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('commentQ1a', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <HighlightedQuestion>
           Question 2: Has the officer in charge of procurement read and understood the PPA 2020?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Knowledge of the Act
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Test question from the document
-        </Typography>
+        <Typography>Indicator: Knowledge of the Act</Typography>
+        <Typography>Source of Information/Means of Verification: Test question from the document</Typography>
       </Dragger>
 
       <Form.Item
@@ -106,7 +92,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementGuidelinesQ1bResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -115,22 +101,14 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="commentQ1b" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('commentQ1b', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('commentQ1b', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Public Procurement Regulations (PPR) of 2022
-        </Typography.Title>
-        <HighlightedQuestion>
-          Question 3: Does the office have a copy of the PPR 2022?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical or Soft copy of the Act
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check filed or saved copy
-        </Typography>
+        <Typography.Title level={4}>Public Procurement Regulations (PPR) of 2022</Typography.Title>
+        <HighlightedQuestion>Question 3: Does the office have a copy of the PPR 2022?</HighlightedQuestion>
+        <Typography>Indicator: Physical or Soft copy of the Act</Typography>
+        <Typography>Source of Information/Means of Verification: Check filed or saved copy</Typography>
       </Dragger>
 
       <Form.Item
@@ -143,7 +121,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementGuidelinesQ2aResponse', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -152,19 +130,15 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="commentQ2a" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('commentQ2a', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('commentQ2a', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <HighlightedQuestion>
           Question 4: Has the officer in charge of procurement read and understood the PPR 2022?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Knowledge of the Act
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Test question from the document
-        </Typography>
+        <Typography>Indicator: Knowledge of the Act</Typography>
+        <Typography>Source of Information/Means of Verification: Test question from the document</Typography>
       </Dragger>
 
       <Form.Item
@@ -177,7 +151,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementGuidelinesQ2bResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -186,7 +160,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="commentQ2b" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('commentQ2b', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('commentQ2b', e.target.value)} />
       </NarrowFormItem>
     </S.FormContent>
   );

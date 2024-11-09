@@ -37,14 +37,12 @@ const apiUrl = `${process.env.REACT_APP_BASE_URL}/items`;
 const collectionName = 'stores';
 
 export const StoresStepForm = () => {
-
   const [current, setCurrent] = useState(0);
   const [form] = BaseForm.useForm();
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
 
   const [fields, setFields] = useState([
-
     { name: 'storesGuidelinesQ1', value: '1. Does the office have the Stores Manual?' },
     { name: 'storesGuidelinesQ1Response', value: '' },
     { name: 'storesCommentQ1', value: '' },
@@ -58,7 +56,7 @@ export const StoresStepForm = () => {
     { name: 'storesCommentQ3', value: '' },
     // Stores - Legislation and guidelines end
 
-    // Stores documents start 
+    // Stores documents start
     { name: 'storesDocumentQ1', value: 'Q1. Do you have Goods Received Note book?' },
     { name: 'storesDocumentsQ1Response', value: '' },
     { name: 'storesDocumentsCommentQ1', value: '' },
@@ -85,17 +83,26 @@ export const StoresStepForm = () => {
     // Stores documents end
 
     // Stores staff start
-    { name: 'storesStaffQ1', value: 'Q1. Are staff managing stock and inventory oriented in Asset Management & Stores guidelines?' },
+    {
+      name: 'storesStaffQ1',
+      value: 'Q1. Are staff managing stock and inventory oriented in Asset Management & Stores guidelines?',
+    },
     { name: 'storesStaffQ1Response', value: '' },
     { name: 'storesStaffCommentQ1', value: '' },
 
-    { name: 'storesStaffQ2', value: 'Q2. Are staff managing stores independent of procurement within the procuring entity?' },
+    {
+      name: 'storesStaffQ2',
+      value: 'Q2. Are staff managing stores independent of procurement within the procuring entity?',
+    },
     { name: 'storesStaffQ2Response', value: '' },
     { name: 'storesStaffCommentQ2', value: '' },
     // Stores staff end
 
-    // Stores Processes start 
-    { name: 'storesProcessesQ1', value: 'Q1. Are prices on supplier invoices matched with contracts/Local purchase orders?' },
+    // Stores Processes start
+    {
+      name: 'storesProcessesQ1',
+      value: 'Q1. Are prices on supplier invoices matched with contracts/Local purchase orders?',
+    },
     { name: 'storesProcessesQ1Response', value: '' },
     { name: 'storesProcessesCommentQ1', value: '' },
 
@@ -107,23 +114,35 @@ export const StoresStepForm = () => {
     { name: 'storesProcessesQ3Response', value: '' },
     { name: 'storesProcessesCommentQ3', value: '' },
 
-    { name: 'storesProcessesQ4', value: 'Q4. Are procured items requisitioned from Stores and issued by a stores officer?' },
+    {
+      name: 'storesProcessesQ4',
+      value: 'Q4. Are procured items requisitioned from Stores and issued by a stores officer?',
+    },
     { name: 'storesProcessesQ4Response', value: '' },
     { name: 'storesProcessesCommentQ4', value: '' },
 
-    { name: 'storesProcessesQ5', value: 'Q5. Are Stores Requisitions approved by the Head of department before issuance of goods?' },
+    {
+      name: 'storesProcessesQ5',
+      value: 'Q5. Are Stores Requisitions approved by the Head of department before issuance of goods?',
+    },
     { name: 'storesProcessesQ5Response', value: '' },
     { name: 'storesProcessesCommentQ5', value: '' },
 
-    { name: 'storesProcessesQ6', value: 'Q6. Are Stock cards/bin cards updated whenever there\'s stock movement.' },
+    { name: 'storesProcessesQ6', value: "Q6. Are Stock cards/bin cards updated whenever there's stock movement." },
     { name: 'storesProcessesQ6Response', value: '' },
     { name: 'storesProcessesCommentQ6', value: '' },
 
-    { name: 'storesProcessesQ7', value: 'Q7. Is stock taking conducted quarterly in collaboration with independent staff?' },
+    {
+      name: 'storesProcessesQ7',
+      value: 'Q7. Is stock taking conducted quarterly in collaboration with independent staff?',
+    },
     { name: 'storesProcessesQ7Response', value: '' },
     { name: 'storesProcessesCommentQ7', value: '' },
 
-    { name: 'storesProcessesQ8', value: 'Q8. Are physical counts compared with stock records, reconciled and reported?' },
+    {
+      name: 'storesProcessesQ8',
+      value: 'Q8. Are physical counts compared with stock records, reconciled and reported?',
+    },
     { name: 'storesProcessesQ8Response', value: '' },
     { name: 'storesProcessesCommentQ8', value: '' },
 
@@ -137,7 +156,11 @@ export const StoresStepForm = () => {
     { name: 'storesAssetMgtQ1Response', value: '' },
     { name: 'storesAssetManagementCommentQ1', value: '' },
 
-    { name: 'storesAssetManagementQ2', value: 'Q2. Does the Asset Register indicate date, item description, serial numbers,quantities, Year, value, location  & condition?' },
+    {
+      name: 'storesAssetManagementQ2',
+      value:
+        'Q2. Does the Asset Register indicate date, item description, serial numbers,quantities, Year, value, location  & condition?',
+    },
     { name: 'storesAssetMgtQ2Response', value: '' },
     { name: 'storesAssetManagementCommentQ2', value: '' },
 
@@ -152,14 +175,12 @@ export const StoresStepForm = () => {
   ]);
 
   const handleChange = (fieldName: string, value: any) => {
-    setFields(fields.map(field =>
-      field.name === fieldName ? { ...field, value } : field
-    ));
+    setFields(fields.map((field) => (field.name === fieldName ? { ...field, value } : field)));
   };
 
-
   const next = () => {
-    form.validateFields()
+    form
+      .validateFields()
       .then(() => {
         setCurrent(current + 1);
       })
@@ -190,7 +211,7 @@ export const StoresStepForm = () => {
     '50': 50,
     '25': 25,
     '0': 0,
-    'N/A': null // No score for N/A
+    'N/A': null, // No score for N/A
   };
 
   const calculatePercentage = (formData: FormData): number => {
@@ -262,7 +283,6 @@ export const StoresStepForm = () => {
     { title: t('Asset Management') },
     { title: t('Submit') },
   ];
-
 
   const formFieldsUi = [
     <Step1 key="1" handleChange={handleChange} form={form} />,

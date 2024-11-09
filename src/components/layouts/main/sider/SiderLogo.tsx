@@ -19,7 +19,7 @@ export const SiderLogo: React.FC<SiderLogoProps> = ({ isSiderCollapsed, toggleSi
 
   return (
     <S.SiderLogoDiv>
-     {/* <S.SiderLogoLink to="/">
+      {/* <S.SiderLogoLink to="/">
         <img
           src="/logo512.png"
           alt="logo"

@@ -25,9 +25,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          SECTION A: CASE MANAGEMENT PROCESSES
-        </Typography.Title>
+        <Typography.Title level={4}>SECTION A: CASE MANAGEMENT PROCESSES</Typography.Title>
         <Typography.Title level={5}>
           Question 1: How many times have you met with the CWACs for mentorship in the past month?
         </Typography.Title>
@@ -58,14 +56,16 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
 
       <Dragger>
         <Typography.Title level={5}>
-          Question 4: Did you experience any challenges supporting CWACs with technical feedback on case management and mentorship?
+          Question 4: Did you experience any challenges supporting CWACs with technical feedback on case management and
+          mentorship?
         </Typography.Title>
-
       </Dragger>
       <br />
       <Radio.Group onChange={handleRadioChange}>
         <Radio value="No">No</Radio>
-        <Radio value="Yes">If Yes, (explore the nature of the problems, record below, and clarify issues with the CDA)</Radio>
+        <Radio value="Yes">
+          If Yes, (explore the nature of the problems, record below, and clarify issues with the CDA)
+        </Radio>
       </Radio.Group>
       <br />
       <NarrowFormItem name="technicalFeedbackChallengeDetails" label={t('Details')}>

@@ -19,20 +19,17 @@ const CarbonSinkProfile: React.FC = () => {
   return (
     <>
       <BaseCard>
-      <PageTitle>{t('My Carbon Sink Profile')}</PageTitle>
-      <BaseRow gutter={[60, 60]} style={{ marginTop: '20px' }}>   <BaseForm.Title>{t('My Carbon Sink Profile')}</BaseForm.Title>
-        <BaseCol xs={24} md={24}>
-            
-     
-          <TotalCarbonSequestered />
-        </BaseCol>
-     
-        <BaseCol xs={24} md={24}>
-           
-       
-          <TotalEarning />
-        </BaseCol>
-      </BaseRow>
+        <PageTitle>{t('My Carbon Sink Profile')}</PageTitle>
+        <BaseRow gutter={[60, 60]} style={{ marginTop: '20px' }}>
+          {' '}
+          <BaseForm.Title>{t('My Carbon Sink Profile')}</BaseForm.Title>
+          <BaseCol xs={24} md={24}>
+            <TotalCarbonSequestered />
+          </BaseCol>
+          <BaseCol xs={24} md={24}>
+            <TotalEarning />
+          </BaseCol>
+        </BaseRow>
       </BaseCard>
     </>
   );

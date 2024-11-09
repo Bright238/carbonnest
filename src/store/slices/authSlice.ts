@@ -1,4 +1,3 @@
-
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { setUser } from '@app/store/slices/userSlice';
 import { UserModel } from '@app/domain/UserModel';
@@ -25,13 +24,12 @@ const initialState: AuthSlice = {
   token: readToken(),
 };
 
-
 const fetchUserData = async (token: string): Promise<UserModel> => {
   // Set the authorization header
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
   axios.defaults.headers.common['Content-Type'] = 'application/json';
 
-  const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`); 
+  const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`);
   const user = response.data;
 
   // Map the response to match the UserModel structure

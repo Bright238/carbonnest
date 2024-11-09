@@ -47,7 +47,9 @@ const MedicalDashboardPage: React.FC = () => {
       <Typography.Title level={4}>Data Collection</Typography.Title>
       <Typography.Paragraph>Easy mobile-friendly data collection with offline support.</Typography.Paragraph>
       <Typography.Title level={4}>Real-Time Reporting</Typography.Title>
-      <Typography.Paragraph>Provide live updates on biochar projects and carbon removal activities.</Typography.Paragraph>
+      <Typography.Paragraph>
+        Provide live updates on biochar projects and carbon removal activities.
+      </Typography.Paragraph>
       <Typography.Title level={4}>Verification and Audits</Typography.Title>
       <Typography.Paragraph>Automated verification and audit tools for consistent quality checks.</Typography.Paragraph>
     </div>
@@ -57,14 +59,13 @@ const MedicalDashboardPage: React.FC = () => {
     <div style={{ padding: '40px' }}>
       <BaseRow justify="center" style={{ textAlign: 'center', marginBottom: '40px' }}>
         <BaseCol>
-          <Typography.Title level={1}>
-            Carbonnest
-          </Typography.Title>
+          <Typography.Title level={1}>Carbonnest</Typography.Title>
 
           <Typography.Paragraph>
             Simplifying Biochar Carbon Verification
             <br />
-            Streamline data collection, monitoring, and reporting for carbon sink activities with our all-in-one biochar verification platform.
+            Streamline data collection, monitoring, and reporting for carbon sink activities with our all-in-one biochar
+            verification platform.
           </Typography.Paragraph>
           <Button
             type="primary"
@@ -98,7 +99,9 @@ const MedicalDashboardPage: React.FC = () => {
       <BaseRow gutter={[60, 60]} style={{ marginTop: '40px' }}>
         <BaseCol xs={24} sm={12} md={6}>
           <Typography.Title level={4}>Farmer Profiles</Typography.Title>
-          <Typography.Paragraph>Manage detailed farmer profiles, track training, and certifications.</Typography.Paragraph>
+          <Typography.Paragraph>
+            Manage detailed farmer profiles, track training, and certifications.
+          </Typography.Paragraph>
         </BaseCol>
         <BaseCol xs={24} sm={12} md={6}>
           <Typography.Title level={4}>Data Collection</Typography.Title>
@@ -106,11 +109,15 @@ const MedicalDashboardPage: React.FC = () => {
         </BaseCol>
         <BaseCol xs={24} sm={12} md={6}>
           <Typography.Title level={4}>Real-Time Reporting</Typography.Title>
-          <Typography.Paragraph>Provide live updates on biochar projects and carbon removal activities.</Typography.Paragraph>
+          <Typography.Paragraph>
+            Provide live updates on biochar projects and carbon removal activities.
+          </Typography.Paragraph>
         </BaseCol>
         <BaseCol xs={24} sm={12} md={6}>
           <Typography.Title level={4}>Verification and Audits</Typography.Title>
-          <Typography.Paragraph>Automated verification and audit tools for consistent quality checks.</Typography.Paragraph>
+          <Typography.Paragraph>
+            Automated verification and audit tools for consistent quality checks.
+          </Typography.Paragraph>
         </BaseCol>
       </BaseRow>
       <MapCard />
@@ -127,7 +134,9 @@ const MedicalDashboardPage: React.FC = () => {
             Streamline biochar project verification, reporting, and carbon credit tracking.
           </Typography.Paragraph>
 
-          <div style={{ marginBottom: '20px' }}> {/* Add margin to create space */}
+          <div style={{ marginBottom: '20px' }}>
+            {' '}
+            {/* Add margin to create space */}
             <Button
               type="primary"
               style={{ borderRadius: '50px', padding: '0 40px' }}
@@ -138,15 +147,9 @@ const MedicalDashboardPage: React.FC = () => {
             </Button>
           </div>
 
-          <Button
-            type="primary"
-            style={{ borderRadius: '50px', padding: '0 40px' }}
-            size="large"
-            onClick={showModal}
-          >
+          <Button type="primary" style={{ borderRadius: '50px', padding: '0 40px' }} size="large" onClick={showModal}>
             View Key Features
           </Button>
-
         </BaseCol>
       </BaseRow>
 
@@ -162,12 +165,7 @@ const MedicalDashboardPage: React.FC = () => {
         </BaseCol>
       </BaseRow>
 
-      <Modal
-        title="Key Features"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
+      <Modal title="Key Features" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
         {modalContent}
       </Modal>
     </div>

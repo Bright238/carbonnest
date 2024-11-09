@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -52,38 +52,28 @@ export const Step8: React.FC<Step8Props> = ({ handleChange }) => {
     { value: '0', text: t('No') },
   ];
 
-
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          Reporting
-        </Typography.Title>
-        <Typography.Title level={4}>
-          Standard 1: Reporting System
-        </Typography.Title>
+        <Typography.Title level={4}>Reporting</Typography.Title>
+        <Typography.Title level={4}>Standard 1: Reporting System</Typography.Title>
 
-        <HighlightedQuestion>
-          Question 1: Do you have a case management reporting system in place?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Existence of a case management reporting system
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Review reporting system implementation
-        </Typography>
+        <HighlightedQuestion>Question 1: Do you have a case management reporting system in place?</HighlightedQuestion>
+        <Typography>Indicator: Existence of a case management reporting system</Typography>
+        <Typography>Source of Information/Means of Verification: Review reporting system implementation</Typography>
       </Dragger>
 
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="reportingQ1Response"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('reportingQ1Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -92,38 +82,31 @@ export const Step8: React.FC<Step8Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="reportingQ1Comment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('reportingQ1Comment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('reportingQ1Comment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Reporting
-        </Typography.Title>
-        <Typography.Title level={4}>
-          Standard 2: Monthly Reporting
-        </Typography.Title>
+        <Typography.Title level={4}>Reporting</Typography.Title>
+        <Typography.Title level={4}>Standard 2: Monthly Reporting</Typography.Title>
 
         <HighlightedQuestion>
           Question 2: Is the Community Caseworker report to the CDA submitted on a monthly basis?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Timeliness and frequency of Community Caseworker reporting
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Review submission records and reports
-        </Typography>
+        <Typography>Indicator: Timeliness and frequency of Community Caseworker reporting</Typography>
+        <Typography>Source of Information/Means of Verification: Review submission records and reports</Typography>
       </Dragger>
 
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="reportingQ2Response"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('reportingQ2Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -132,38 +115,31 @@ export const Step8: React.FC<Step8Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="reportingQ2Comment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('reportingQ2Comment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('reportingQ2Comment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Reporting
-        </Typography.Title>
-        <Typography.Title level={4}>
-          Standard 3: Quarterly Reporting
-        </Typography.Title>
+        <Typography.Title level={4}>Reporting</Typography.Title>
+        <Typography.Title level={4}>Standard 3: Quarterly Reporting</Typography.Title>
 
         <HighlightedQuestion>
           Question 3: Is the CDA report to the District submitted on a quarterly basis?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Timeliness and frequency of CDA reporting to the District
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Review submission records and reports
-        </Typography>
+        <Typography>Indicator: Timeliness and frequency of CDA reporting to the District</Typography>
+        <Typography>Source of Information/Means of Verification: Review submission records and reports</Typography>
       </Dragger>
 
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="reportingQ3Response"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('reportingQ3Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -172,9 +148,8 @@ export const Step8: React.FC<Step8Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="reportingQ3Comment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('reportingQ3Comment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('reportingQ3Comment', e.target.value)} />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

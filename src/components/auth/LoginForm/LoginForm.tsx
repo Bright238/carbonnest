@@ -38,19 +38,15 @@ export const LoginForm: React.FC = () => {
         setLoading(false);
       });
   };
-  
+
   return (
     <Auth.FormWrapper>
       <BaseForm layout="vertical" onFinish={handleSubmit} requiredMark="optional" initialValues={initValues}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <img
-            src="/carbonnest-logo.png"
-            alt="logo"
-            style={{ width: '280px', height: 'auto' }}
-          />
+          <img src="/carbonnest-logo.png" alt="logo" style={{ width: '280px', height: 'auto' }} />
         </div>
         <br />
-        <Typography style={{fontWeight: "bold", textAlign: "center"}}>Your carbon removal you can trust</Typography>
+        <Typography style={{ fontWeight: 'bold', textAlign: 'center' }}>Your carbon removal you can trust</Typography>
         <Auth.FormItem
           name="email"
           label={t('common.email')}

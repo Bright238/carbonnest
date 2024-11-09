@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -51,17 +51,14 @@ export const Step6: React.FC<Step6Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <StandardTitle level={4}>
-          Pricing - Market Price Index
-        </StandardTitle>
+        <StandardTitle level={4}>Pricing - Market Price Index</StandardTitle>
         <HighlightedQuestion>
           1: Are goods and services procured with reference to the Market Price Index (MPI)?
         </HighlightedQuestion>
+        <Typography>Indicator: Use of Market Price Index</Typography>
         <Typography>
-          Indicator: Use of Market Price Index
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Availability of the soft or hard copy of the MPI or Low Value Paper (LVP)
+          Source of Information/Means of Verification: Availability of the soft or hard copy of the MPI or Low Value
+          Paper (LVP)
         </Typography>
       </Dragger>
 
@@ -75,7 +72,7 @@ export const Step6: React.FC<Step6Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('pricingMarketPriceIndexQ1Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -84,18 +81,17 @@ export const Step6: React.FC<Step6Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="markertPricingIndexCommentQ1" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('markertPricingIndexCommentQ1', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('markertPricingIndexCommentQ1', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <HighlightedQuestion>
           2: Is price reasonableness analysis undertaken for items not covered in the MPI?
         </HighlightedQuestion>
+        <Typography>Indicator: Price Reasonableness Analysis</Typography>
         <Typography>
-          Indicator: Price Reasonableness Analysis
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Availability of the LVP and ZPPA Price Reasonableness Templates (PRT)
+          Source of Information/Means of Verification: Availability of the LVP and ZPPA Price Reasonableness Templates
+          (PRT)
         </Typography>
       </Dragger>
 
@@ -109,7 +105,7 @@ export const Step6: React.FC<Step6Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('pricingMarketPriceIndexQ2Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -118,7 +114,7 @@ export const Step6: React.FC<Step6Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="markertPricingIndexCommentQ2" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('markertPricingIndexCommentQ2', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('markertPricingIndexCommentQ2', e.target.value)} />
       </NarrowFormItem>
     </S.FormContent>
   );

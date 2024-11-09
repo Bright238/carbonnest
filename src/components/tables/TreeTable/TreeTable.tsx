@@ -74,7 +74,7 @@ export const TreeTable: React.FC = () => {
     pagination: initialPagination,
     loading: false,
   });
-  
+
   const [searchText, setSearchText] = useState<string>('');
   const [searchedColumn, setSearchedColumn] = useState<string>('');
   const searchInput = useRef<InputRef>(null);
@@ -112,21 +112,14 @@ export const TreeTable: React.FC = () => {
           >
             Search
           </Button>
-          <Button
-            onClick={() => clearFilters && handleReset(clearFilters)}
-            size="small"
-            style={{ width: 90 }}
-          >
+          <Button onClick={() => clearFilters && handleReset(clearFilters)} size="small" style={{ width: 90 }}>
             Reset
           </Button>
         </Space>
       </div>
     ),
-    onFilter: (value: string, record: Transaction) => 
-      record[dataIndex as keyof Transaction]
-        .toString()
-        .toLowerCase()
-        .includes(value.toLowerCase()),
+    onFilter: (value: string, record: Transaction) =>
+      record[dataIndex as keyof Transaction].toString().toLowerCase().includes(value.toLowerCase()),
     render: (text: any) =>
       searchedColumn === dataIndex ? (
         <Highlighter
@@ -181,9 +174,10 @@ export const TreeTable: React.FC = () => {
       width: '10%',
       dataIndex: '',
       render: (_: any, record: TableDataItem) => (
-        <BaseButton type="ghost"
-        //  onClick={() => 
-        //   IDBTransaction(record.transaction_id)}
+        <BaseButton
+          type="ghost"
+          //  onClick={() =>
+          //   IDBTransaction(record.transaction_id)}
         >
           {t('Print')}
         </BaseButton>
@@ -198,7 +192,7 @@ export const TreeTable: React.FC = () => {
         dataSource={tableData.data}
         pagination={tableData.pagination}
         loading={tableData.loading}
-        scroll={{x: 400, y: 400}}
+        scroll={{ x: 400, y: 400 }}
       />
     </div>
   );
