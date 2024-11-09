@@ -28,6 +28,7 @@ export const CarbonSequesteredWidget: React.FC<PaymentCardsWidgetProps> = ({ car
       Credit Sale Retirements in 2024
     </>
   );
+  
 
   return (
     <BaseRow justify={justify} gutter={[16, 16]}>
