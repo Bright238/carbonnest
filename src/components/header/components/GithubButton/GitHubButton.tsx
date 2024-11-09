@@ -11,11 +11,13 @@ export const GitHubButton: React.FC = (props) => {
   return (
     <Button
       type="default"
+      href="https://github.com/altence/lightence-admin"
+      icon={<GithubIcon />}
       target="_blank"
       $isDark={theme === 'dark'}
       {...props}
     >
-      {/* GitHub */}
+      GitHub
     </Button>
   );
 };

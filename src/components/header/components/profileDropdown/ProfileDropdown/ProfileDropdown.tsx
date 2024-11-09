@@ -1,45 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { ProfileOverlay } from '../ProfileOverlay/ProfileOverlay';
+import { useAppSelector } from '@app/hooks/reduxHooks';
 import { useResponsive } from '@app/hooks/useResponsive';
 import * as S from './ProfileDropdown.styles';
 import { BasePopover } from '@app/components/common/BasePopover/BasePopover';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
-import axios from 'axios';
-
-interface User {
-  id: string;
-  first_name: string;
-  last_name: string;
-  avatar: string;
-  // Add other fields as needed
-}
-
-const fetchUserData = async (setUser: React.Dispatch<React.SetStateAction<User | null>>) => {
-  try {
-    const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('access_token')}`, // Adjust token retrieval as needed
-      },
-    });
-    setUser(response.data.data);
-  } catch (error) {
-    console.error('Error fetching user data:', error);
-  }
-};
+import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
+import { BaseAvatar } from '@app/components/common/BaseAvatar/BaseAvatar';
 
 export const ProfileDropdown: React.FC = () => {
   const { isTablet } = useResponsive();
-  const [user, setUser] = useState<User | null>(null);
 
-  useEffect(() => {
-    fetchUserData(setUser);
-  }, []);
+  const user = useAppSelector((state) => state.user.user);
 
   return user ? (
     <BasePopover content={<ProfileOverlay />} trigger="click">
-      <BaseCol>
-      <b>Welcome back, 👋 <br />{user.first_name}!</b><br />
-      </BaseCol>
+      <S.ProfileDropdownHeader as={BaseRow} gutter={[10, 10]} align="middle">
+        <BaseCol>
+          <BaseAvatar src='https://media.licdn.com/dms/image/v2/D4D35AQHIcurwOOq1JA/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1727110590756?e=1731747600&v=beta&t=b5KmlYmY-A_iKGqBnmgzDGH7kSRXcObhQlFD6AqjskI' alt="User" size={40} />
+        </BaseCol>
+        {isTablet && (
+          <BaseCol>
+            <span>Bright<br /> Mafungautsi</span>
+            {/* <span>{`${user.first_name} ${user.last_name[0]}`}</span> */}
+          </BaseCol>
+        )}
+      </S.ProfileDropdownHeader>
     </BasePopover>
   ) : null;
 };

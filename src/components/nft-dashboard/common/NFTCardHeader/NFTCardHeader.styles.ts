@@ -15,10 +15,10 @@ export const Title = styled(BaseTypography.Title)`
   &.ant-typography {
     margin-bottom: 0;
 
-    font-size: ${FONT_SIZE.md};
+    font-size: ${FONT_SIZE.xl};
 
     @media only screen and ${media.xl} {
-      font-size: ${FONT_SIZE.lg};
+      font-size: ${FONT_SIZE.xxl};
     }
   }
 `;

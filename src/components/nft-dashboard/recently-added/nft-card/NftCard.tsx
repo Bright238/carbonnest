@@ -51,7 +51,7 @@ export const NftCard: React.FC<NftCardProps> = ({ nftItem }) => {
 
   return (
     <S.Card padding={0} $img={nftItem.image}>
-      <S.NftImage src={nftItem.image} alt="nftImage" />
+      <S.NftImage src='https://media.istockphoto.com/id/538889138/photo/african-woman-laughing.jpg?s=612x612&w=0&k=20&c=OJTMbnqP8x9v-Ly2KyXD_MGWMoEbJDcdcTX0Lc2dock=' alt="nftImage" />
       <S.NftInfo>
         <S.InfoRow>
           <S.Title>{nftItem.title}</S.Title>

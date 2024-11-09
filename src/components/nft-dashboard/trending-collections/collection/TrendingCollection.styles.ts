@@ -8,9 +8,8 @@ interface CardInternalProps {
 }
 
 export const CollectionImage = styled.img`
-  animation: imgOut 0.5s;
   width: 100%;
-  height: 126px;
+  height:200px;
   object-fit: cover;
   border-top-left-radius: ${BORDER_RADIUS};
   border-top-right-radius: ${BORDER_RADIUS};
@@ -32,7 +31,6 @@ export const InfoRow = styled.div`
 `;
 
 export const Title = styled(BaseTypography.Title)`
-  transition: all 0.5s ease;
 
   &.ant-typography {
     margin-bottom: 0;
@@ -42,7 +40,6 @@ export const Title = styled(BaseTypography.Title)`
 `;
 
 export const Text = styled(BaseTypography.Text)`
-  transition: all 0.5s ease;
 
   font-size: ${FONT_SIZE.xs};
 
@@ -66,7 +63,6 @@ export const OwnerText = styled(Text)`
 `;
 
 export const USDText = styled(BaseTypography.Text)`
-  transition: all 0.5s ease;
 
   font-weight: ${FONT_WEIGHT.semibold};
 
@@ -74,7 +70,6 @@ export const USDText = styled(BaseTypography.Text)`
 `;
 
 export const AuthorAvatarWrapper = styled.div`
-  transition: all 0.5s ease;
   position: absolute;
   top: -45px;
   border-radius: 50%;
@@ -83,7 +78,6 @@ export const AuthorAvatarWrapper = styled.div`
 `;
 
 export const BidButton = styled(BaseButton)`
-  transition: all 0.5s ease;
   position: absolute;
   top: 20px;
   right: 20px;
@@ -107,45 +101,6 @@ export const Card = styled(NFTCard)<CardInternalProps>`
       background-position: center;
       position: relative;
     }
-
-    ${CollectionImage} {
-      animation: imgIn 0.5s;
-      animation-fill-mode: forwards;
-    }
-
-    ${Title}, ${Text}, ${USDText} {
-      color: var(--text-secondary-color);
-    }
-
-    ${AuthorAvatarWrapper} {
-      transform: translateY(-70px) scale(1.1);
-    }
-
-    ${BidButton} {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(1.1);
-      position: absolute;
-    }
   }
-
-  @keyframes imgIn {
-    99% {
-      transform: scale(2);
-    }
-
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes imgOut {
-    0% {
-      transform: scale(2);
-    }
-
-    100% {
-      transform: scale(1);
-    }
   }
 `;

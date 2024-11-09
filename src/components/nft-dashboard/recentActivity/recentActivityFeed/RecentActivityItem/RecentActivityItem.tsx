@@ -14,7 +14,7 @@ export const RecentActivityItem: React.FC<Activity> = ({ image, title, date, sta
     <S.ActivityCard>
       <S.Wrapper>
         <S.ImgWrapper>
-          <img src={image} alt={title} width={84} height={84} />
+          <img src='https://media.istockphoto.com/id/2148245203/photo/african-women-plucking-tea-leaves-on-plantation-east-africa.jpg?s=2048x2048&w=is&k=20&c=MT3fwdjSbco2hPYVrDlKVsP0eq4Qtw0bPcmz8mJDPns=' alt={title} width={84} height={84} />
         </S.ImgWrapper>
 
         <S.InfoWrapper>

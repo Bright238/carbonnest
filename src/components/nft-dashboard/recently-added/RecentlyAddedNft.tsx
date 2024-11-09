@@ -41,7 +41,7 @@ export const RecentlyAddedNft: React.FC = () => {
 
   return (
     <>
-      <NFTCardHeader title={t('nft.recentlyAddedNFTs')}>
+      <NFTCardHeader title={t('For Buyers')}>
         {isTablet && (
           <BaseRow align="middle">
             <BaseCol>

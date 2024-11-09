@@ -37,9 +37,9 @@ const provinceOptions = [
 // Define districts in each province
 const districtOptions: Record<Province, string[]> = {
   'All': ['All'],
-  'Central Province': ['Serenje', 'Kapiri Mposhi', 'Mkushi', 'Mumbwa'],
-  'Southern Province': ['Monze', 'Mazabuka', 'Kazungula'],
-  'Western Province': ['Mongu', 'Limulunga', 'Kalabo', 'Sesheke'],
+  'Central Province': ['Serenje', 'Kapiri Mposhi', 'Mkushi', 'Mumbwa', 'Chibombo', 'Chisamba', 'Ngabwe', 'Shibuyunji', 'Chitambo'],
+  'Southern Province': ['Monze', 'Mazabuka', 'Kazungula', 'Choma', 'Gwembe', 'Kalomo', 'Livingstone', 'Namwala', 'Siavonga', 'Zimba', 'Sesheke', 'Mwandi'],
+  'Western Province': ['Mongu', 'Limulunga', 'Kalabo', 'Sesheke', 'Barotse', 'Nkeyema', 'Shangombo', 'Liunga', 'Senanga', 'Kaoma'],
 };
 
 const roleOptions = [

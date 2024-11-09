@@ -41,41 +41,40 @@ export const HeaderSearch: React.FC = () => {
   }, [pathname]);
 
   return (
-    // <>
-    //   {mobileOnly && (
-    //     <>
-    //       <BaseButton
-    //         type={isModalOpen ? 'ghost' : 'text'}
-    //         icon={<S.SearchIcon onClick={() => setModalOpen(true)} />}
-    //       />
-    //       <S.SearchModal
-    //         open={isModalOpen}
-    //         closable={false}
-    //         footer={null}
-    //         onCancel={() => setModalOpen(false)}
-    //         destroyOnClose
-    //       >
-    //         <SearchDropdown
-    //           query={query}
-    //           setQuery={setQuery}
-    //           data={sortedResults}
-    //           isOverlayOpen={isOverlayOpen}
-    //           setOverlayOpen={setOverlayOpen}
-    //         />
-    //       </S.SearchModal>
-    //     </>
-    //   )}
+    <>
+      {mobileOnly && (
+        <>
+          <BaseButton
+            type={isModalOpen ? 'ghost' : 'text'}
+            icon={<S.SearchIcon onClick={() => setModalOpen(true)} />}
+          />
+          <S.SearchModal
+            open={isModalOpen}
+            closable={false}
+            footer={null}
+            onCancel={() => setModalOpen(false)}
+            destroyOnClose
+          >
+            <SearchDropdown
+              query={query}
+              setQuery={setQuery}
+              data={sortedResults}
+              isOverlayOpen={isOverlayOpen}
+              setOverlayOpen={setOverlayOpen}
+            />
+          </S.SearchModal>
+        </>
+      )}
 
-    //   {isTablet && (
-    //     <SearchDropdown
-    //       query={query}
-    //       setQuery={setQuery}
-    //       data={sortedResults}
-    //       isOverlayOpen={isOverlayOpen}
-    //       setOverlayOpen={setOverlayOpen}
-    //     />
-    //   )}
-    // </>
-    ""
+      {isTablet && (
+        <SearchDropdown
+          query={query}
+          setQuery={setQuery}
+          data={sortedResults}
+          isOverlayOpen={isOverlayOpen}
+          setOverlayOpen={setOverlayOpen}
+        />
+      )}
+    </>
   );
 };

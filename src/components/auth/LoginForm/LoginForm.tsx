@@ -44,13 +44,13 @@ export const LoginForm: React.FC = () => {
       <BaseForm layout="vertical" onFinish={handleSubmit} requiredMark="optional" initialValues={initValues}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <img
-            src="/logo512.png"
+            src="/carbonnest-logo.png"
             alt="logo"
             style={{ width: '280px', height: 'auto' }}
           />
         </div>
         <br />
-        <Typography style={{fontWeight: "bold", textAlign: "center"}}>Program Management Platform</Typography>
+        <Typography style={{fontWeight: "bold", textAlign: "center"}}>Your carbon removal you can trust</Typography>
         <Auth.FormItem
           name="email"
           label={t('common.email')}

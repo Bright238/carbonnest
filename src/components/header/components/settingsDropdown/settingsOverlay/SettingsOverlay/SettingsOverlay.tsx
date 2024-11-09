@@ -16,9 +16,9 @@ export const SettingsOverlay: React.FC = ({ ...props }) => {
   return (
     <S.SettingsOverlayMenu {...props}>
       <DropdownCollapse bordered={false} expandIconPosition="end" ghost defaultActiveKey="themePicker">
-        {/* <DropdownCollapse.Panel header={t('header.changeLanguage')} key="languagePicker">
+        <DropdownCollapse.Panel header={t('header.changeLanguage')} key="languagePicker">
           <LanguagePicker />
-        </DropdownCollapse.Panel> */}
+        </DropdownCollapse.Panel>
         <DropdownCollapse.Panel header={t('header.changeTheme')} key="themePicker">
           <ThemePicker />
         </DropdownCollapse.Panel>
@@ -28,9 +28,9 @@ export const SettingsOverlay: React.FC = ({ ...props }) => {
       </DropdownCollapse>
       {isPWASupported && (
         <S.PwaInstallWrapper>
-          {/* <BaseButton block type="primary" onClick={() => event && (event as BeforeInstallPromptEvent).prompt()}>
+          <BaseButton block type="primary" onClick={() => event && (event as BeforeInstallPromptEvent).prompt()}>
             {t('Install Application')}
-          </BaseButton> */}
+          </BaseButton>
         </S.PwaInstallWrapper>
       )}
     </S.SettingsOverlayMenu>

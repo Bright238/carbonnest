@@ -9,6 +9,7 @@ import {
   TableOutlined,
   UserOutlined,
   BlockOutlined,
+  ProjectOutlined,
 } from '@ant-design/icons';
 
 export interface SidebarNavigationItem {
@@ -30,22 +31,20 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
         title: 'common.mis-dashboard',
         key: 'mis-dashboard',
         url: '/',
+        icon: <DashboardOutlined />
       },
       {
-        title: 'common.households-register',
+        title: 'My Profile',
         key: 'households-register',
-        url: '/apps/households-register',
+        url: '/profile/personal-info',
+        icon: <UserOutlined />
       },
       {
-        title: 'common.vcas-register',
+        title: 'Marketplace',
         key: 'vcas-register',
-        url: '/apps/vcas-register',
+        url: '/biochar-projects-marketplace',
+        icon: <ProjectOutlined />
       },
-      // {
-      //   title: 'common.households-members-register',
-      //   key: 'households-members-register',
-      //   url: '/apps/households-members-register',
-      // },
     ],
   },
   {

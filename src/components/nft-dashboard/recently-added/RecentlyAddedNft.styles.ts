@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
-import { BREAKPOINTS } from '@app/styles/themes/constants';
+import { BREAKPOINTS, FONT_SIZE } from '@app/styles/themes/constants';
+import { BaseTypography } from '@app/components/common/BaseTypography/BaseTypography';
 
 export const SectionWrapper = styled.div`
   .slick-slide > div {
@@ -34,4 +35,11 @@ export const CardWrapper = styled.div`
 
 export const ArrowBtn = styled(BaseButton)`
   color: var(--text-nft-light-color);
+`;
+
+export const Title = styled(BaseTypography.Title)`
+  &.ant-typography {
+    margin-bottom: 0;
+    font-size: ${FONT_SIZE.lg};
+  }
 `;

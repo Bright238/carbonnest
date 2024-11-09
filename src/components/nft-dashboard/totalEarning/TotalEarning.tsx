@@ -3,8 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 import { NFTCard } from '@app/components/nft-dashboard/common/NFTCard/NFTCard';
 import { TotalEarningChart } from '@app/components/nft-dashboard/totalEarning/TotalEarningChart/TotalEarningChart';
-import { useAppSelector } from '@app/hooks/reduxHooks';
-import { getTotalEarning, TotalEarning as ITotalEarning } from '@app/api/earnings.api';
 import { Dates } from '@app/constants/Dates';
 import { formatNumberWithCommas, getCurrencyPrice, getDifference } from '@app/utils/utils';
 import { CurrencyTypeEnum } from '@app/interfaces/interfaces';
@@ -13,22 +11,32 @@ import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 
 export const TotalEarning: React.FC = () => {
-  const [totalEarning, setTotalEarning] = useState<ITotalEarning | null>(null);
-
-  const userId = useAppSelector((state) => state.user.user?.id);
-
   const { t } = useTranslation();
 
+  // Dummy total earnings data in Zambian Kwacha (ZMW)
+  const dummyTotalEarning = {
+    total: 10587, // total earnings in ZMW
+    prevTotal: 6000, // previous total for comparison in ZMW
+    timeline: [
+      { date: '2023-10-01', zmw_value: 2000 },
+      { date: '2023-10-02', zmw_value: 3000 },
+      { date: '2023-10-03', zmw_value: 1000 },
+    ],
+  };
+
+  const [totalEarning, setTotalEarning] = useState(dummyTotalEarning);
+
   useEffect(() => {
-    // userId && (CurrencyTypeEnum.USD).then((res) => setTotalEarning(res));
-  }, [userId]);
+    // Simulate API fetch with dummy data
+    setTotalEarning(dummyTotalEarning);
+  }, []);
 
   const { totalEarningData, days } = useMemo(
     () => ({
       totalEarningData: {
-        data: totalEarning ? totalEarning.timeline.map((item) => item.usd_value) : [],
+        data: totalEarning.timeline.map((item) => item.zmw_value),
       },
-      days: totalEarning ? totalEarning.timeline.map((item) => Dates.getDate(item.date).format('L')) : [],
+      days: totalEarning.timeline.map((item) => Dates.getDate(item.date).format('L')),
     }),
     [totalEarning],
   );
@@ -36,37 +44,29 @@ export const TotalEarning: React.FC = () => {
   const isIncreased = Number(totalEarning?.total) > Number(totalEarning?.prevTotal);
 
   return (
-    <NFTCard isSider>
-      <BaseRow gutter={[14, 14]}>
-        <BaseCol span={24}>
-          <BaseRow wrap={false} justify="space-between">
-            <BaseCol>
-              <S.Title level={2}>{t('nft.totalEarning')}</S.Title>
-            </BaseCol>
-
-            <BaseCol>
-              <S.ValueText $color={isIncreased ? 'success' : 'error'}>
-                {isIncreased ? <CaretUpOutlined /> : <CaretDownOutlined />}{' '}
-                {totalEarning && getDifference(totalEarning?.total, totalEarning?.prevTotal)}
-              </S.ValueText>
-            </BaseCol>
-          </BaseRow>
-        </BaseCol>
-
-        <BaseCol span={24}>
-          <BaseRow wrap={false} justify="space-between" gutter={[20, 20]}>
-            <BaseCol>
-              <S.Text>
-                {getCurrencyPrice(formatNumberWithCommas(totalEarning?.total ?? 0), CurrencyTypeEnum.USD)}
-              </S.Text>
-            </BaseCol>
-
-            <BaseCol flex={1}>
-              <TotalEarningChart xAxisData={days} earningData={totalEarningData} />
-            </BaseCol>
-          </BaseRow>
+    <>
+      <BaseRow wrap={false} justify="space-between">
+        <BaseCol>
+          <S.ValueText $color={isIncreased ? 'success' : 'error'}>
+            {isIncreased ? <CaretUpOutlined /> : <CaretDownOutlined />}{' '}
+            {totalEarning && getDifference(totalEarning.total, totalEarning.prevTotal)}
+          </S.ValueText>
         </BaseCol>
       </BaseRow>
-    </NFTCard>
+
+      <BaseCol span={24}>
+        <BaseCol>
+          <S.Text>
+            {getCurrencyPrice(formatNumberWithCommas(totalEarning.total), CurrencyTypeEnum.ZMW, true)}
+          </S.Text>
+        </BaseCol>
+
+        <BaseCol flex={1}>
+          <TotalEarningChart xAxisData={days} earningData={totalEarningData} />
+        </BaseCol>
+
+      </BaseCol>
+    </>
+
   );
 };

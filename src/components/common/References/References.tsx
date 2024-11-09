@@ -6,13 +6,13 @@ export const References: React.FC = () => {
     <S.ReferencesWrapper>
       <br />
       <S.Text>
-       ECAP+{' '}
+       Carbonnest{' '}
         <a href="" rel="noreferrer">
-          Program Management Platform{' '}<br />
+        Trap Carbon and Earn Carbon Credits Using Biochar{' '}<br />
         </a>
         in 2024 &copy;.{' '}
         <a href="" rel="noreferrer">
-         Project Concern Zambia
+       SImple farming concepts
         </a>
       </S.Text>
     </S.ReferencesWrapper>

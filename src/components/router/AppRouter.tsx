@@ -12,10 +12,6 @@ import LockPage from '@app/pages/LockPage';
 
 import MainLayout from '@app/components/layouts/main/MainLayout/MainLayout';
 
-import CaregiverProfileLayout from '@app/components/profile/CaregiverProfileLayout';
-import VcaProfileLayout from '@app/components/profile/VcaProfileLayout';
-import MemberProfileLayout from '@app/components/profile/MemberProfileLayout';
-
 import RequireAuth from '@app/components/router/RequireAuth';
 import { withLoading } from '@app/hocs/withLoading.hoc';
 import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
@@ -27,6 +23,13 @@ const VcasPage = React.lazy(() => import('@app/pages/VcasRegisterPage'));
 const UserManagementPage = React.lazy(() => import('@app/pages/UserManagementPage'));
 const MembersPage = React.lazy(() => import('@app/pages/MembersRegisterPage'));
 
+import ProfileLayout from '@app/components/profile/ProfileLayout';
+const PersonalInfoPage = React.lazy(() => import('@app/pages/PersonalInfoPage'));
+const CarbonSinkProfile = React.lazy(() => import('@app/pages/CarbonSinkProfile'));
+const SecuritySettingsPage = React.lazy(() => import('@app/pages/SecuritySettingsPage'));
+const NotificationsPage = React.lazy(() => import('@app/pages/NotificationsPage'));
+const PaymentsPage = React.lazy(() => import('@app/pages/PaymentsPage'));
+
 const DataTablesPage = React.lazy(() => import('@app/pages/DataTablesPage'));
 const ChartsPage = React.lazy(() => import('@app/pages/ChartsPage'));
 const ServerErrorPage = React.lazy(() => import('@app/pages/ServerErrorPage'));
@@ -36,10 +39,6 @@ const StoresAdvancedFormPage = React.lazy(() => import('@app/pages/StoresDepartm
 const ProcurementAdvancedFormPage = React.lazy(() => import('@app/pages/ProcurementDepartmentPage'));
 const SuperSetPage = React.lazy(() => import('@app/pages/SuperSetPage'));
 const FinanceAdvancedFormsPage = React.lazy(() => import('@app/pages/FinanceDepartmentPage'));
-
-const CaregiverPersonalInfoPage = React.lazy(() => import('@app/pages/CaregiverPersonalInfoPage'));
-const VcaPersonalInfoPage = React.lazy(() => import('@app/pages/VcaPersonalInfoPage'));
-const MemberPersonalInfoPage = React.lazy(() => import('@app/pages/MemberPersonalInfoPage'));
 
 const ButtonsPage = React.lazy(() => import('@app/pages/uiComponentsPages/ButtonsPage'));
 const SpinnersPage = React.lazy(() => import('@app/pages/uiComponentsPages/SpinnersPage'));
@@ -75,7 +74,7 @@ const PigeonsMaps = React.lazy(() => import('@app/pages/maps/PigeonsMapsPage/Pig
 const Logout = React.lazy(() => import('./Logout'));
 
 export const NFT_DASHBOARD_PATH = '/';
-export const MEDICAL_DASHBOARD_PATH = '/supervisory-tools-dashboard';
+export const MEDICAL_DASHBOARD_PATH = '/biochar-projects-marketplace';
 
 const MedicalDashboard = withLoading(MedicalDashboardPage);
 const NftDashboard = withLoading(NftDashboardPage);
@@ -123,6 +122,13 @@ const Skeletons = withLoading(SkeletonsPage);
 const DataTables = withLoading(DataTablesPage);
 const Charts = withLoading(ChartsPage);
 
+// Profile
+const PersonalInfo = withLoading(PersonalInfoPage);
+const MyCarbonSinkProfile = withLoading(CarbonSinkProfile);
+const SecuritySettings = withLoading(SecuritySettingsPage);
+const Notifications = withLoading(NotificationsPage);
+const Payments = withLoading(PaymentsPage);
+
 // Maps
 const Google = withLoading(GoogleMaps);
 const Leaflet = withLoading(LeafletMaps);
@@ -131,11 +137,6 @@ const Pigeons = withLoading(PigeonsMaps);
 
 const ServerError = withLoading(ServerErrorPage);
 const Error404 = withLoading(Error404Page);
-
-// Profile
-const CaregiverPersonalInfo = withLoading(CaregiverPersonalInfoPage);
-const VcaPersonalInfo = withLoading(VcaPersonalInfoPage);
-const MemberPersonalInfo = withLoading(MemberPersonalInfoPage);
 
 const AuthLayoutFallback = withLoading(AuthLayout);
 const LogoutFallback = withLoading(Logout);
@@ -180,16 +181,12 @@ export const AppRouter: React.FC = () => {
           <Route path="server-error" element={<ServerError />} />
           <Route path="404" element={<Error404 />} />
 
-          <Route path="profile" element={<CaregiverProfileLayout />}>
-            <Route path="household-profile/:household_id" element={<CaregiverPersonalInfo />} />
-          </Route>
-
-          <Route path="profile" element={<VcaProfileLayout />}>
-            <Route path="vca-profile/:household_id" element={<VcaPersonalInfo />} />
-          </Route>
-
-          <Route path="profile" element={<MemberProfileLayout />}>
-            <Route path="member-profile/:household_id" element={<MemberPersonalInfo />} />
+          <Route path="profile" element={<ProfileLayout />}>
+          <Route path="upload" element={<StoresAdvancedForm />} />
+            <Route path="personal-info" element={<PersonalInfo />} />
+            <Route path="security-settings" element={<SecuritySettings />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="payments" element={<Payments />} />
           </Route>
 
           <Route path="ui-components">

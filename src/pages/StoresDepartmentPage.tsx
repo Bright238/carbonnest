@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { BaseCard } from '@app/components/common/BaseCard/BaseCard';
-import { StepForm } from '@app/components/forms/StepForm/StepForm';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
-import { Typography, Spin } from 'antd';
+import { Typography, Spin, Divider } from 'antd';
+import StoresStepForm from '@app/components/forms/StepForm/StoresStepForm';
 
 interface User {
   id: string;
@@ -13,10 +13,10 @@ interface User {
   last_name: string;
   avatar: string;
   location: string;
+  title: string;
 }
 
-const StoresDepartmentPage: React.FC = () => {
- 
+const CarbonProjectDashboard: React.FC = () => {
   const { t } = useTranslation();
 
   const [user, setUser] = useState<User | null>(null);
@@ -43,14 +43,23 @@ const StoresDepartmentPage: React.FC = () => {
 
   return (
     <>
-      <Typography style={{ fontWeight: 'bold', fontSize: "30px" }}>
-          {loading ? <Spin size="small" /> : `${user?.location}`} District
-        </Typography>
-      <Typography style={{fontWeight: "bold", fontSize: "30px"}}>Stores Department</Typography>
       <BaseRow gutter={[30, 30]}>
         <BaseCol xs={24} sm={24} md={24} lg={24} xl={24}>
-          <BaseCard id="step-form" title={t('forms.stepForm')} padding="1.25rem">
-            <StepForm />
+          <BaseCard id="carbon-project-form" title={t('forms.stepForm')} padding="1.25rem">
+            <Typography style={{ fontWeight: "bold", fontSize: "25px" }}>
+
+              Upload and Manage Your Biochar Carbon Removal Project
+            </Typography>
+
+
+            <Divider style={{ margin: '1.5rem 0' }} />
+            <Typography style={{ fontSize: "16px", marginTop: "0.5rem" }}>
+              Biochar is a carbon-rich material produced from biomass and offers a powerful way to sequester carbon
+              while enriching soil. Track and manage your biochar projects to help reduce emissions and improve soil health.
+            </Typography>
+
+            <Divider style={{ margin: '1.5rem 0' }} />
+            <StoresStepForm />
           </BaseCard>
         </BaseCol>
       </BaseRow>
@@ -58,4 +67,4 @@ const StoresDepartmentPage: React.FC = () => {
   );
 };
 
-export default StoresDepartmentPage;
+export default CarbonProjectDashboard;

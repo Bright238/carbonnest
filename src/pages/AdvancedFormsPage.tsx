@@ -3,7 +3,6 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { PageTitle } from '@app/components/common/PageTitle/PageTitle';
 import { BaseCard } from '@app/components/common/BaseCard/BaseCard';
-import { StepForm } from '@app/components/forms/StepForm/StepForm';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
 import { Typography } from 'antd';
@@ -46,7 +45,6 @@ const AdvancedFormsPage: React.FC = () => {
       <BaseRow gutter={[30, 30]}>
         <BaseCol xs={24} sm={24} md={24} lg={24} xl={24}>
           <BaseCard id="step-form" title={t('forms.stepForm')} padding="1.25rem">
-            <StepForm />
           </BaseCard>
         </BaseCol>
       </BaseRow>

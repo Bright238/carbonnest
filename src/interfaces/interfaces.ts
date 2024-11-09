@@ -32,6 +32,7 @@ export enum CurrencyTypeEnum {
   USD = 'USD',
   ETH = 'ETH',
   BTC = 'BTC',
+  ZMW = 'ZMW',
 }
 
 export interface PaymentCard {

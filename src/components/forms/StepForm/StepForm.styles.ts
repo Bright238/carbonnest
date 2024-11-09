@@ -5,6 +5,7 @@ import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
 import { FONT_SIZE, FONT_WEIGHT } from '@app/styles/themes/constants';
 import { BaseSteps } from '@app/components/common/BaseSteps/BaseSteps';
 import TextArea from 'antd/lib/input/TextArea';
+import { MinusCircleOutlined } from '@ant-design/icons';
 
 export const PhoneItem = styled(BaseForm.Item)`
   .ant-input-group-addon {
@@ -64,3 +65,15 @@ export const StyledTextArea = styled(TextArea)`
   height: 200px !important; /* Increase height with !important */
   width: 500px !important;  /* Decrease width with !important */
 `;
+
+export const Wrapper = styled.div`
+  position: relative;
+`;
+
+export const RemoveBtn = styled(MinusCircleOutlined)`
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateY(-150%);
+`;
+
