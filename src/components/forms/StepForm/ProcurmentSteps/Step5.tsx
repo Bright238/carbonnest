@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -51,14 +51,11 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <StandardTitle level={4}>
-          Procurement Processes
-        </StandardTitle>
-        <HighlightedQuestion>
-          1: Are all procurements approved by the right approvals authority?
-        </HighlightedQuestion>
+        <StandardTitle level={4}>Procurement Processes</StandardTitle>
+        <HighlightedQuestion>1: Are all procurements approved by the right approvals authority?</HighlightedQuestion>
         <Typography>
-          Indicator: Approvals relating to procurements should be obtained from the Approvals Authority (HoD, DWAC, DPC, DFSP, PS etc)
+          Indicator: Approvals relating to procurements should be obtained from the Approvals Authority (HoD, DWAC, DPC,
+          DFSP, PS etc)
         </Typography>
         <Typography>
           Source of Information/Means of Verification: Verify the minutes from DWAC and DFSP meetings
@@ -75,7 +72,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementProcessQ1Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -84,16 +81,14 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementProcessCommentQ1" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementProcessCommentQ1', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementProcessCommentQ1', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <HighlightedQuestion>
           2: Are Purchase Requisitions from the users approved by the departmental head?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Purchase requisition from the user should be approved by departmental head
-        </Typography>
+        <Typography>Indicator: Purchase requisition from the user should be approved by departmental head</Typography>
         <Typography>
           Source of Information/Means of Verification: Verify the filed copies of purchase requisition forms
         </Typography>
@@ -109,7 +104,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementProcessQ2Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -118,16 +113,12 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementProcessCommentQ2" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementProcessCommentQ2', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementProcessCommentQ2', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <HighlightedQuestion>
-          3: Are supplier enquiries/Requests for Quotations (RFQ) approved?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Supplier enquiry/Request for Quotations (RFQ) should be approved
-        </Typography>
+        <HighlightedQuestion>3: Are supplier enquiries/Requests for Quotations (RFQ) approved?</HighlightedQuestion>
+        <Typography>Indicator: Supplier enquiry/Request for Quotations (RFQ) should be approved</Typography>
         <Typography>
           Source of Information/Means of Verification: Verify if the RFQ matches the Purchase requisition form
         </Typography>
@@ -143,7 +134,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementProcessQ3Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -152,16 +143,12 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementProcessCommentQ3" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementProcessCommentQ3', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementProcessCommentQ3', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <HighlightedQuestion>
-          4: Are bid analyses conducted for the quotations received?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Staff should conduct evaluation/analysis of submitted quotations
-        </Typography>
+        <HighlightedQuestion>4: Are bid analyses conducted for the quotations received?</HighlightedQuestion>
+        <Typography>Indicator: Staff should conduct evaluation/analysis of submitted quotations</Typography>
         <Typography>
           Source of Information/Means of Verification: Verify the filed copies of low value papers
         </Typography>
@@ -177,7 +164,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementProcessQ4Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -186,19 +173,15 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementProcessCommentQ4" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementProcessCommentQ4', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementProcessCommentQ4', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <HighlightedQuestion>
-          5: Is it the best evaluated bidder who always gets the award?
-        </HighlightedQuestion>
+        <HighlightedQuestion>5: Is it the best evaluated bidder who always gets the award?</HighlightedQuestion>
         <Typography>
           Indicator: The best evaluated bidder offering best quality should be awarded the contract
         </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Verify if the LVP is attached to the PV
-        </Typography>
+        <Typography>Source of Information/Means of Verification: Verify if the LVP is attached to the PV</Typography>
       </Dragger>
 
       <Form.Item
@@ -211,7 +194,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementProcessQ5Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -220,13 +203,11 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementProcessCommentQ5" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementProcessCommentQ5', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementProcessCommentQ5', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <HighlightedQuestion>
-          6: Are all Purchase Orders prepared by Procurement Professionals?
-        </HighlightedQuestion>
+        <HighlightedQuestion>6: Are all Purchase Orders prepared by Procurement Professionals?</HighlightedQuestion>
         <Typography>
           Indicator: Purchase order should be prepared by authorised procurement professional only
         </Typography>
@@ -245,7 +226,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementProcessQ6Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -254,7 +235,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementProcessCommentQ6" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementProcessCommentQ6', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementProcessCommentQ6', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -279,7 +260,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementProcessQ7Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -288,16 +269,12 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementProcessCommentQ7" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementProcessCommentQ7', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementProcessCommentQ7', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <HighlightedQuestion>
-          8: Do suppliers deliver invoices and delivery notes along with goods?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Supplier should deliver goods with invoice and delivery note to Stores
-        </Typography>
+        <HighlightedQuestion>8: Do suppliers deliver invoices and delivery notes along with goods?</HighlightedQuestion>
+        <Typography>Indicator: Supplier should deliver goods with invoice and delivery note to Stores</Typography>
         <Typography>
           Source of Information/Means of Verification: Verify if the delivery notes and invoices are attached to the PV
         </Typography>
@@ -313,7 +290,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementProcessQ8Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -322,16 +299,12 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementProcessCommentQ8" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementProcessCommentQ8', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementProcessCommentQ8', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <HighlightedQuestion>
-          9: Do prices on invoices match with contract or purchase order?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Ensure that prices on invoice match with the contract/Purchase order
-        </Typography>
+        <HighlightedQuestion>9: Do prices on invoices match with contract or purchase order?</HighlightedQuestion>
+        <Typography>Indicator: Ensure that prices on invoice match with the contract/Purchase order</Typography>
         <Typography>
           Source of Information/Means of Verification: Verify if the LPO and invoices attached to the PV are matching
         </Typography>
@@ -347,7 +320,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementProcessQ9Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -356,15 +329,14 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementProcessCommentQ9" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementProcessCommentQ9', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementProcessCommentQ9', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <HighlightedQuestion>
-          10: Is proper filing maintained for procurement documents?
-        </HighlightedQuestion>
+        <HighlightedQuestion>10: Is proper filing maintained for procurement documents?</HighlightedQuestion>
         <Typography>
-          Indicator: Staff should maintain a proper filing system/clear links between Procurement & Expenditure files that facilitate audit trails.
+          Indicator: Staff should maintain a proper filing system/clear links between Procurement & Expenditure files
+          that facilitate audit trails.
         </Typography>
         <Typography>
           Source of Information/Means of Verification: Verify if the documents in the files are segregated
@@ -381,7 +353,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementProcessQ10Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -390,7 +362,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementProcessCommentQ10" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementProcessCommentQ10', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementProcessCommentQ10', e.target.value)} />
       </NarrowFormItem>
     </S.FormContent>
   );

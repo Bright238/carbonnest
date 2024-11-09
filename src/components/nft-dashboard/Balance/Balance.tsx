@@ -10,10 +10,7 @@ interface BalanceProps {
   count: number;
 }
 
-export const Balance: React.FC<BalanceProps> = ({
-  title,
-  count,
-}) => {
+export const Balance: React.FC<BalanceProps> = ({ title, count }) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleModal = () => setModalOpen((open) => !open);
@@ -26,7 +23,7 @@ export const Balance: React.FC<BalanceProps> = ({
             <BaseCol span={24}>
               <BaseRow gutter={[14, 14]}>
                 <BaseCol span={24}>
-                  <S.TitleBalanceText level={5} style={{ textAlign: "center" }}>
+                  <S.TitleBalanceText level={5} style={{ textAlign: 'center' }}>
                     {title}
                   </S.TitleBalanceText>
                 </BaseCol>

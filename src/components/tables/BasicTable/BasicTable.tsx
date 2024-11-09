@@ -88,7 +88,7 @@ export const BasicTable: React.FC = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`, {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
         });
         setUser(response.data.data);
@@ -107,7 +107,9 @@ export const BasicTable: React.FC = () => {
 
       try {
         setLoading(true);
-        const response = await axios.get(`https://ecapplus.server.dqa.bluecodeltd.com/child/household-members-register`);
+        const response = await axios.get(
+          `https://ecapplus.server.dqa.bluecodeltd.com/child/household-members-register`,
+        );
         setVcas(response.data.data);
       } catch (error) {
         console.error('Error fetching VCAs data:', error);
@@ -131,21 +133,19 @@ export const BasicTable: React.FC = () => {
         (vca.ward?.toLowerCase() || '').includes(lowerCaseQuery) ||
         (vca.vca_gender?.toLowerCase() || '').includes(lowerCaseQuery);
 
-        const matchesSubPopulationFilters = Object.entries(subPopulationFilters).every(([key, value]) => {
-          if (value === 'all') return true; // If the filter is 'all', no need to check further.
-        
-          const vcaValue: string | null = vca[key as keyof Vca];
-        
-          // Check if vcaValue is null before comparing
-          if (vcaValue === null) {
-            return false; // Or true, depending on your logic
-          }
-        
-          // Now we can safely compare vcaValue since it's guaranteed to be a string
-          return value === 'yes' 
-            ? vcaValue === '1' || vcaValue === 'true'
-            : vcaValue === '0' || vcaValue === 'false';
-        });        
+      const matchesSubPopulationFilters = Object.entries(subPopulationFilters).every(([key, value]) => {
+        if (value === 'all') return true; // If the filter is 'all', no need to check further.
+
+        const vcaValue: string | null = vca[key as keyof Vca];
+
+        // Check if vcaValue is null before comparing
+        if (vcaValue === null) {
+          return false; // Or true, depending on your logic
+        }
+
+        // Now we can safely compare vcaValue since it's guaranteed to be a string
+        return value === 'yes' ? vcaValue === '1' || vcaValue === 'true' : vcaValue === '0' || vcaValue === 'false';
+      });
 
       return matchesSearch && matchesSubPopulationFilters;
     });
@@ -166,7 +166,7 @@ export const BasicTable: React.FC = () => {
           <div>District: {vca.district || 'Unknown'}</div>
           <div>Ward: {vca.ward || 'Unknown'}</div>
         </div>
-      )
+      ),
     }));
 
     setTableData({ data: mappedData, pagination: initialPagination, loading: false });
@@ -178,7 +178,7 @@ export const BasicTable: React.FC = () => {
     const formats = [
       /^(\d{1,2})-(\d{1,2})-(\d{4})$/,
       /^(\d{4})-(\d{1,2})-(\d{1,2})$/,
-      /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
+      /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/,
     ];
 
     let parsedDate: Date | null = null;
@@ -223,9 +223,9 @@ export const BasicTable: React.FC = () => {
   };
 
   const handleSubPopulationFilterChange = (filterName: keyof typeof subPopulationFilters, value: string) => {
-    setSubPopulationFilters(prevFilters => ({
+    setSubPopulationFilters((prevFilters) => ({
       ...prevFilters,
-      [filterName]: value
+      [filterName]: value,
     }));
   };
 
@@ -236,7 +236,7 @@ export const BasicTable: React.FC = () => {
           ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
           style={{ marginBottom: 8, display: 'block' }}
         />
@@ -250,11 +250,7 @@ export const BasicTable: React.FC = () => {
           >
             Search
           </Button>
-          <Button
-            onClick={() => clearFilters && handleReset(clearFilters)}
-            size="small"
-            style={{ width: 90 }}
-          >
+          <Button onClick={() => clearFilters && handleReset(clearFilters)} size="small" style={{ width: 90 }}>
             Clear
           </Button>
           <Button
@@ -268,20 +264,14 @@ export const BasicTable: React.FC = () => {
           >
             Reset table
           </Button>
-          <Button
-            type="link"
-            size="small"
-            onClick={close}
-          >
+          <Button type="link" size="small" onClick={close}>
             Close
           </Button>
         </Space>
       </div>
     ),
-    filterIcon: (filtered: any) => (
-      <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
-    ),
-    onFilter: (value: string, record: { [x: string]: any; }) => {
+    filterIcon: (filtered: any) => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    onFilter: (value: string, record: { [x: string]: any }) => {
       const fieldValue = record[dataIndex];
       return fieldValue ? fieldValue.toString().toLowerCase().includes(value.toLowerCase()) : false;
     },
@@ -290,7 +280,7 @@ export const BasicTable: React.FC = () => {
         setTimeout(() => searchInput.current?.select(), 100);
       }
     },
-    render: (text: { toString: () => any; }) =>
+    render: (text: { toString: () => any }) =>
       searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
@@ -368,12 +358,17 @@ export const BasicTable: React.FC = () => {
           <h5 style={{ margin: '0 16px 0 0' }}>{t('Filter by Sub Population')}</h5>
           <Row align="middle" style={{ display: 'flex', justifyContent: 'flex-end' }}>
             {Object.entries(subPopulationFilterLabels).map(([key, label]) => (
-              <div key={key} style={{ marginRight: '8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+              <div
+                key={key}
+                style={{ marginRight: '8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}
+              >
                 <span style={{ fontSize: '12px' }}>{label}</span>
                 <Select
                   style={{ width: '100px' }}
                   value={subPopulationFilters[key as keyof typeof subPopulationFilters]}
-                  onChange={(newValue) => handleSubPopulationFilterChange(key as keyof typeof subPopulationFilters, newValue)}
+                  onChange={(newValue) =>
+                    handleSubPopulationFilterChange(key as keyof typeof subPopulationFilters, newValue)
+                  }
                 >
                   <Select.Option value="all">{t('All')}</Select.Option>
                   <Select.Option value="yes">{t('Yes')}</Select.Option>
@@ -384,12 +379,7 @@ export const BasicTable: React.FC = () => {
           </Row>
         </Col>
       </Row>
-      <BaseTable
-        columns={columns}
-        dataSource={tableData.data}
-        pagination={tableData.pagination}
-        loading={loading}
-      />
+      <BaseTable columns={columns} dataSource={tableData.data} pagination={tableData.pagination} loading={loading} />
     </div>
   );
 };

@@ -65,9 +65,6 @@ export const EditableTable: React.FC = () => {
   const [searchedColumn, setSearchedColumn] = useState<string>('');
   const [subPopulationFilters, setSubPopulationFilters] = useState(initialSubPopulationFilters);
 
-
-
-
   // const [subPopulationFilters, setSubPopulationFilters] = useState({
   //   calhiv: 'all',
   //   hei: 'all',
@@ -93,7 +90,7 @@ export const EditableTable: React.FC = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`, {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
         });
         setUser(response.data.data);
@@ -105,13 +102,14 @@ export const EditableTable: React.FC = () => {
     fetchUserData();
   }, []);
 
-
   useEffect(() => {
     const fetchHouseholds = async () => {
       if (!user) return;
       try {
         setTableData((prev) => ({ ...prev, loading: true }));
-        const response = await axios.get(`https://ecapplus.server.dqa.bluecodeltd.com/household/all-households/${user?.location}`);
+        const response = await axios.get(
+          `https://ecapplus.server.dqa.bluecodeltd.com/household/all-households/${user?.location}`,
+        );
         setHouseholds(response.data.data);
       } catch (error) {
         console.error('Error fetching households data:', error);
@@ -127,7 +125,7 @@ export const EditableTable: React.FC = () => {
   const clearAllFiltersAndSearch = () => {
     setSearchText(''); // Clear search text
     setSearchQuery('');
-    setSearchedColumn('')
+    setSearchedColumn('');
     setSubPopulationFilters(initialSubPopulationFilters); // Reset filters to their initial values
   };
 
@@ -145,7 +143,6 @@ export const EditableTable: React.FC = () => {
     }
   };
 
-
   const handleSearch = (selectedKeys: string[], confirm: () => void, dataIndex: string) => {
     confirm();
     setSearchText(selectedKeys[0]);
@@ -158,9 +155,9 @@ export const EditableTable: React.FC = () => {
   };
 
   const handleSubPopulationFilterChange = (filterName: keyof typeof subPopulationFilters, value: string) => {
-    setSubPopulationFilters(prevFilters => ({
+    setSubPopulationFilters((prevFilters) => ({
       ...prevFilters,
-      [filterName]: value
+      [filterName]: value,
     }));
   };
 
@@ -171,10 +168,11 @@ export const EditableTable: React.FC = () => {
           ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
           style={{ marginBottom: 8, display: 'block' }}
-        />;
+        />
+        ;
         <Space>
           <Button
             type="primary"
@@ -185,11 +183,7 @@ export const EditableTable: React.FC = () => {
           >
             Search
           </Button>
-          <Button
-            onClick={() => clearFilters && handleReset(clearFilters)}
-            size="small"
-            style={{ width: 90 }}
-          >
+          <Button onClick={() => clearFilters && handleReset(clearFilters)} size="small" style={{ width: 90 }}>
             Clear
           </Button>
           <Button
@@ -203,20 +197,14 @@ export const EditableTable: React.FC = () => {
           >
             Reset table
           </Button>
-          <Button
-            type="link"
-            size="small"
-            onClick={close}
-          >
+          <Button type="link" size="small" onClick={close}>
             Close
           </Button>
         </Space>
       </div>
     ),
-    filterIcon: (filtered: any) => (
-      <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
-    ),
-    onFilter: (value: string, record: { [x: string]: any; }) => {
+    filterIcon: (filtered: any) => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    onFilter: (value: string, record: { [x: string]: any }) => {
       const fieldValue = record[dataIndex];
       return fieldValue ? fieldValue.toString().toLowerCase().includes(value.toLowerCase()) : false;
     },
@@ -225,7 +213,7 @@ export const EditableTable: React.FC = () => {
         setTimeout(() => searchInput.current?.select(), 100);
       }
     },
-    render: (text: { toString: () => any; }) =>
+    render: (text: { toString: () => any }) =>
       searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
@@ -277,14 +265,10 @@ export const EditableTable: React.FC = () => {
         // Combine search text and applied filters
         const searchValue = searchText ? `${searchText}` : '';
         const filtersText = appliedFilters ? `${appliedFilters}` : '';
-        
+
         const combinedText = [searchValue, filtersText].filter(Boolean).join(' | ');
 
-        return (
-          <Tag color={appliedFilters || searchText ? 'cyan' : 'black'}>
-            {combinedText}
-          </Tag>
-        );
+        return <Tag color={appliedFilters || searchText ? 'cyan' : 'black'}>{combinedText}</Tag>;
       },
     },
     {
@@ -324,7 +308,6 @@ export const EditableTable: React.FC = () => {
     setFilteredHouseholds(filtered);
   }, [searchText, households, subPopulationFilters]);
 
-
   useEffect(() => {
     const mappedData: BasicTableRow[] = filteredHouseholds.map((household, index) => ({
       key: index,
@@ -344,8 +327,10 @@ export const EditableTable: React.FC = () => {
   }, [filteredHouseholds]);
 
   const handleView = (household_id: string) => {
-    const selectedHousehold = households.find(household => household.household_id === household_id);
-    navigate(`/profile/household-profile/${encodeURIComponent(household_id)}`, { state: { household: selectedHousehold } });
+    const selectedHousehold = households.find((household) => household.household_id === household_id);
+    navigate(`/profile/household-profile/${encodeURIComponent(household_id)}`, {
+      state: { household: selectedHousehold },
+    });
   };
 
   return (
@@ -365,12 +350,17 @@ export const EditableTable: React.FC = () => {
           <h5 style={{ margin: '0 16px 0 0' }}>{t('Filter by Sub Population')}</h5>
           <Row align="middle" style={{ display: 'flex', justifyContent: 'flex-end' }}>
             {Object.entries(subPopulationFilterLabels).map(([key, label]) => (
-              <div key={key} style={{ marginRight: '8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+              <div
+                key={key}
+                style={{ marginRight: '8px', display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}
+              >
                 <span style={{ fontSize: '12px' }}>{label}</span>
                 <Select
                   style={{ width: '100px' }}
                   value={subPopulationFilters[key as keyof typeof subPopulationFilters]}
-                  onChange={(newValue) => handleSubPopulationFilterChange(key as keyof typeof subPopulationFilters, newValue)}
+                  onChange={(newValue) =>
+                    handleSubPopulationFilterChange(key as keyof typeof subPopulationFilters, newValue)
+                  }
                 >
                   <Select.Option value="all">{t('All')}</Select.Option>
                   <Select.Option value="yes">{t('Yes')}</Select.Option>
@@ -392,9 +382,7 @@ export const EditableTable: React.FC = () => {
                 {t('Export to CSV')}
               </Button>
             </Space>
-
           </ExportWrapper>
-          
         </Col>
       </Row>
       <BaseTable

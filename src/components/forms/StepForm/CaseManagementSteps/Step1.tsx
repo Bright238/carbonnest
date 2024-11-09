@@ -32,7 +32,7 @@ interface User {
   last_name: string;
   avatar: string;
   location: string; // This is district
-  title: string;    // This is province
+  title: string; // This is province
   description: string; // This is department
 }
 
@@ -47,7 +47,7 @@ export const Step1: React.FC<Step1Props> = ({ handleChange, form }) => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`, {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
         });
 
@@ -90,19 +90,14 @@ export const Step1: React.FC<Step1Props> = ({ handleChange, form }) => {
 
   return (
     <S.FormContent>
-      <Typography.Title level={4}>
-        {t('Assessment Information')}
-      </Typography.Title>
+      <Typography.Title level={4}>{t('Assessment Information')}</Typography.Title>
 
       <NarrowFormItem
         name="date_of_assessment"
         label={t('Date of Assessment')}
         rules={[{ required: true, message: t('Date is a required field') }]}
       >
-        <NarrowPicker
-          format="DD-MM-YYYY"
-          onChange={(date: any) => handleChange('date_of_assessment', date)}
-        />
+        <NarrowPicker format="DD-MM-YYYY" onChange={(date: any) => handleChange('date_of_assessment', date)} />
       </NarrowFormItem>
 
       <NarrowFormItem name="province" label={t('Province')}>

@@ -63,7 +63,7 @@ export const Row = styled.div`
 
 export const StyledTextArea = styled(TextArea)`
   height: 200px !important; /* Increase height with !important */
-  width: 500px !important;  /* Decrease width with !important */
+  width: 500px !important; /* Decrease width with !important */
 `;
 
 export const Wrapper = styled.div`
@@ -76,4 +76,3 @@ export const RemoveBtn = styled(MinusCircleOutlined)`
   top: 0;
   transform: translateY(-150%);
 `;
-

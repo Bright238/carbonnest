@@ -35,118 +35,146 @@ const apiUrl = `${process.env.REACT_APP_BASE_URL}/items`;
 const collectionName = 'human_resource';
 
 export const HumanResourceStepForm = () => {
-
   const [current, setCurrent] = useState(0);
   const [form] = BaseForm.useForm();
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
 
   const [fields, setFields] = useState([
-
     //HR Guidelines start
-    { name: 'hrGuidelinesQ1a', value: "Q1a. Does every public service employee at the district have the code of ethics?" },
+    {
+      name: 'hrGuidelinesQ1a',
+      value: 'Q1a. Does every public service employee at the district have the code of ethics?',
+    },
     { name: 'hrGuidelinesQ1aResponse', value: '' },
     { name: 'hrGuidelinesCommentQ1a', value: '' },
 
-    { name: 'hrGuidelinesQ1b', value: "Q1b.  Have all the officers read or been oriented and understand the code of ethics?" },
+    {
+      name: 'hrGuidelinesQ1b',
+      value: 'Q1b.  Have all the officers read or been oriented and understand the code of ethics?',
+    },
     { name: 'hrGuidelinesQ1bResponse', value: '' },
     { name: 'hrGuidelinesCommentQ1b', value: '' },
 
-    { name: 'hrGuidelinesQ2a', value: "Q2a. Does every public service employee at the district have terms and conditions of service?" },
+    {
+      name: 'hrGuidelinesQ2a',
+      value: 'Q2a. Does every public service employee at the district have terms and conditions of service?',
+    },
     { name: 'hrGuidelinesQ2aResponse', value: '' },
     { name: 'hrGuidelinesCommentQ2a', value: '' },
 
-    { name: 'hrGuidelinesQ2b', value: "Q2b. Have all the officers read and understand the Public Service Terms and Conditions of Service?" },
+    {
+      name: 'hrGuidelinesQ2b',
+      value: 'Q2b. Have all the officers read and understand the Public Service Terms and Conditions of Service?',
+    },
     { name: 'hrGuidelinesQ2bResponse', value: '' },
     { name: 'hrGuidelinesCommentQ2b', value: '' },
 
-    { name: 'hrGuidelinesQ3a', value: "Q3a. Does every public service employee at the district have the Displinary Code and Procedures for handling Offences in Public Service?" },
+    {
+      name: 'hrGuidelinesQ3a',
+      value:
+        'Q3a. Does every public service employee at the district have the Displinary Code and Procedures for handling Offences in Public Service?',
+    },
     { name: 'hrGuidelinesQ3aResponse', value: '' },
     { name: 'hrGuidelinesCommentQ3a', value: '' },
 
-    { name: 'hrGuidelinesQ3b', value: "Q3b. Have all the officers read or been oriented and understand the Displinary Code and Procedures for handling Offences in Public Service?" },
+    {
+      name: 'hrGuidelinesQ3b',
+      value:
+        'Q3b. Have all the officers read or been oriented and understand the Displinary Code and Procedures for handling Offences in Public Service?',
+    },
     { name: 'hrGuidelinesQ3bResponse', value: '' },
     { name: 'hrGuidelinesCommentQ3b', value: '' },
 
-    { name: 'hrGuidelinesQ4a', value: "Q4a. Do staff at the district office have a copy of SWAZ Act 4 of 2022?" },
+    { name: 'hrGuidelinesQ4a', value: 'Q4a. Do staff at the district office have a copy of SWAZ Act 4 of 2022?' },
     { name: 'hrGuidelinesQ4aResponse', value: '' },
     { name: 'hrGuidelinesCommentQ4a', value: '' },
 
-    { name: 'hrGuidelinesQ4b', value: "Q4b. Have all the officers read or been oriented and understand the SWAZ Act No. 4 of 2022?" },
+    {
+      name: 'hrGuidelinesQ4b',
+      value: 'Q4b. Have all the officers read or been oriented and understand the SWAZ Act No. 4 of 2022?',
+    },
     { name: 'hrGuidelinesQ4bResponse', value: '' },
     { name: 'hrGuidelinesCommentQ4b', value: '' },
 
-    { name: 'hrGuidelinesQ5', value: "Q5. Has a training plan been developed for the district office for this year?" },
+    { name: 'hrGuidelinesQ5', value: 'Q5. Has a training plan been developed for the district office for this year?' },
     { name: 'hrGuidelinesQ5Response', value: '' },
     { name: 'hrGuidelinesCommentQ5', value: '' },
 
-    { name: 'hrGuidelinesQ6', value: "Q6. Has a leave plan been developed for the district office for this year?" },
+    { name: 'hrGuidelinesQ6', value: 'Q6. Has a leave plan been developed for the district office for this year?' },
     { name: 'hrGuidelinesQ6Response', value: '' },
     { name: 'hrGuidelinesCommentQ6', value: '' },
 
-    { name: 'hrGuidelinesQ7a', value: "Q7a. Is there a copy of the training policy at the office?" },
+    { name: 'hrGuidelinesQ7a', value: 'Q7a. Is there a copy of the training policy at the office?' },
     { name: 'hrGuidelinesQ7aResponse', value: '' },
     { name: 'hrGuidelinesCommentQ7a', value: '' },
 
-    { name: 'hrGuidelinesQ7b', value: "Q7b. Have all the officers read/been oriented and understand the training policy?" },
+    {
+      name: 'hrGuidelinesQ7b',
+      value: 'Q7b. Have all the officers read/been oriented and understand the training policy?',
+    },
     { name: 'hrGuidelinesQ7bResponse', value: '' },
     { name: 'hrGuidelinesCommentQ7b', value: '' },
 
-    { name: 'hrGuidelinesQ8a', value: "Q8a. Does every Social Worker at the district have a copy of the Social Workers code of ethics?" },
+    {
+      name: 'hrGuidelinesQ8a',
+      value: 'Q8a. Does every Social Worker at the district have a copy of the Social Workers code of ethics?',
+    },
     { name: 'hrGuidelinesQ8aResponse', value: '' },
     { name: 'hrGuidelinesCommentQ8a', value: '' },
 
-    { name: 'hrGuidelinesQ8b', value: "Q8b. Has every Social Worker at the district signed the copy?" },
+    { name: 'hrGuidelinesQ8b', value: 'Q8b. Has every Social Worker at the district signed the copy?' },
     { name: 'hrGuidelinesQ8bResponse', value: '' },
     { name: 'hrGuidelinesCommentQ8b', value: '' },
     //HR Guidelines end
 
     //Equipment and logistics start
-    { name: 'equipmentLogisticsQ1', value: "Q1. Does district have at least 2 running Motor Vehicles?" },
+    { name: 'equipmentLogisticsQ1', value: 'Q1. Does district have at least 2 running Motor Vehicles?' },
     { name: 'equipmentLogisticsQ1Response', value: '' },
     { name: 'equipmentLogisticsCommentQ1', value: '' },
 
-    { name: 'equipmentLogisticsQ2', value: "Q2. Has the district have at least 1 computer?" },
+    { name: 'equipmentLogisticsQ2', value: 'Q2. Has the district have at least 1 computer?' },
     { name: 'equipmentLogisticsQ2Response', value: '' },
     { name: 'equipmentLogisticsCommentQ2', value: '' },
 
-    { name: 'equipmentLogisticsQ3', value: "Q3. Has the district have at least 1 printer?" },
+    { name: 'equipmentLogisticsQ3', value: 'Q3. Has the district have at least 1 printer?' },
     { name: 'equipmentLogisticsQ3Response', value: '' },
     { name: 'equipmentLogisticsCommentQ3', value: '' },
 
-    { name: 'equipmentLogisticsQ4', value: "Q4. Has the district have at least 1 motor bike?" },
+    { name: 'equipmentLogisticsQ4', value: 'Q4. Has the district have at least 1 motor bike?' },
     { name: 'equipmentLogisticsQ4Response', value: '' },
     { name: 'equipmentLogisticsCommentQ4', value: '' },
 
-    { name: 'equipmentLogisticsQ5', value: "Q5. Has the district have at least 1 workstation?" },
+    { name: 'equipmentLogisticsQ5', value: 'Q5. Has the district have at least 1 workstation?' },
     { name: 'equipmentLogisticsQ5Response', value: '' },
     { name: 'equipmentLogisticsCommentQ5', value: '' },
     //Equipment and logistics end
 
     //Staff Performance and establishment  start
-    { name: 'staffPerformanceQ1', value: "Q1. Did all staff prepare individual workplans in the previous year?" },
+    { name: 'staffPerformanceQ1', value: 'Q1. Did all staff prepare individual workplans in the previous year?' },
     { name: 'staffPerformanceQ1Response', value: '' },
     { name: 'staffPerformanceCommentQ1', value: '' },
 
-    { name: 'staffPerformanceQ2', value: "Q2. Were all staff appraised in the previous year?" },
+    { name: 'staffPerformanceQ2', value: 'Q2. Were all staff appraised in the previous year?' },
     { name: 'staffPerformanceQ2Response', value: '' },
     { name: 'staffPerformanceCommentQ2', value: '' },
 
-    { name: 'staffPerformanceQ3', value: "Q3. Are all the staff at the district office according to the Establishment?" },
+    {
+      name: 'staffPerformanceQ3',
+      value: 'Q3. Are all the staff at the district office according to the Establishment?',
+    },
     { name: 'staffPerformanceQ3Response', value: '' },
     { name: 'staffPerformanceCommentQ3', value: '' },
-    //Staff Performance and establishment  end 
+    //Staff Performance and establishment  end
   ]);
 
   const handleChange = (fieldName: string, value: any) => {
-    setFields(fields.map(field =>
-      field.name === fieldName ? { ...field, value } : field
-    ));
+    setFields(fields.map((field) => (field.name === fieldName ? { ...field, value } : field)));
   };
 
-
   const next = () => {
-    form.validateFields()
+    form
+      .validateFields()
       .then(() => {
         setCurrent(current + 1);
       })
@@ -177,13 +205,13 @@ export const HumanResourceStepForm = () => {
     '50': 50,
     '25': 25,
     '0': 0,
-    'N/A': null // No score for N/A
+    'N/A': null, // No score for N/A
   };
 
   const calculatePercentage = (formData: FormData): number => {
     let totalScore = 0;
     let totalQuestions = 0;
-  
+
     for (const key in formData) {
       if (key.endsWith('Response')) {
         const responseValue = formData[key];
@@ -198,13 +226,13 @@ export const HumanResourceStepForm = () => {
         }
       }
     }
-  
+
     if (totalQuestions === 0) {
       return 0; // No questions to calculate percentage
     }
-  
+
     return (totalScore / (totalQuestions * 100)) * 100;
-  };  
+  };
 
   const onFinish = async () => {
     setIsLoading(true);
@@ -218,17 +246,17 @@ export const HumanResourceStepForm = () => {
         list_of_district_participants: form.getFieldValue('list_of_district_participants') || [],
         ...fields.reduce((acc, field) => ({ ...acc, [field.name]: field.value || '' }), {}),
       };
-  
+
       console.log('Form Data:', formData); // Debug formData
-  
+
       // Calculate the percentage and add it to the formData
       formData.first_assessment_initial_score = calculatePercentage(formData);
-  
+
       console.log('Calculated Score:', formData.first_assessment_initial_score); // Debug score
-  
+
       const token = localStorage.getItem('access_token');
       const headers = { Authorization: `Bearer ${token}` };
-  
+
       await axios.post(`${apiUrl}/${collectionName}`, formData, { headers });
       notificationController.success({ message: t('common.success') });
       setCurrent(0);
@@ -238,7 +266,7 @@ export const HumanResourceStepForm = () => {
     } finally {
       setIsLoading(false);
     }
-  };  
+  };
 
   const steps = [
     { title: t('Assessee Information') },

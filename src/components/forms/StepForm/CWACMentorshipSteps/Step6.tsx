@@ -41,12 +41,8 @@ export const Step6: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-           SECTION E: DOCUMENTATION AND SUPPLIES
-        </Typography.Title>
-        <Typography.Title level={5}>
-        Question 1: Do you have Form 1, 2 and 3 booklets?
-        </Typography.Title>
+        <Typography.Title level={4}>SECTION E: DOCUMENTATION AND SUPPLIES</Typography.Title>
+        <Typography.Title level={5}>Question 1: Do you have Form 1, 2 and 3 booklets?</Typography.Title>
       </Dragger>
       <br />
       <Radio.Group>
@@ -60,7 +56,7 @@ export const Step6: React.FC<Step2Props> = ({ handleChange }) => {
 
       <Dragger>
         <Typography.Title level={4}>
-          Question 2: How do you keep your document(s)? (probe on confidentiality) 
+          Question 2: How do you keep your document(s)? (probe on confidentiality)
         </Typography.Title>
       </Dragger>
       <NarrowFormItem name="encounterProblemsComment" label={t('Response')}>
@@ -69,7 +65,8 @@ export const Step6: React.FC<Step2Props> = ({ handleChange }) => {
 
       <Dragger>
         <Typography.Title level={4}>
-          Question 3: What supplies do you need to provide services for the coming month? (Check what supplies the CWAC has received and the status of the supplies e.g. bicycles, Boots, Raincoats, PPEs, etc.)
+          Question 3: What supplies do you need to provide services for the coming month? (Check what supplies the CWAC
+          has received and the status of the supplies e.g. bicycles, Boots, Raincoats, PPEs, etc.)
         </Typography.Title>
       </Dragger>
       <NarrowFormItem name="encounterProblemsComment" label={t('Response')}>
@@ -77,14 +74,11 @@ export const Step6: React.FC<Step2Props> = ({ handleChange }) => {
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Question 3: Do you have any questions or suggestions? 
-        </Typography.Title>
+        <Typography.Title level={4}>Question 3: Do you have any questions or suggestions?</Typography.Title>
       </Dragger>
       <NarrowFormItem name="encounterProblemsComment" label={t('Response')}>
         <S.StyledTextArea />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

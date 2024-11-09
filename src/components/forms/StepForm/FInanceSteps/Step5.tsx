@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -48,12 +48,8 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         <Typography.Title level={4}>
           Standard: The District should have an approved payment requisition or payment request Memo.
         </Typography.Title>
-        <HighlightedQuestion>
-          Do the vouchers have approved payment requisition or memo?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Payment requisition or memo attached to the PV.
-        </Typography>
+        <HighlightedQuestion>Do the vouchers have approved payment requisition or memo?</HighlightedQuestion>
+        <Typography>Indicator: Payment requisition or memo attached to the PV.</Typography>
         <Typography>
           Source of Information/Means of Verification: Inspect physical copies attached to the PVs.
         </Typography>
@@ -61,13 +57,14 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="vouchersPaymentRequisitionResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('vouchersPaymentRequisitionResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -75,19 +72,13 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="vouchersPaymentRequisitionComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('vouchersPaymentRequisitionComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('vouchersPaymentRequisitionComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Standard: All payments should be supported by an activity budget.
-        </Typography.Title>
-        <HighlightedQuestion>
-          Do the vouchers have activity budgets attached?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Activity budget attached to the PV.
-        </Typography>
+        <Typography.Title level={4}>Standard: All payments should be supported by an activity budget.</Typography.Title>
+        <HighlightedQuestion>Do the vouchers have activity budgets attached?</HighlightedQuestion>
+        <Typography>Indicator: Activity budget attached to the PV.</Typography>
         <Typography>
           Source of Information/Means of Verification: Inspect physical copies attached to the PVs.
         </Typography>
@@ -95,13 +86,14 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="vouchersActivityBudgetsResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('vouchersActivityBudgetsResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -109,33 +101,26 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="vouchersActivityBudgetsComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('vouchersActivityBudgetsComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('vouchersActivityBudgetsComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Standard: Payment Vouchers should be sequentially numbered.
-        </Typography.Title>
-        <HighlightedQuestion>
-          Are payment vouchers sequentially numbered?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: PVs sequentially numbered.
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Review physical numbering of vouchers.
-        </Typography>
+        <Typography.Title level={4}>Standard: Payment Vouchers should be sequentially numbered.</Typography.Title>
+        <HighlightedQuestion>Are payment vouchers sequentially numbered?</HighlightedQuestion>
+        <Typography>Indicator: PVs sequentially numbered.</Typography>
+        <Typography>Source of Information/Means of Verification: Review physical numbering of vouchers.</Typography>
       </Dragger>
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="paymentVouchersSequentiallyNumberedResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('paymentVouchersSequentiallyNumberedResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -143,7 +128,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="paymentVouchersSequentiallyNumberedComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('paymentVouchersSequentiallyNumberedComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('paymentVouchersSequentiallyNumberedComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -153,23 +138,20 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Are payment vouchers sequentially filed with reference to cheque numbers and date?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: PVs sequentially filed.
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Review physical filing of vouchers.
-        </Typography>
+        <Typography>Indicator: PVs sequentially filed.</Typography>
+        <Typography>Source of Information/Means of Verification: Review physical filing of vouchers.</Typography>
       </Dragger>
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="paymentVouchersSequentiallyFiledResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('paymentVouchersSequentiallyFiledResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -177,33 +159,26 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="paymentVouchersSequentiallyFiledComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('paymentVouchersSequentiallyFiledComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('paymentVouchersSequentiallyFiledComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Standard: All payments should have approved payment vouchers.
-        </Typography.Title>
-        <HighlightedQuestion>
-          Do payments have approved payment vouchers?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Approved payment vouchers.
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Review filed vouchers.
-        </Typography>
+        <Typography.Title level={4}>Standard: All payments should have approved payment vouchers.</Typography.Title>
+        <HighlightedQuestion>Do payments have approved payment vouchers?</HighlightedQuestion>
+        <Typography>Indicator: Approved payment vouchers.</Typography>
+        <Typography>Source of Information/Means of Verification: Review filed vouchers.</Typography>
       </Dragger>
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="paymentsApprovedVouchersResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('paymentsApprovedVouchersResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -211,19 +186,16 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="paymentsApprovedVouchersComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('paymentsApprovedVouchersComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('paymentsApprovedVouchersComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <Typography.Title level={4}>
-          Standard: Payment Vouchers should be supported by relevant documents (Invoices, receipts, GRN, delivery note, 3 quotations, LPO, imprest retirement forms, acquittals, etc).
+          Standard: Payment Vouchers should be supported by relevant documents (Invoices, receipts, GRN, delivery note,
+          3 quotations, LPO, imprest retirement forms, acquittals, etc).
         </Typography.Title>
-        <HighlightedQuestion>
-          Do payment vouchers have all relevant supporting documents?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Fully supported PVs.
-        </Typography>
+        <HighlightedQuestion>Do payment vouchers have all relevant supporting documents?</HighlightedQuestion>
+        <Typography>Indicator: Fully supported PVs.</Typography>
         <Typography>
           Source of Information/Means of Verification: Inspect physical copies attached to the PVs.
         </Typography>
@@ -231,13 +203,14 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="paymentVouchersSupportingDocumentsResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('paymentVouchersSupportingDocumentsResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -245,9 +218,8 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="paymentVouchersSupportingDocumentsComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('paymentVouchersSupportingDocumentsComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('paymentVouchersSupportingDocumentsComment', e.target.value)} />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

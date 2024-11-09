@@ -29,12 +29,8 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-         SECTION B: FILLING IN FORM 1: ASSESSMENT FORM
-        </Typography.Title>
-        <Typography.Title level={5}>
-          Question 1: Do you have any concerns with filling in Form 1?
-        </Typography.Title>
+        <Typography.Title level={4}>SECTION B: FILLING IN FORM 1: ASSESSMENT FORM</Typography.Title>
+        <Typography.Title level={5}>Question 1: Do you have any concerns with filling in Form 1?</Typography.Title>
       </Dragger>
       <br />
       <Radio.Group onChange={handleRadioChange}>
@@ -54,7 +50,6 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
       <NarrowFormItem name="storesDocumentsCommentQ2" label={t('Response')}>
         <S.StyledTextArea />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

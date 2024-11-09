@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -35,21 +35,11 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          Stores Documents
-        </Typography.Title>
-        <Typography.Title level={4}>
-          Standard 1: Goods Received Notes
-        </Typography.Title>
-        <HighlightedQuestion>
-          Question: Do you have Goods Received Note book?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical copy of the GRN
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check for the GRN book
-        </Typography>
+        <Typography.Title level={4}>Stores Documents</Typography.Title>
+        <Typography.Title level={4}>Standard 1: Goods Received Notes</Typography.Title>
+        <HighlightedQuestion>Question: Do you have Goods Received Note book?</HighlightedQuestion>
+        <Typography>Indicator: Physical copy of the GRN</Typography>
+        <Typography>Source of Information/Means of Verification: Check for the GRN book</Typography>
       </Dragger>
 
       <Form.Item
@@ -62,7 +52,7 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesDocumentsQ1Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -71,24 +61,15 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesDocumentsCommentQ1" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ1', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ1', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Standard 2: Bin Cards
-        </Typography.Title>
-        <HighlightedQuestion>
-          Question: Do you have Bin Cards?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical copy of the bin card
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check for the bin card
-        </Typography>
+        <Typography.Title level={4}>Standard 2: Bin Cards</Typography.Title>
+        <HighlightedQuestion>Question: Do you have Bin Cards?</HighlightedQuestion>
+        <Typography>Indicator: Physical copy of the bin card</Typography>
+        <Typography>Source of Information/Means of Verification: Check for the bin card</Typography>
       </Dragger>
-
 
       <Form.Item
         name="storesDocumentsQ2Response"
@@ -100,7 +81,7 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesDocumentsQ2Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -109,22 +90,14 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesDocumentsCommentQ2" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ2', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ2', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Standard 3: Stores Ledger
-        </Typography.Title>
-        <HighlightedQuestion>
-          Question: Do you have Stores Ledger?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical copy of the stores ledger/stock control card
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check for the stores ledger/control card
-        </Typography>
+        <Typography.Title level={4}>Standard 3: Stores Ledger</Typography.Title>
+        <HighlightedQuestion>Question: Do you have Stores Ledger?</HighlightedQuestion>
+        <Typography>Indicator: Physical copy of the stores ledger/stock control card</Typography>
+        <Typography>Source of Information/Means of Verification: Check for the stores ledger/control card</Typography>
       </Dragger>
 
       <Form.Item
@@ -137,7 +110,7 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesDocumentsQ3Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -146,24 +119,15 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesDocumentsCommentQ3" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ3', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ3', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Standard 4: Goods Issued Voucher
-        </Typography.Title>
-        <HighlightedQuestion>
-          Question: Do you have Goods Issue Voucher?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical copy of the goods issue voucher
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check for the goods issue voucher
-        </Typography>
+        <Typography.Title level={4}>Standard 4: Goods Issued Voucher</Typography.Title>
+        <HighlightedQuestion>Question: Do you have Goods Issue Voucher?</HighlightedQuestion>
+        <Typography>Indicator: Physical copy of the goods issue voucher</Typography>
+        <Typography>Source of Information/Means of Verification: Check for the goods issue voucher</Typography>
       </Dragger>
-
 
       <Form.Item
         name="storesDocumentsQ4Response"
@@ -175,7 +139,7 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesDocumentsQ4Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -183,24 +147,15 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
 
-
       <NarrowFormItem name="storesDocumentsCommentQ4" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ4', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ4', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Standard 5: Stores requisitions
-        </Typography.Title>
-        <HighlightedQuestion>
-          Question: Do you have Stores requisitions?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical copy of the Stores requisitions
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check for the Stores requisitions
-        </Typography>
+        <Typography.Title level={4}>Standard 5: Stores requisitions</Typography.Title>
+        <HighlightedQuestion>Question: Do you have Stores requisitions?</HighlightedQuestion>
+        <Typography>Indicator: Physical copy of the Stores requisitions</Typography>
+        <Typography>Source of Information/Means of Verification: Check for the Stores requisitions</Typography>
       </Dragger>
 
       <Form.Item
@@ -213,7 +168,7 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesDocumentsQ5Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -222,22 +177,14 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesDocumentsCommentQ5" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ5', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ5', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Standard 6: Asset Register
-        </Typography.Title>
-        <HighlightedQuestion>
-          Question: Do you have Asset Register?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical copy of the Asset Register
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check for the Asset Register
-        </Typography>
+        <Typography.Title level={4}>Standard 6: Asset Register</Typography.Title>
+        <HighlightedQuestion>Question: Do you have Asset Register?</HighlightedQuestion>
+        <Typography>Indicator: Physical copy of the Asset Register</Typography>
+        <Typography>Source of Information/Means of Verification: Check for the Asset Register</Typography>
       </Dragger>
 
       <Form.Item
@@ -250,7 +197,7 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesDocumentsQ6Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -259,9 +206,8 @@ export const Step3: React.FC<Step3Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesDocumentsCommentQ6" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ6', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesDocumentsCommentQ6', e.target.value)} />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

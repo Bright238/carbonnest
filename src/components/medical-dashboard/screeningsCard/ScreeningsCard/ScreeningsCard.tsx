@@ -101,11 +101,5 @@ export const ScreeningsCard: React.FC = () => {
     [currentStatistics, currentValues, screeningsWithDoctors],
   );
 
-  return (
-    <S.ScreeningsCard
-      title={<ScreeningsHeader />}
-      padding={0}
-    >
-    </S.ScreeningsCard>
-  );
+  return <S.ScreeningsCard title={<ScreeningsHeader />} padding={0}></S.ScreeningsCard>;
 };

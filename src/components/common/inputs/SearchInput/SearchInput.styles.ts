@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FONT_SIZE, FONT_WEIGHT, media } from '@app/styles/themes/constants';
 import { BaseInput } from '../BaseInput/BaseInput';
-import { SearchOutlined } from '@ant-design/icons'
+import { SearchOutlined } from '@ant-design/icons';
 import { BaseSpace } from '../../BaseSpace/BaseSpace';
 
 export const Space = styled(BaseSpace)`
@@ -10,7 +10,7 @@ export const Space = styled(BaseSpace)`
     align-items: center;
     justify-content: center;
   }
-`;;
+`;
 
 export const SearchIcon = styled(SearchOutlined)`
   font-size: 1.25rem;
@@ -32,7 +32,7 @@ export const ClearButton = styled.button`
   align-items: center;
   height: 100%; /* Match the height of the input */
   padding: 0; /* Remove extra padding */
-  
+
   &:hover {
     color: #333;
   }

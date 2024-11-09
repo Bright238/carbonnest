@@ -18,7 +18,6 @@ const apiUrl = `${process.env.REACT_APP_BASE_URL}/items`;
 const collectionName = 'cwac_supervision_and_mentorship';
 
 export const CWACMentorshipStepForm = () => {
-
   const [current, setCurrent] = useState(0);
   const [form] = BaseForm.useForm();
 
@@ -41,7 +40,7 @@ export const CWACMentorshipStepForm = () => {
     { name: 'storesCommentQ3', value: '' },
     // Stores - Legislation and guidelines end
 
-    // Stores documents start 
+    // Stores documents start
     { name: 'storesDocumentQ1', value: 'Q1. Do you have Goods Received Note book?' },
     { name: 'storesDocumentsQ1Response', value: '' },
     { name: 'storesDocumentsCommentQ1', value: '' },
@@ -68,17 +67,26 @@ export const CWACMentorshipStepForm = () => {
     // Stores documents end
 
     // Stores staff start
-    { name: 'storesStaffQ1', value: 'Q1. Are staff managing stock and inventory oriented in Asset Management & Stores guidelines?' },
+    {
+      name: 'storesStaffQ1',
+      value: 'Q1. Are staff managing stock and inventory oriented in Asset Management & Stores guidelines?',
+    },
     { name: 'storesStaffQ1Response', value: '' },
     { name: 'storesStaffCommentQ1', value: '' },
 
-    { name: 'storesStaffQ2', value: 'Q2. Are staff managing stores independent of procurement within the procuring entity?' },
+    {
+      name: 'storesStaffQ2',
+      value: 'Q2. Are staff managing stores independent of procurement within the procuring entity?',
+    },
     { name: 'storesStaffQ2Response', value: '' },
     { name: 'storesStaffCommentQ2', value: '' },
     // Stores staff end
 
-    // Stores Processes start 
-    { name: 'storesProcessesQ1', value: 'Q1. Are prices on supplier invoices matched with contracts/Local purchase orders?' },
+    // Stores Processes start
+    {
+      name: 'storesProcessesQ1',
+      value: 'Q1. Are prices on supplier invoices matched with contracts/Local purchase orders?',
+    },
     { name: 'storesProcessesQ1Response', value: '' },
     { name: 'storesProcessesCommentQ1', value: '' },
 
@@ -90,23 +98,35 @@ export const CWACMentorshipStepForm = () => {
     { name: 'storesProcessesQ3Response', value: '' },
     { name: 'storesProcessesCommentQ3', value: '' },
 
-    { name: 'storesProcessesQ4', value: 'Q4. Are procured items requisitioned from Stores and issued by a stores officer?' },
+    {
+      name: 'storesProcessesQ4',
+      value: 'Q4. Are procured items requisitioned from Stores and issued by a stores officer?',
+    },
     { name: 'storesProcessesQ4Response', value: '' },
     { name: 'storesProcessesCommentQ4', value: '' },
 
-    { name: 'storesProcessesQ5', value: 'Q5. Are Stores Requisitions approved by the Head of department before issuance of goods?' },
+    {
+      name: 'storesProcessesQ5',
+      value: 'Q5. Are Stores Requisitions approved by the Head of department before issuance of goods?',
+    },
     { name: 'storesProcessesQ5Response', value: '' },
     { name: 'storesProcessesCommentQ5', value: '' },
 
-    { name: 'storesProcessesQ6', value: 'Q6. Are Stock cards/bin cards updated whenever there\'s stock movement.' },
+    { name: 'storesProcessesQ6', value: "Q6. Are Stock cards/bin cards updated whenever there's stock movement." },
     { name: 'storesProcessesQ6Response', value: '' },
     { name: 'storesProcessesCommentQ6', value: '' },
 
-    { name: 'storesProcessesQ7', value: 'Q7. Is stock taking conducted quarterly in collaboration with independent staff?' },
+    {
+      name: 'storesProcessesQ7',
+      value: 'Q7. Is stock taking conducted quarterly in collaboration with independent staff?',
+    },
     { name: 'storesProcessesQ7Response', value: '' },
     { name: 'storesProcessesCommentQ7', value: '' },
 
-    { name: 'storesProcessesQ8', value: 'Q8. Are physical counts compared with stock records, reconciled and reported?' },
+    {
+      name: 'storesProcessesQ8',
+      value: 'Q8. Are physical counts compared with stock records, reconciled and reported?',
+    },
     { name: 'storesProcessesQ8Response', value: '' },
     { name: 'storesProcessesCommentQ8', value: '' },
 
@@ -120,7 +140,11 @@ export const CWACMentorshipStepForm = () => {
     { name: 'storesAssetMgtQ1Response', value: '' },
     { name: 'storesAssetManagementCommentQ1', value: '' },
 
-    { name: 'storesAssetManagementQ2', value: 'Q2. Does the Asset Register indicate date, item description, serial numbers,quantities, Year, value, location  & condition?' },
+    {
+      name: 'storesAssetManagementQ2',
+      value:
+        'Q2. Does the Asset Register indicate date, item description, serial numbers,quantities, Year, value, location  & condition?',
+    },
     { name: 'storesAssetMgtQ2Response', value: '' },
     { name: 'storesAssetManagementCommentQ2', value: '' },
 
@@ -138,12 +162,9 @@ export const CWACMentorshipStepForm = () => {
   const { t } = useTranslation();
 
   const handleChange = (fieldName: string, value: any) => {
-    const updatedFields = fields.map(field =>
-      field.name === fieldName ? { ...field, value } : field
-    );
+    const updatedFields = fields.map((field) => (field.name === fieldName ? { ...field, value } : field));
 
     setFields(updatedFields);
-
   };
 
   const next = () => {
@@ -160,21 +181,22 @@ export const CWACMentorshipStepForm = () => {
     setIsLoading(true);
     const formData: Record<string, any> = {};
 
-    fields.forEach(field => {
+    fields.forEach((field) => {
       formData[field.name] = field.value;
     });
 
     const token = localStorage.getItem('access_token');
     const headers = { Authorization: `Bearer ${token}` };
 
-    axios.post(`${apiUrl}/${collectionName}`, formData, { headers })
-      .then(response => {
+    axios
+      .post(`${apiUrl}/${collectionName}`, formData, { headers })
+      .then((response) => {
         notificationController.success({ message: t('common.success') });
         setIsLoading(false);
         setCurrent(0);
         form.resetFields();
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('Error:', error);
         notificationController.error({ message: t('common.error') });
         setIsLoading(false);
@@ -201,13 +223,10 @@ export const CWACMentorshipStepForm = () => {
     <Step6 key="6" handleChange={handleChange} />,
     <Step7 key="7" handleChange={handleChange} />,
     <Step9 key="9" formValues={fields} />,
-  ];  
+  ];
 
   return (
-    <BaseForm
-      form={form}
-      onFinish={onFinish}
-    >
+    <BaseForm form={form} onFinish={onFinish}>
       <Steps size="small" current={current} items={steps} />
 
       <div>{formFieldsUi[current]}</div>

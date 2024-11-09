@@ -56,7 +56,7 @@ export const DynamicForm = forwardRef(({ form }: DynamicFormProps, ref) => {
     // Merge the changes with the existing participants state
     const updatedParticipants = allValues.participants || [];
 
-    setParticipants(updatedParticipants);  // Update state with the full array
+    setParticipants(updatedParticipants); // Update state with the full array
     form.setFieldsValue({ list_of_district_participants: updatedParticipants }); // Sync form values
     setFieldsChanged(true);
   };
@@ -69,7 +69,7 @@ export const DynamicForm = forwardRef(({ form }: DynamicFormProps, ref) => {
       loading={isLoading}
       onFinish={onFinish}
       autoComplete="off"
-      onValuesChange={onValuesChange}  // Ensure dynamic updates
+      onValuesChange={onValuesChange} // Ensure dynamic updates
       initialValues={{ participants: [] }}
       footer={undefined}
     >

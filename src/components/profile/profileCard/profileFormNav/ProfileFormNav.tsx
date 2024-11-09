@@ -19,7 +19,7 @@ export const ProfileFormNav: React.FC<ProfileFormNavProps> = ({ menu }) => {
     }
 
     case 'upload': {
-       currentMenu = <StoresDepartmentPage />;
+      currentMenu = <StoresDepartmentPage />;
       break;
     }
 

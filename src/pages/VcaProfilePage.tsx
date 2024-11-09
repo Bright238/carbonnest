@@ -8,8 +8,8 @@ const VcaProfilePage: React.FC = () => {
 
   return (
     <>
-   <Typography style={{ fontWeight: "bold", fontSize: "25px" }}>VCA Profile</Typography>
-     <VcaProfile />
+      <Typography style={{ fontWeight: 'bold', fontSize: '25px' }}>VCA Profile</Typography>
+      <VcaProfile />
     </>
   );
 };

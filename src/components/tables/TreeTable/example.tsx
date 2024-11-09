@@ -79,7 +79,7 @@ const subPopulationFilterLabels = {
   calwd: 'CALWD',
   caifhh: 'CAIFHH',
   muc: 'MUC',
-  pbfw: 'PBFW'
+  pbfw: 'PBFW',
 };
 
 const filterKeyDescriptions = {
@@ -96,7 +96,7 @@ const filterKeyDescriptions = {
   calwd: 'Child/Adolescent Living with Disability',
   caifhh: 'Child/Adolescent in Female Headed Household',
   muc: 'Malnourished Under 5 Children',
-  pbfw: 'Pregnant and Breastfeeding Women'
+  pbfw: 'Pregnant and Breastfeeding Women',
 };
 
 const filterKeyToDataKey = {
@@ -106,7 +106,7 @@ const filterKeyToDataKey = {
   calwd: 'child_adolescent_living_with_disability',
   caifhh: 'child_adolescent_in_female_headed_household',
   muc: 'under_5_malnourished',
-  pbfw: 'pbfw'
+  pbfw: 'pbfw',
 };
 
 export const TreeTable: React.FC = () => {
@@ -127,10 +127,13 @@ export const TreeTable: React.FC = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const [subPopulationFilters, setSubPopulationFilters] = useState(
-    Object.keys(subPopulationFilterLabels).reduce((acc, key) => ({
-      ...acc,
-      [key]: 'all'
-    }), {} as Record<keyof typeof subPopulationFilterLabels, string>)
+    Object.keys(subPopulationFilterLabels).reduce(
+      (acc, key) => ({
+        ...acc,
+        [key]: 'all',
+      }),
+      {} as Record<keyof typeof subPopulationFilterLabels, string>,
+    ),
   );
 
   useEffect(() => {
@@ -138,7 +141,7 @@ export const TreeTable: React.FC = () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/users/me`, {
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
         });
         setUser(response.data.data);
@@ -171,13 +174,10 @@ export const TreeTable: React.FC = () => {
   useEffect(() => {
     const lowerCaseQuery = searchQuery.toLowerCase();
     const filtered = vcas.filter((vca) => {
-      const addressString = [
-        vca.homeaddress,
-        vca.facility,
-        vca.province,
-        vca.district,
-        vca.ward
-      ].filter(Boolean).join(' ').toLowerCase();
+      const addressString = [vca.homeaddress, vca.facility, vca.province, vca.district, vca.ward]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
 
       const matchesSearch =
         (vca.uid?.toLowerCase() || '').includes(lowerCaseQuery) ||
@@ -188,16 +188,18 @@ export const TreeTable: React.FC = () => {
 
       const matchesSubPopulationFilters = Object.entries(subPopulationFilters).every(([filterKey, value]) => {
         if (value === 'all') return true;
-        
+
         let dataKey = filterKey;
         if (filterKey in filterKeyToDataKey) {
           dataKey = filterKeyToDataKey[filterKey as keyof typeof filterKeyToDataKey];
         }
-        
+
         const vcaValue = vca[dataKey as keyof Vca];
-        return vcaValue === null ? false :
-          value === 'yes' ? vcaValue === '1' || vcaValue === 'true' :
-          vcaValue === '0' || vcaValue === 'false';
+        return vcaValue === null
+          ? false
+          : value === 'yes'
+          ? vcaValue === '1' || vcaValue === 'true'
+          : vcaValue === '0' || vcaValue === 'false';
       });
 
       return matchesSearch && matchesSubPopulationFilters;
@@ -214,8 +216,8 @@ export const TreeTable: React.FC = () => {
         facility: vca.facility,
         province: vca.province,
         district: vca.district,
-        ward: vca.ward
-      }
+        ward: vca.ward,
+      },
     }));
 
     setTableData({ data: mappedData, pagination: initialPagination, loading: false });
@@ -227,7 +229,7 @@ export const TreeTable: React.FC = () => {
     const formats = [
       /^(\d{1,2})-(\d{1,2})-(\d{4})$/,
       /^(\d{4})-(\d{1,2})-(\d{1,2})$/,
-      /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/
+      /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/,
     ];
 
     let parsedDate: Date | null = null;
@@ -284,9 +286,9 @@ export const TreeTable: React.FC = () => {
   };
 
   const handleSubPopulationFilterChange = (filterName: keyof typeof subPopulationFilters, value: string) => {
-    setSubPopulationFilters(prevFilters => ({
+    setSubPopulationFilters((prevFilters) => ({
       ...prevFilters,
-      [filterName]: value
+      [filterName]: value,
     }));
   };
 
@@ -297,7 +299,7 @@ export const TreeTable: React.FC = () => {
           ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
           onPressEnter={() => handleSearch(selectedKeys as string[], confirm, dataIndex)}
           style={{ marginBottom: 8, display: 'block' }}
         />
@@ -311,37 +313,27 @@ export const TreeTable: React.FC = () => {
           >
             Search
           </Button>
-          <Button
-            onClick={() => clearFilters && handleReset(clearFilters)}
-            size="small"
-            style={{ width: 90 }}
-          >
+          <Button onClick={() => clearFilters && handleReset(clearFilters)} size="small" style={{ width: 90 }}>
             Reset
           </Button>
-          <Button
-            type="link"
-            size="small"
-            onClick={close}
-          >
+          <Button type="link" size="small" onClick={close}>
             Close
           </Button>
         </Space>
       </div>
     ),
-    filterIcon: (filtered: boolean) => (
-      <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
-    ),
+    filterIcon: (filtered: boolean) => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
     onFilter: (value: string, record: TableDataItem) => {
       if (dataIndex === 'address') {
         const addressFields = Object.values(record.address).filter(Boolean);
         const addressString = addressFields.join(' ').toLowerCase();
         return addressString.includes(value.toLowerCase());
       }
-      
+
       if (typeof record[dataIndex as keyof TableDataItem] === 'object') {
         return false;
       }
-      
+
       const fieldValue = record[dataIndex as keyof TableDataItem];
       return fieldValue ? fieldValue.toString().toLowerCase().includes(value.toLowerCase()) : false;
     },
@@ -357,7 +349,7 @@ export const TreeTable: React.FC = () => {
           </div>
         );
       }
-      
+
       return searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
@@ -436,12 +428,7 @@ export const TreeTable: React.FC = () => {
           <Row align="middle" style={{ marginBottom: '8px' }}>
             <h5 style={{ margin: '0 8px 0 0' }}>{t('Filter by Sub Population')}</h5>
             <Tooltip title="View filter key descriptions">
-              <Button 
-                type="text" 
-                icon={<InfoCircleOutlined />} 
-                onClick={showModal}
-                style={{ padding: '4px' }}
-              />
+              <Button type="text" icon={<InfoCircleOutlined />} onClick={showModal} style={{ padding: '4px' }} />
             </Tooltip>
           </Row>
           <Row gutter={[8, 8]} style={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -452,7 +439,9 @@ export const TreeTable: React.FC = () => {
                   <Select
                     style={{ width: '100%' }}
                     value={subPopulationFilters[key as keyof typeof subPopulationFilters]}
-                    onChange={(newValue) => handleSubPopulationFilterChange(key as keyof typeof subPopulationFilters, newValue)}
+                    onChange={(newValue) =>
+                      handleSubPopulationFilterChange(key as keyof typeof subPopulationFilters, newValue)
+                    }
                   >
                     <Select.Option value="all">{t('All')}</Select.Option>
                     <Select.Option value="yes">{t('Yes')}</Select.Option>
@@ -483,12 +472,7 @@ export const TreeTable: React.FC = () => {
         </div>
       </Modal>
 
-      <BaseTable
-        columns={columns}
-        dataSource={tableData.data}
-        pagination={tableData.pagination}
-        loading={loading}
-      />
+      <BaseTable columns={columns} dataSource={tableData.data} pagination={tableData.pagination} loading={loading} />
     </div>
   );
 };

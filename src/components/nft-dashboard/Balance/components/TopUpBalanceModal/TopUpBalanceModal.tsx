@@ -9,11 +9,7 @@ interface TopUpBalanceModalProps extends TopUpDataProps {
   count: number;
 }
 
-export const TopUpBalanceModal: React.FC<TopUpBalanceModalProps> = ({
-  isOpen,
-  onOpenChange,
-  count,
-}) => {
+export const TopUpBalanceModal: React.FC<TopUpBalanceModalProps> = ({ isOpen, onOpenChange, count }) => {
   const [showCount, setShowCount] = useState(false);
 
   useEffect(() => {
@@ -28,9 +24,7 @@ export const TopUpBalanceModal: React.FC<TopUpBalanceModalProps> = ({
   return (
     <BaseModal width={500} open={isOpen} onCancel={onOpenChange} footer={null} destroyOnClose>
       <Spin spinning={!showCount}>
-
-        {showCount && <Typography style={{ textAlign: "center", fontWeight: "bold" }}>Count: {count}</Typography>}
-
+        {showCount && <Typography style={{ textAlign: 'center', fontWeight: 'bold' }}>Count: {count}</Typography>}
       </Spin>
     </BaseModal>
   );

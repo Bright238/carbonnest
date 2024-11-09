@@ -17,14 +17,16 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileData }) => {
   return profileData ? (
     <S.Wrapper>
       <S.ImgWrapper>
-        <BaseAvatar src='https://media.licdn.com/dms/image/v2/D4D35AQHIcurwOOq1JA/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1727110590756?e=1731747600&v=beta&t=b5KmlYmY-A_iKGqBnmgzDGH7kSRXcObhQlFD6AqjskI' alt="Profile" />
+        <BaseAvatar
+          src="https://media.licdn.com/dms/image/v2/D4D35AQHIcurwOOq1JA/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1727110590756?e=1731747600&v=beta&t=b5KmlYmY-A_iKGqBnmgzDGH7kSRXcObhQlFD6AqjskI"
+          alt="Profile"
+        />
       </S.ImgWrapper>
       <S.Title>Bright Kapamulomo Mafungautsi</S.Title>
       {/* <S.Title>{`${profileData?.first_name} ${profileData?.last_name}`}</S.Title> */}
       <S.Subtitle>{profileData?.userName}</S.Subtitle>
-        <BaseForm.Title>{t('Artisan C - Sink Pro')}</BaseForm.Title>
+      <BaseForm.Title>{t('Artisan C - Sink Pro')}</BaseForm.Title>
       <S.FullnessWrapper>
-    
         <S.FullnessLine width={fullness}>{fullness}%</S.FullnessLine>
       </S.FullnessWrapper>
       <S.Text>{t('profile.fullness')}</S.Text>

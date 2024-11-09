@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -35,21 +35,13 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          Legislation & Guidelines
-        </Typography.Title>
+        <Typography.Title level={4}>Legislation & Guidelines</Typography.Title>
         <Typography.Title level={4}>
           Standard 1: Staff should have Public Finance Management (Public Stores) Regulations of 2022
         </Typography.Title>
-        <HighlightedQuestion>
-          Question: Does the office have the Public Stores Regulations of 2022?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical or soft copy of Stores Manual
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check for the document
-        </Typography>
+        <HighlightedQuestion>Question: Does the office have the Public Stores Regulations of 2022?</HighlightedQuestion>
+        <Typography>Indicator: Physical or soft copy of Stores Manual</Typography>
+        <Typography>Source of Information/Means of Verification: Check for the document</Typography>
       </Dragger>
 
       <Form.Item
@@ -62,7 +54,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesGuidelinesQ1Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -71,7 +63,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesCommentQ1" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesCommentQ1', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesCommentQ1', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -81,12 +73,8 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Question: Does the office have the Public Finance Management Act of 2018?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical or soft copy of  the Act
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check for the document
-        </Typography>
+        <Typography>Indicator: Physical or soft copy of the Act</Typography>
+        <Typography>Source of Information/Means of Verification: Check for the document</Typography>
       </Dragger>
 
       <Form.Item
@@ -99,7 +87,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesGuidelinesQ2Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -108,7 +96,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesCommentQ2" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesCommentQ2', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesCommentQ2', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -118,12 +106,8 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Question: Does the office have the Public Procurement Act (PPA) of 2020?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical or soft copy of Act
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check for the document
-        </Typography>
+        <Typography>Indicator: Physical or soft copy of Act</Typography>
+        <Typography>Source of Information/Means of Verification: Check for the document</Typography>
       </Dragger>
 
       <Form.Item
@@ -136,7 +120,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesGuidelinesQ3Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -145,7 +129,7 @@ export const Step2: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesCommentQ3" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesCommentQ3', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesCommentQ3', e.target.value)} />
       </NarrowFormItem>
     </S.FormContent>
   );

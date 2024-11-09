@@ -9,7 +9,7 @@ interface CardInternalProps {
 
 export const CollectionImage = styled.img`
   width: 100%;
-  height:200px;
+  height: 200px;
   object-fit: cover;
   border-top-left-radius: ${BORDER_RADIUS};
   border-top-right-radius: ${BORDER_RADIUS};
@@ -31,7 +31,6 @@ export const InfoRow = styled.div`
 `;
 
 export const Title = styled(BaseTypography.Title)`
-
   &.ant-typography {
     margin-bottom: 0;
 
@@ -40,7 +39,6 @@ export const Title = styled(BaseTypography.Title)`
 `;
 
 export const Text = styled(BaseTypography.Text)`
-
   font-size: ${FONT_SIZE.xs};
 
   font-weight: ${FONT_WEIGHT.semibold};
@@ -63,7 +61,6 @@ export const OwnerText = styled(Text)`
 `;
 
 export const USDText = styled(BaseTypography.Text)`
-
   font-weight: ${FONT_WEIGHT.semibold};
 
   font-size: ${FONT_SIZE.xs};

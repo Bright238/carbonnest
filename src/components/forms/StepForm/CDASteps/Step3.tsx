@@ -25,9 +25,7 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-         SECTION B: CDA DATA ENTRY AND INFORMATION MANAGEMENT
-        </Typography.Title>
+        <Typography.Title level={4}>SECTION B: CDA DATA ENTRY AND INFORMATION MANAGEMENT</Typography.Title>
         <Typography.Title level={5}>
           Question 1. Has the CDA reviewed all forms from the CWACs for completeness?
         </Typography.Title>
@@ -89,7 +87,6 @@ export const Step3: React.FC<Step2Props> = ({ handleChange }) => {
       <NarrowFormItem name="storesDocumentsCommentQ6" label={t('Response')}>
         <S.StyledTextArea />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

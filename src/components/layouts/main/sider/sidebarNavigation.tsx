@@ -31,19 +31,19 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
         title: 'common.mis-dashboard',
         key: 'mis-dashboard',
         url: '/',
-        icon: <DashboardOutlined />
+        icon: <DashboardOutlined />,
       },
       {
         title: 'My Profile',
         key: 'households-register',
         url: '/profile/personal-info',
-        icon: <UserOutlined />
+        icon: <UserOutlined />,
       },
       {
         title: 'Marketplace',
         key: 'vcas-register',
         url: '/biochar-projects-marketplace',
-        icon: <ProjectOutlined />
+        icon: <ProjectOutlined />,
       },
     ],
   },
@@ -52,5 +52,5 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
     key: 'medical-dashboard',
     url: '/users-management-portal',
     icon: <UserOutlined />,
-  }
+  },
 ];

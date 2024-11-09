@@ -69,12 +69,8 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          SECTION D: SERVICES AND REFERRAL
-        </Typography.Title>
-        <Typography.Title level={5}>
-          Question 1: How many services did you provide?
-        </Typography.Title>
+        <Typography.Title level={4}>SECTION D: SERVICES AND REFERRAL</Typography.Title>
+        <Typography.Title level={5}>Question 1: How many services did you provide?</Typography.Title>
       </Dragger>
       <NarrowFormItem name="storesProcessesCommentQ1" label={t('Response')}>
         <S.StyledTextArea />
@@ -82,7 +78,8 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
 
       <Dragger>
         <Typography.Title level={4}>
-          Question 2: What type of services did you provide over the past month? (Probe the types of services: HIV, nutrition, counseling, etc.)
+          Question 2: What type of services did you provide over the past month? (Probe the types of services: HIV,
+          nutrition, counseling, etc.)
         </Typography.Title>
       </Dragger>
       <DynamicForm />
@@ -92,7 +89,8 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
 
       <Dragger>
         <Typography.Title level={4}>
-          Question 3: How many referrals did you make that successfully received a service? Are these updated in the follow up plan?
+          Question 3: How many referrals did you make that successfully received a service? Are these updated in the
+          follow up plan?
         </Typography.Title>
       </Dragger>
       <DynamicForm />
@@ -102,7 +100,8 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
 
       <Dragger>
         <Typography.Title level={4}>
-          Question 4: Did you make a follow up to ensure that the VCA received the service(s) for which they were referred?
+          Question 4: Did you make a follow up to ensure that the VCA received the service(s) for which they were
+          referred?
         </Typography.Title>
       </Dragger>
       <br />
@@ -123,7 +122,6 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       <NarrowFormItem name="pendingCases" label={t('Response')}>
         <S.StyledTextArea />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

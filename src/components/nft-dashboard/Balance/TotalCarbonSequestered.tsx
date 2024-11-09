@@ -61,7 +61,6 @@ export const TotalCarbonSequestered: React.FC = () => {
 
   return (
     <BaseRow>
-
       <BaseCol span={24}>
         <NFTCard isSider>
           <BaseRow gutter={[30, 30]}>
@@ -69,24 +68,20 @@ export const TotalCarbonSequestered: React.FC = () => {
               <BaseRow gutter={[14, 14]}>
                 <BaseCol span={24}>
                   <BaseCol span={24}>
-                    <S.TitleText level={2}>
-                      {t('My total carbon sales')}
-                    </S.TitleText>
+                    <S.TitleText level={2}>{t('My total carbon sales')}</S.TitleText>
                   </BaseCol>
 
                   {/* Inline row for 80 tons and earnings */}
-                  <BaseRow 
-                    gutter={[20, 0]} 
+                  <BaseRow
+                    gutter={[20, 0]}
                     style={{
-                      display: 'flex', 
+                      display: 'flex',
                       justifyContent: 'space-between',
-                      flexDirection: window.innerWidth > 768 ? 'row' : 'column'
+                      flexDirection: window.innerWidth > 768 ? 'row' : 'column',
                     }}
                   >
                     <BaseCol>
-                      <S.TitleBalanceText level={3}>
-                        80 t CO₂e
-                      </S.TitleBalanceText>
+                      <S.TitleBalanceText level={3}>80 t CO₂e</S.TitleBalanceText>
                     </BaseCol>
                   </BaseRow>
                 </BaseCol>

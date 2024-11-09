@@ -123,19 +123,20 @@ export const getTrendingActivities = (): Promise<TrendingActivity[]> => {
           title: 'TownYTraveler',
           owner: '@akura',
           image:
-            process.env.REACT_APP_ASSETS_BUCKET + '/ACHIEVE - MIS PMP-activity/milad-fakurian-bMSA5-tLFao-unsplash_js8utz.webp',
-          avatar:
             process.env.REACT_APP_ASSETS_BUCKET +
-            '/salvatore-andrea-santacroce-wGICoyAhEs4-unsplash_dfo8do.webp',
+            '/ACHIEVE - MIS PMP-activity/milad-fakurian-bMSA5-tLFao-unsplash_js8utz.webp',
+          avatar: process.env.REACT_APP_ASSETS_BUCKET + '/salvatore-andrea-santacroce-wGICoyAhEs4-unsplash_dfo8do.webp',
           usd_value: 1045,
         },
         {
           title: 'TownYTraveler',
           owner: '@akura',
           image:
-            process.env.REACT_APP_ASSETS_BUCKET + '/ACHIEVE - MIS PMP-activity/javier-miranda-xB2XP29gn10-unsplash_klwx4d.webp',
+            process.env.REACT_APP_ASSETS_BUCKET +
+            '/ACHIEVE - MIS PMP-activity/javier-miranda-xB2XP29gn10-unsplash_klwx4d.webp',
           avatar:
-            process.env.REACT_APP_ASSETS_BUCKET + '/ACHIEVE - MIS PMP-activity/simon-lee-hbFKxsIqclc-unsplash_vcv07z.webp',
+            process.env.REACT_APP_ASSETS_BUCKET +
+            '/ACHIEVE - MIS PMP-activity/simon-lee-hbFKxsIqclc-unsplash_vcv07z.webp',
           usd_value: 1045,
         },
       ]);

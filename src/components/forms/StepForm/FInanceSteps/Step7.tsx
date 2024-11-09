@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -45,29 +45,22 @@ export const Step7: React.FC<Step7Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          The Office should have Two Panels. Panel A and Panel B
-        </Typography.Title>
-        <HighlightedQuestion>
-          Do the Bank mandates have Panel A and Panel B signatories?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Fully signed and approved Bank Mandates.
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Review the Bank Mandates.
-        </Typography>
+        <Typography.Title level={4}>The Office should have Two Panels. Panel A and Panel B</Typography.Title>
+        <HighlightedQuestion>Do the Bank mandates have Panel A and Panel B signatories?</HighlightedQuestion>
+        <Typography>Indicator: Fully signed and approved Bank Mandates.</Typography>
+        <Typography>Source of Information/Means of Verification: Review the Bank Mandates.</Typography>
       </Dragger>
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="bankMandatesSignatoriesResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('bankMandatesSignatoriesResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -75,7 +68,7 @@ export const Step7: React.FC<Step7Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="bankMandatesSignatoriesComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('bankMandatesSignatoriesComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('bankMandatesSignatoriesComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -85,23 +78,23 @@ export const Step7: React.FC<Step7Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Are the signatories segregated into Accounting and non-accounting staff?
         </HighlightedQuestion>
+        <Typography>Indicator: Fully signed and approved Bank Mandates.</Typography>
         <Typography>
-          Indicator: Fully signed and approved Bank Mandates.
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Verify the staff position of the signatories on the Bank Mandates.
+          Source of Information/Means of Verification: Verify the staff position of the signatories on the Bank
+          Mandates.
         </Typography>
       </Dragger>
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="signatoriesSegregatedResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('signatoriesSegregatedResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -109,9 +102,8 @@ export const Step7: React.FC<Step7Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="signatoriesSegregatedComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('signatoriesSegregatedComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('signatoriesSegregatedComment', e.target.value)} />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

@@ -56,17 +56,13 @@ export const TotalEarning: React.FC = () => {
 
       <BaseCol span={24}>
         <BaseCol>
-          <S.Text>
-            {getCurrencyPrice(formatNumberWithCommas(totalEarning.total), CurrencyTypeEnum.ZMW, true)}
-          </S.Text>
+          <S.Text>{getCurrencyPrice(formatNumberWithCommas(totalEarning.total), CurrencyTypeEnum.ZMW, true)}</S.Text>
         </BaseCol>
 
         <BaseCol flex={1}>
           <TotalEarningChart xAxisData={days} earningData={totalEarningData} />
         </BaseCol>
-
       </BaseCol>
     </>
-
   );
 };

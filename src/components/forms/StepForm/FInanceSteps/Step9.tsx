@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -45,15 +45,9 @@ export const Step9: React.FC<Step9Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          Standard:All accountable documents should be under lock and key
-        </Typography.Title>
-        <HighlightedQuestion>
-          Are all accountable documents kept under lock and key?
-        </HighlightedQuestion>
-        <Typography.Text strong>
-          Indicator: Availability of the safe and documents kept in the safe.
-        </Typography.Text>
+        <Typography.Title level={4}>Standard:All accountable documents should be under lock and key</Typography.Title>
+        <HighlightedQuestion>Are all accountable documents kept under lock and key?</HighlightedQuestion>
+        <Typography.Text strong>Indicator: Availability of the safe and documents kept in the safe.</Typography.Text>
         <Typography.Text>
           Source of Information: Physical inspection of the safe and documents inside the safe.
         </Typography.Text>
@@ -61,13 +55,14 @@ export const Step9: React.FC<Step9Props> = ({ handleChange }) => {
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="accountableDocumentsLockedResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('accountableDocumentsLockedResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -75,19 +70,15 @@ export const Step9: React.FC<Step9Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="accountableDocumentsLockedComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('accountableDocumentsLockedComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('accountableDocumentsLockedComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <Typography.Title level={4}>
           Standard: The register of Accountable Document should be maintained
         </Typography.Title>
-        <HighlightedQuestion>
-          Is the Accountable documents register available?
-        </HighlightedQuestion>
-        <Typography.Text strong>
-          Indicator: Availability of the accountable document register.
-        </Typography.Text>
+        <HighlightedQuestion>Is the Accountable documents register available?</HighlightedQuestion>
+        <Typography.Text strong>Indicator: Availability of the accountable document register.</Typography.Text>
         <Typography.Text>
           Source of Information: Verify availability and completeness of the accountable documents register.
         </Typography.Text>
@@ -95,13 +86,14 @@ export const Step9: React.FC<Step9Props> = ({ handleChange }) => {
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="accountableDocumentsRegisterResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('accountableDocumentsRegisterResponse', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -109,7 +101,7 @@ export const Step9: React.FC<Step9Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="accountableDocumentsRegisterComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('accountableDocumentsRegisterComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('accountableDocumentsRegisterComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -122,20 +114,19 @@ export const Step9: React.FC<Step9Props> = ({ handleChange }) => {
         <Typography.Text strong>
           Indicator: Availability of the officer appointed to look after all accountable documents.
         </Typography.Text>
-        <Typography.Text>
-          Source of Information: Interview appointed officer.
-        </Typography.Text>
+        <Typography.Text>Source of Information: Interview appointed officer.</Typography.Text>
       </Dragger>
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="officerAccountableDocumentsResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('officerAccountableDocumentsResponse', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -143,9 +134,8 @@ export const Step9: React.FC<Step9Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="officerAccountableDocumentsComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('officerAccountableDocumentsComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('officerAccountableDocumentsComment', e.target.value)} />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

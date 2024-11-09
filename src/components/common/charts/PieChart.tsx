@@ -12,8 +12,6 @@ interface PieChartProps extends BaseChartProps {
   showLegend?: boolean;
 }
 
-
-
 export const PieChart: React.FC<PieChartProps> = ({ option, data, name, showLegend, ...props }) => {
   const theme = useAppSelector((state) => state.theme.theme);
 

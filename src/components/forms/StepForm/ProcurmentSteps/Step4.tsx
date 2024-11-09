@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -51,18 +51,10 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <StandardTitle level={4}>
-          Procurement Planning
-        </StandardTitle>
-        <HighlightedQuestion>
-          1: Does the office have an approved Procurement plan?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Presence of an approved Procurement Plan
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Procurement Plan (hard or soft copy)
-        </Typography>
+        <StandardTitle level={4}>Procurement Planning</StandardTitle>
+        <HighlightedQuestion>1: Does the office have an approved Procurement plan?</HighlightedQuestion>
+        <Typography>Indicator: Presence of an approved Procurement Plan</Typography>
+        <Typography>Source of Information/Means of Verification: Procurement Plan (hard or soft copy)</Typography>
       </Dragger>
 
       <Form.Item
@@ -75,7 +67,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementPlanningQ1Response', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -84,21 +76,14 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementPlanningQ1Comment" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementPlanningQ1Comment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementPlanningQ1Comment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <HighlightedQuestion>
-          2: Is the procurement plan in line with the approved budget?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Alignment between Procurement Plan and approved budget
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Copies of the budget and procurement plan
-        </Typography>
+        <HighlightedQuestion>2: Is the procurement plan in line with the approved budget?</HighlightedQuestion>
+        <Typography>Indicator: Alignment between Procurement Plan and approved budget</Typography>
+        <Typography>Source of Information/Means of Verification: Copies of the budget and procurement plan</Typography>
       </Dragger>
-
 
       <Form.Item
         name="procurementPlanningQ2Response"
@@ -110,7 +95,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementPlanningQ2Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -119,19 +104,13 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementPlanningQ2Comment" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementPlanningQ2Comment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementPlanningQ2Comment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <HighlightedQuestion>
-          3: Are all procurements undertaken drawn from the procurement plan?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: All procurements should be part of the Procurement Plan
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: List of procured items during the period
-        </Typography>
+        <HighlightedQuestion>3: Are all procurements undertaken drawn from the procurement plan?</HighlightedQuestion>
+        <Typography>Indicator: All procurements should be part of the Procurement Plan</Typography>
+        <Typography>Source of Information/Means of Verification: List of procured items during the period</Typography>
       </Dragger>
 
       <Form.Item
@@ -144,7 +123,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementPlanningQ3Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -153,16 +132,14 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementPlanningQ3Comment" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementPlanningQ3Comment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementPlanningQ3Comment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <HighlightedQuestion>
           4: Is the procurement plan revised to include additional approved procurements?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Inclusion of new purchases in the revised Procurement Plan
-        </Typography>
+        <Typography>Indicator: Inclusion of new purchases in the revised Procurement Plan</Typography>
         <Typography>
           Source of Information/Means of Verification: List of procured items not in the initial procurement plan
         </Typography>
@@ -178,7 +155,7 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('procurementPlanningQ4Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -187,9 +164,8 @@ export const Step4: React.FC<Step2Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="procurementPlanningQ4Comment" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('procurementPlanningQ4Comment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('procurementPlanningQ4Comment', e.target.value)} />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

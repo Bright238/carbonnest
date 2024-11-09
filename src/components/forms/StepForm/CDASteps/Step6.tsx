@@ -41,30 +41,22 @@ export const Step6: React.FC<Step2Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          AGREED NEXT STEPS
-        </Typography.Title>
-        <Typography.Title level={5}>
-          Please indicate in the details box below.
-        </Typography.Title>
+        <Typography.Title level={4}>AGREED NEXT STEPS</Typography.Title>
+        <Typography.Title level={5}>Please indicate in the details box below.</Typography.Title>
       </Dragger>
       <NarrowFormItem name="agreedNextSteps" label={t('Provide details')}>
         <S.StyledTextArea />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          SUPERVISORS OVERALL REMARKS
-        </Typography.Title>
+        <Typography.Title level={4}>SUPERVISORS OVERALL REMARKS</Typography.Title>
       </Dragger>
       <NarrowFormItem name="supervisorOverallRemarks" label={t('Provide details')}>
         <S.StyledTextArea />
       </NarrowFormItem>
       <br />
-      <Typography.Title level={5}>
-        Full names of Supervisor
-      </Typography.Title>
-      <Input style={{ width: "400px" }} />
+      <Typography.Title level={5}>Full names of Supervisor</Typography.Title>
+      <Input style={{ width: '400px' }} />
       <br />
       <br />
       <SignatureCard title="Signature">
@@ -76,17 +68,12 @@ export const Step6: React.FC<Step2Props> = ({ handleChange }) => {
       </SignatureCard>
       <br />
       <br />
-      <Typography.Title level={5}>
-        Full names of Community Development Assistant (CDA)
-      </Typography.Title>
-      <Input style={{ width: "400px" }} />
+      <Typography.Title level={5}>Full names of Community Development Assistant (CDA)</Typography.Title>
+      <Input style={{ width: '400px' }} />
       <br />
       <br />
       <SignatureCard title="Signature">
-        <SignatureCanvas
-          ref={cdaSignatureRef}
-          canvasProps={{ width: 500, height: 200, className: 'sigCanvas' }}
-        />
+        <SignatureCanvas ref={cdaSignatureRef} canvasProps={{ width: 500, height: 200, className: 'sigCanvas' }} />
         <Button onClick={() => clearSignature(cdaSignatureRef)}>Clear Signature</Button>
       </SignatureCard>
     </S.FormContent>

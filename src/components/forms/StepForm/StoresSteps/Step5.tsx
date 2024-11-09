@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -39,21 +39,15 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          Stores Processes
-        </Typography.Title>
+        <Typography.Title level={4}>Stores Processes</Typography.Title>
         <Typography.Title level={4}>
           Standard 1: Should ensure that prices on supplier invoices are matched with contracts/Local purchase orders
         </Typography.Title>
         <HighlightedQuestion>
           Question: Are prices on supplier invoices matched with contracts/Local purchase orders?
         </HighlightedQuestion>
-        <Typography>
-          Indicator:Physical check of the LPO and the suppliers invoice
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: check the LPOs and Invoices
-        </Typography>
+        <Typography>Indicator:Physical check of the LPO and the suppliers invoice</Typography>
+        <Typography>Source of Information/Means of Verification: check the LPOs and Invoices</Typography>
       </Dragger>
 
       <Form.Item
@@ -66,7 +60,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesProcessesQ1Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -75,22 +69,14 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesProcessesCommentQ1" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesProcessesCommentQ1', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesProcessesCommentQ1', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
-        <Typography.Title level={4}>
-          Standard 2: Goods Received Notes should be matched against orders
-        </Typography.Title>
-        <HighlightedQuestion>
-          Question: Are Goods Received Notes matched against orders?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical check of the GRN and LPO
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: check the GRN and LPO
-        </Typography>
+        <Typography.Title level={4}>Standard 2: Goods Received Notes should be matched against orders</Typography.Title>
+        <HighlightedQuestion>Question: Are Goods Received Notes matched against orders?</HighlightedQuestion>
+        <Typography>Indicator: Physical check of the GRN and LPO</Typography>
+        <Typography>Source of Information/Means of Verification: check the GRN and LPO</Typography>
       </Dragger>
 
       <Form.Item
@@ -103,7 +89,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesProcessesQ2Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -112,7 +98,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesProcessesCommentQ2" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesProcessesCommentQ2', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesProcessesCommentQ2', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -122,9 +108,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Question: Are Goods Received Notes completed by authorized stores officer?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical check of signatures and titles
-        </Typography>
+        <Typography>Indicator: Physical check of signatures and titles</Typography>
         <Typography>
           Source of Information/Means of Verification: Check the signatures and titles on the documents
         </Typography>
@@ -140,7 +124,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesProcessesQ3Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -149,7 +133,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesProcessesCommentQ3" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesProcessesCommentQ3', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesProcessesCommentQ3', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -159,9 +143,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Question: Are procured items requisitioned from Stores and issued by a stores officer?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical check of signatures and titles
-        </Typography>
+        <Typography>Indicator: Physical check of signatures and titles</Typography>
         <Typography>
           Source of Information/Means of Verification: Check the signatures and titles on the documents
         </Typography>
@@ -177,7 +159,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesProcessesQ4Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -186,7 +168,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesProcessesCommentQ4" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesProcessesCommentQ4', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesProcessesCommentQ4', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -196,12 +178,8 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Question: Are Stores Requisitions approved by the Head of department before issuance of goods?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical check of signatures and titles
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check the signatures and titles
-        </Typography>
+        <Typography>Indicator: Physical check of signatures and titles</Typography>
+        <Typography>Source of Information/Means of Verification: Check the signatures and titles</Typography>
       </Dragger>
 
       <Form.Item
@@ -214,7 +192,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesProcessesQ5Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -223,7 +201,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesProcessesCommentQ5" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesProcessesCommentQ5', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesProcessesCommentQ5', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -233,12 +211,8 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Question: Are Stock cards/bin cards updated whenever there's stock movement?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical check of bin cards
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check the bin cards
-        </Typography>
+        <Typography>Indicator: Physical check of bin cards</Typography>
+        <Typography>Source of Information/Means of Verification: Check the bin cards</Typography>
       </Dragger>
 
       <Form.Item
@@ -251,7 +225,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesProcessesQ6Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -260,7 +234,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesProcessesCommentQ6" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesProcessesCommentQ6', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesProcessesCommentQ6', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -270,12 +244,8 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Question: Is stock taking conducted quarterly in collaboration with independent staff?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical check of signed bin cards
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check the signed bin cards
-        </Typography>
+        <Typography>Indicator: Physical check of signed bin cards</Typography>
+        <Typography>Source of Information/Means of Verification: Check the signed bin cards</Typography>
       </Dragger>
 
       <Form.Item
@@ -288,7 +258,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesProcessesQ7Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -297,22 +267,19 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesProcessesCommentQ7" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesProcessesCommentQ7', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesProcessesCommentQ7', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <Typography.Title level={4}>
-          Standard 8: Physical counts must be compared to stock records and discrepancies identified must be recorded &  authorities informed
+          Standard 8: Physical counts must be compared to stock records and discrepancies identified must be recorded &
+          authorities informed
         </Typography.Title>
         <HighlightedQuestion>
           Question: Are physical counts compared with stock records, reconciled and reported?
         </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical check of signed bin cards
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check the signed bin cards
-        </Typography>
+        <Typography>Indicator: Physical check of signed bin cards</Typography>
+        <Typography>Source of Information/Means of Verification: Check the signed bin cards</Typography>
       </Dragger>
 
       <Form.Item
@@ -325,7 +292,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesProcessesQ8Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -334,22 +301,16 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesProcessesCommentQ8" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesProcessesCommentQ8', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesProcessesCommentQ8', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <Typography.Title level={4}>
           Standard 9: Should ensure safe & secure environment for goods against heat, water & pilferage
         </Typography.Title>
-        <HighlightedQuestion>
-          Question: Are goods safely stored?
-        </HighlightedQuestion>
-        <Typography>
-          Indicator: Physical check of the environment for the goods
-        </Typography>
-        <Typography>
-          Source of Information/Means of Verification: Check the environment
-        </Typography>
+        <HighlightedQuestion>Question: Are goods safely stored?</HighlightedQuestion>
+        <Typography>Indicator: Physical check of the environment for the goods</Typography>
+        <Typography>Source of Information/Means of Verification: Check the environment</Typography>
       </Dragger>
 
       <Form.Item
@@ -362,7 +323,7 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
           onChange={(value) => handleChange('storesProcessesQ9Response', value)}
           defaultValue="N/A"
         >
-          {dropdownOptions.map(option => (
+          {dropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -371,9 +332,8 @@ export const Step5: React.FC<Step5Props> = ({ handleChange }) => {
       </Form.Item>
 
       <NarrowFormItem name="storesProcessesCommentQ9" label={t('Comments (optional)')}>
-      <TextArea onChange={(e) => handleChange('storesProcessesCommentQ9', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('storesProcessesCommentQ9', e.target.value)} />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };

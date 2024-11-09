@@ -9,7 +9,7 @@ const { TextArea } = Input;
 const { Option } = Select;
 
 const NarrowFormItem = styled(Form.Item)`
-    width: 400px !important; 
+  width: 400px !important;
 `;
 
 const HighlightedQuestion = styled.div`
@@ -45,29 +45,22 @@ export const Step10: React.FC<Step10Props> = ({ handleChange }) => {
   return (
     <S.FormContent>
       <Dragger>
-        <Typography.Title level={4}>
-          Standard: Spot checks should be done quarterly
-        </Typography.Title>
-        <HighlightedQuestion>
-          Has the district been conducting quarterly spot checks?
-        </HighlightedQuestion>
-        <Typography.Text strong>
-          Indicator: Activity Reports done on spot checks.
-        </Typography.Text>
-        <Typography.Text>
-          Source of Information: Review of activity reports.
-        </Typography.Text>
+        <Typography.Title level={4}>Standard: Spot checks should be done quarterly</Typography.Title>
+        <HighlightedQuestion>Has the district been conducting quarterly spot checks?</HighlightedQuestion>
+        <Typography.Text strong>Indicator: Activity Reports done on spot checks.</Typography.Text>
+        <Typography.Text>Source of Information: Review of activity reports.</Typography.Text>
       </Dragger>
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="districtQuarterlySpotChecksResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('districtQuarterlySpotChecksResponse', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -75,7 +68,7 @@ export const Step10: React.FC<Step10Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="districtQuarterlySpotChecksComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('districtQuarterlySpotChecksComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('districtQuarterlySpotChecksComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -88,20 +81,19 @@ export const Step10: React.FC<Step10Props> = ({ handleChange }) => {
         <Typography.Text strong>
           Indicator: Activity Reports done on monitoring of PPMs, CWACs, and beneficiaries.
         </Typography.Text>
-        <Typography.Text>
-          Source of Information: Review of activity reports.
-        </Typography.Text>
+        <Typography.Text>Source of Information: Review of activity reports.</Typography.Text>
       </Dragger>
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="districtQuarterlyMonitoringResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('districtQuarterlyMonitoringResponse', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -109,33 +101,30 @@ export const Step10: React.FC<Step10Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="districtQuarterlyMonitoringComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('districtQuarterlyMonitoringComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('districtQuarterlyMonitoringComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
         <Typography.Title level={4}>
           Standard: The districts should be monitored quarterly on all Community Development programs
         </Typography.Title>
-        <HighlightedQuestion>
-          Has the District been monitored by the Province quarterly this year?
-        </HighlightedQuestion>
+        <HighlightedQuestion>Has the District been monitored by the Province quarterly this year?</HighlightedQuestion>
         <Typography.Text strong>
           Indicator: Activity Reports done on monitoring of PPMs, CWACs, and beneficiaries from the provincial office.
         </Typography.Text>
-        <Typography.Text>
-          Source of Information: Review of activity reports.
-        </Typography.Text>
+        <Typography.Text>Source of Information: Review of activity reports.</Typography.Text>
       </Dragger>
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="districtQuarterlyMonitoringProvinceResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('districtQuarterlyMonitoringProvinceResponse', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -143,7 +132,7 @@ export const Step10: React.FC<Step10Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="districtQuarterlyMonitoringProvinceComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('districtQuarterlyMonitoringProvinceComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('districtQuarterlyMonitoringProvinceComment', e.target.value)} />
       </NarrowFormItem>
 
       <Dragger>
@@ -153,23 +142,20 @@ export const Step10: React.FC<Step10Props> = ({ handleChange }) => {
         <HighlightedQuestion>
           Was quality assurance conducted on all scale-up activities and community trainings?
         </HighlightedQuestion>
-        <Typography.Text strong>
-          Indicator: Activity Reports done on quality assurance activities.
-        </Typography.Text>
-        <Typography.Text>
-          Source of Information: Review of activity reports.
-        </Typography.Text>
+        <Typography.Text strong>Indicator: Activity Reports done on quality assurance activities.</Typography.Text>
+        <Typography.Text>Source of Information: Review of activity reports.</Typography.Text>
       </Dragger>
       <Form.Item
         rules={[{ required: true, message: t('This is a required field!') }]}
         name="qualityAssuranceScaleUpActivitiesResponse"
-        label={t('Preliminary Response (Self Assessment)')}>
+        label={t('Preliminary Response (Self Assessment)')}
+      >
         <Select
           style={{ width: '400px' }}
           onChange={(value) => handleChange('qualityAssuranceScaleUpActivitiesResponse', value)}
           defaultValue="N/A"
         >
-          {standardBasedDropdownOptions.map(option => (
+          {standardBasedDropdownOptions.map((option) => (
             <Option key={option.value} value={option.value}>
               {option.text}
             </Option>
@@ -177,9 +163,8 @@ export const Step10: React.FC<Step10Props> = ({ handleChange }) => {
         </Select>
       </Form.Item>
       <NarrowFormItem name="qualityAssuranceScaleUpActivitiesComment" label={t('Comments (optional)')}>
-        <TextArea onChange={(e) => handleChange('qualityAssuranceScaleUpActivitiesComment', e.target.value)}/>
+        <TextArea onChange={(e) => handleChange('qualityAssuranceScaleUpActivitiesComment', e.target.value)} />
       </NarrowFormItem>
-
     </S.FormContent>
   );
 };
