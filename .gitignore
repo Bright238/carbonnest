@@ -22,10 +22,6 @@
 /coverage
 /coverage
 
-# production
-/build
-/build
-
 # misc
 .DS_Store
 .env
@@ -39,15 +35,3 @@ yarn-error.log*
 
 # IDE files
 .idea
-
-# generated files
-/public/themes
-
-# IDE files
-.idea
-
-# generated files
-/public/themes
-
-# Local Netlify folder
-.netlify
