@@ -43,136 +43,42 @@ export const StoresStepForm = () => {
   const { t } = useTranslation();
 
   const [fields, setFields] = useState([
-    { name: 'storesGuidelinesQ1', value: '1. Does the office have the Stores Manual?' },
-    { name: 'storesGuidelinesQ1Response', value: '' },
-    { name: 'storesCommentQ1', value: '' },
-
-    { name: 'storesGuidelinesQ2', value: '2. Does the office have the Public Finance Management Act of 2018?' },
-    { name: 'storesGuidelinesQ2Response', value: '' },
-    { name: 'storesCommentQ2', value: '' },
-
-    { name: 'storesGuidelinesQ3', value: '3. Does the office have the Public Procurement Act (PPA) of 2020?' },
-    { name: 'storesGuidelinesQ3Response', value: '' },
-    { name: 'storesCommentQ3', value: '' },
-    // Stores - Legislation and guidelines end
-
-    // Stores documents start
-    { name: 'storesDocumentQ1', value: 'Q1. Do you have Goods Received Note book?' },
-    { name: 'storesDocumentsQ1Response', value: '' },
-    { name: 'storesDocumentsCommentQ1', value: '' },
-
-    { name: 'storesDocumentQ2', value: 'Q2. Do you have Bin Cards?' },
-    { name: 'storesDocumentsQ2Response', value: '' },
-    { name: 'storesDocumentsCommentQ2', value: '' },
-
-    { name: 'storesDocumentQ3', value: 'Q3. Do you have Stores Ledger?' },
-    { name: 'storesDocumentsQ3Response', value: '' },
-    { name: 'storesDocumentsCommentQ3', value: '' },
-
-    { name: 'storesDocumentQ4', value: 'Q4. Do you have Goods Issue Voucher?' },
-    { name: 'storesDocumentsQ4Response', value: '' },
-    { name: 'storesDocumentsCommentQ4', value: '' },
-
-    { name: 'storesDocumentQ5', value: 'Q5. Do you have Stores requisitions?' },
-    { name: 'storesDocumentsQ5Response', value: '' },
-    { name: 'storesDocumentsCommentQ5', value: '' },
-
-    { name: 'storesDocumentQ6', value: 'Q6. Do you have Asset Register' },
-    { name: 'storesDocumentsQ6Response', value: '' },
-    { name: 'storesDocumentsCommentQ6', value: '' },
-    // Stores documents end
-
-    // Stores staff start
-    {
-      name: 'storesStaffQ1',
-      value: 'Q1. Are staff managing stock and inventory oriented in Asset Management & Stores guidelines?',
-    },
-    { name: 'storesStaffQ1Response', value: '' },
-    { name: 'storesStaffCommentQ1', value: '' },
-
-    {
-      name: 'storesStaffQ2',
-      value: 'Q2. Are staff managing stores independent of procurement within the procuring entity?',
-    },
-    { name: 'storesStaffQ2Response', value: '' },
-    { name: 'storesStaffCommentQ2', value: '' },
-    // Stores staff end
-
-    // Stores Processes start
-    {
-      name: 'storesProcessesQ1',
-      value: 'Q1. Are prices on supplier invoices matched with contracts/Local purchase orders?',
-    },
-    { name: 'storesProcessesQ1Response', value: '' },
-    { name: 'storesProcessesCommentQ1', value: '' },
-
-    { name: 'storesProcessesQ2', value: 'Q2. Are Goods Received Notes matched against orders?' },
-    { name: 'storesProcessesQ2Response', value: '' },
-    { name: 'storesProcessesCommentQ2', value: '' },
-
-    { name: 'storesProcessesQ3', value: 'Q3. Are Goods Received Notes completed by authorized stores officer?' },
-    { name: 'storesProcessesQ3Response', value: '' },
-    { name: 'storesProcessesCommentQ3', value: '' },
-
-    {
-      name: 'storesProcessesQ4',
-      value: 'Q4. Are procured items requisitioned from Stores and issued by a stores officer?',
-    },
-    { name: 'storesProcessesQ4Response', value: '' },
-    { name: 'storesProcessesCommentQ4', value: '' },
-
-    {
-      name: 'storesProcessesQ5',
-      value: 'Q5. Are Stores Requisitions approved by the Head of department before issuance of goods?',
-    },
-    { name: 'storesProcessesQ5Response', value: '' },
-    { name: 'storesProcessesCommentQ5', value: '' },
-
-    { name: 'storesProcessesQ6', value: "Q6. Are Stock cards/bin cards updated whenever there's stock movement." },
-    { name: 'storesProcessesQ6Response', value: '' },
-    { name: 'storesProcessesCommentQ6', value: '' },
-
-    {
-      name: 'storesProcessesQ7',
-      value: 'Q7. Is stock taking conducted quarterly in collaboration with independent staff?',
-    },
-    { name: 'storesProcessesQ7Response', value: '' },
-    { name: 'storesProcessesCommentQ7', value: '' },
-
-    {
-      name: 'storesProcessesQ8',
-      value: 'Q8. Are physical counts compared with stock records, reconciled and reported?',
-    },
-    { name: 'storesProcessesQ8Response', value: '' },
-    { name: 'storesProcessesCommentQ8', value: '' },
-
-    { name: 'storesProcessesQ9', value: 'Q9. Are goods safely stored?' },
-    { name: 'storesProcessesQ9Response', value: '' },
-    { name: 'storesProcessesCommentQ9', value: '' },
-    // Stores Processes end
-
-    // Asset Management start
-    { name: 'storesAssetManagementQ1', value: 'Q1. Is an updated asset register maintained?' },
-    { name: 'storesAssetMgtQ1Response', value: '' },
-    { name: 'storesAssetManagementCommentQ1', value: '' },
-
-    {
-      name: 'storesAssetManagementQ2',
-      value:
-        'Q2. Does the Asset Register indicate date, item description, serial numbers,quantities, Year, value, location  & condition?',
-    },
-    { name: 'storesAssetMgtQ2Response', value: '' },
-    { name: 'storesAssetManagementCommentQ2', value: '' },
-
-    { name: 'storesAssetManagementQ3', value: 'Q3. Are all new items coded and included in the asset register?' },
-    { name: 'storesAssetMgtQ3Response', value: '' },
-    { name: 'storesAssetManagementCommentQ3', value: '' },
-
-    { name: 'storesAssetManagementQ4', value: 'Q4. Are Office Inventory Control cards maintained?' },
-    { name: 'storesAssetMgtQ4Response', value: '' },
-    { name: 'storesAssetManagementCommentQ4', value: '' },
-    // Asset Management end
-  ]);
+    // Biochar Production and Process
+    { name: 'biocharProductionQ1', value: '1. What type of biomass do you primarily use for producing biochar?' },
+    { name: 'biocharProductionQ1Response', value: '' },
+    { name: 'biocharProductionCommentQ1', value: '' },
+  
+    { name: 'biocharProductionQ2', value: '2. Do you keep records of the temperature and duration of your biochar production process?' },
+    { name: 'biocharProductionQ2Response', value: '' },
+    { name: 'biocharProductionCommentQ2', value: '' },
+  
+    // Carbon Sequestration and Soil Application
+    { name: 'carbonSequestrationQ1', value: '1. Have you observed any improvements in soil health since applying biochar?' },
+    { name: 'carbonSequestrationQ1Response', value: '' },
+    { name: 'carbonSequestrationCommentQ1', value: '' },
+  
+    { name: 'carbonSequestrationQ2', value: '2. Do you have a method to measure the amount of carbon sequestered?' },
+    { name: 'carbonSequestrationQ2Response', value: '' },
+    { name: 'carbonSequestrationCommentQ2', value: '' },
+  
+    // Project Tracking and Documentation
+    { name: 'projectTrackingQ1', value: '1. Do you keep records of the amount of biochar produced and applied?' },
+    { name: 'projectTrackingQ1Response', value: '' },
+    { name: 'projectTrackingCommentQ1', value: '' },
+  
+    { name: 'projectTrackingQ2', value: '2. Are you aware of any guidelines for biochar application?' },
+    { name: 'projectTrackingQ2Response', value: '' },
+    { name: 'projectTrackingCommentQ2', value: '' },
+  
+    // Impact and Benefits
+    { name: 'impactBenefitsQ1', value: '1. Have you noticed any increase in crop yield since applying biochar?' },
+    { name: 'impactBenefitsQ1Response', value: '' },
+    { name: 'impactBenefitsCommentQ1', value: '' },
+  
+    { name: 'impactBenefitsQ2', value: '2. How does biochar help with soil moisture or erosion management?' },
+    { name: 'impactBenefitsQ2Response', value: '' },
+    { name: 'impactBenefitsCommentQ2', value: '' },
+  ]);  
 
   const handleChange = (fieldName: string, value: any) => {
     setFields(fields.map((field) => (field.name === fieldName ? { ...field, value } : field)));
@@ -275,12 +181,12 @@ export const StoresStepForm = () => {
   };
 
   const steps = [
-    { title: t('Assessee Information') },
-    { title: t('Guidelines') },
-    { title: t('Stores documents') },
-    { title: t('Staff') },
-    { title: t('Stores Processes') },
-    { title: t('Asset Management') },
+    { title: t('Information') },
+    { title: t('Biochar Production and Process') },
+    // { title: t('Stores documents') },
+    // { title: t('Staff') },
+    // { title: t('Stores Processes') },
+    // { title: t('Asset Management') },
     { title: t('Submit') },
   ];
 
