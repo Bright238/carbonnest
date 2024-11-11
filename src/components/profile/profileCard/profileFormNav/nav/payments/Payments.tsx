@@ -37,6 +37,7 @@ export const Payments: React.FC = () => {
     days: totalEarning.timeline.map((item) => Dates.getDate(item.date).format('L')),
   }), [totalEarning]);
 
+  
   // Define the layout content with mobile responsiveness
   const content = useMemo(() => (
     <BaseRow gutter={[16, 30]}>
