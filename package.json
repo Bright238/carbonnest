@@ -81,15 +81,15 @@
     "workbox-streams": "^5.1.3"
   },
   "scripts": {
-    "start": "node api/server.js", 
-  "build": "yarn buildThemes && craco build",        
-  "vercel-build": "yarn buildThemes && craco build",  
-  "test": "craco test",
-  "eject": "craco eject",
-  "lint": "eslint \"*/**/*.{js,ts,tsx}\" --fix",
-  "lint:styles": "stylelint '*/**/*.{js,ts,tsx}'",
-  "prepare": "husky install",
-  "buildThemes": "lessc --js --clean-css=\"--s1 --advanced\" src/styles/themes/main.less public/themes/main.css"
+    "start": "yarn buildThemes && craco start",
+    "build": "yarn buildThemes && craco build",
+    "deploy": "yarn buildThemes && craco build && gh-pages -d build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "lint": "eslint \"*/**/*.{js,ts,tsx}\" --fix",
+    "lint:styles": "stylelint '*/**/*.{js,ts,tsx}'",
+    "prepare": "husky install",
+    "buildThemes": "lessc --js --clean-css=\"--s1 --advanced\" src/styles/themes/main.less public/themes/main.css"
   },
   "browserslist": [
     ">0.2%",
@@ -118,6 +118,7 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "gh-pages": "^6.2.0",
     "husky": "^6.0.0",
     "less": "^4.1.2",
     "less-plugin-clean-css": "^1.5.1",
@@ -148,5 +149,7 @@
     "admin-dashboard",
     "ant-design",
     "react"
-  ]
+  ],
+  "homepage": "https://altence.github.io/lightence-admin"
 }
+
