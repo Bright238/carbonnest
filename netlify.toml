@@ -1,4 +1,14 @@
+[build]
+  # Specify the folder that contains the production build output (the 'dist' folder)
+  publish = "dist"
+  
+  # Command to run to build the React app and output to 'dist'
+  command = "npm run build"
+
+  # Optional: specify a specific Node version (if needed)
+  # node_version = "16"
+
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
+  from = "/index.html"
+  to = "/"
   status = 200

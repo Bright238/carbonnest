@@ -90,7 +90,7 @@ export const Step1: React.FC<Step1Props> = ({ handleChange, form }) => {
 
   return (
     <S.FormContent>
-      <Typography.Title level={4}>{t('Assessment Information')}</Typography.Title>
+      <Typography.Title level={4}>{t('Information')}</Typography.Title>
 
       <NarrowFormItem
         name="date_of_assessment"
@@ -108,9 +108,9 @@ export const Step1: React.FC<Step1Props> = ({ handleChange, form }) => {
         <NarrowInput disabled />
       </NarrowFormItem>
 
-      <NarrowFormItem name="department" label={t('Department')}>
+      {/* <NarrowFormItem name="department" label={t('Department')}>
         <NarrowInput disabled />
-      </NarrowFormItem>
+      </NarrowFormItem> */}
 
       <NarrowFormItem label={t('List of District Participants')}>
         <DynamicForm ref={dynamicFormRef} form={form} handleChange={handleDynamicFormChange} />
