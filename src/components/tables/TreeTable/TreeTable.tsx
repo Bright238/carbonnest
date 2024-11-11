@@ -1,5 +1,4 @@
-// Import necessary dependencies
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { BaseTable } from '@app/components/common/BaseTable/BaseTable';
 import { BaseButton } from '@app/components/common/BaseButton/BaseButton';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +6,7 @@ import { Input, InputRef, Button, Space } from 'antd';
 import Highlighter from 'react-highlight-words';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 // Define your transaction type
 interface Transaction {
@@ -16,7 +16,7 @@ interface Transaction {
   credits_amount: number;
   price_per_credit: number;
   total_value: number;
-  transaction_date: string; // You can format this as needed
+  transaction_date: string;
 }
 
 const dummyTransactions: Transaction[] = [
@@ -29,39 +29,26 @@ const dummyTransactions: Transaction[] = [
     total_value: 50,
     transaction_date: '2024-10-31',
   },
-  {
-    transaction_id: 'TXN002',
-    seller_name: 'Bright Mafungautsi',
-    buyer_name: 'Daisy Johnson',
-    credits_amount: 200,
-    price_per_credit: 0.6,
-    total_value: 120,
-    transaction_date: '2024-10-30',
-  },
-  {
-    transaction_id: 'TXN003',
-    seller_name: 'Bright Mafungautsi',
-    buyer_name: 'Frank Wright',
-    credits_amount: 150,
-    price_per_credit: 0.55,
-    total_value: 82.5,
-    transaction_date: '2024-10-29',
-  },
-  {
-    transaction_id: 'TXN004',
-    seller_name: 'Bright Mafungautsi',
-    buyer_name: 'Hannah Smith',
-    credits_amount: 300,
-    price_per_credit: 0.7,
-    total_value: 210,
-    transaction_date: '2024-10-28',
-  },
+  // Other dummy transactions
 ];
 
 const initialPagination = {
   current: 1,
   pageSize: 100,
 };
+
+// Styled component for mobile responsiveness
+const ResponsiveTableWrapper = styled.div`
+  overflow-x: auto;
+  @media (max-width: 768px) {
+    .ant-table-cell {
+      font-size: 0.85rem; // Adjust font size for smaller screens
+    }
+    .ant-table-thead > tr > th {
+      white-space: nowrap;
+    }
+  }
+`;
 
 export const TreeTable: React.FC = () => {
   const { t } = useTranslation();
@@ -70,7 +57,7 @@ export const TreeTable: React.FC = () => {
     pagination: typeof initialPagination;
     loading: boolean;
   }>({
-    data: dummyTransactions, // Set initial data to dummy transactions
+    data: dummyTransactions,
     pagination: initialPagination,
     loading: false,
   });
@@ -79,6 +66,7 @@ export const TreeTable: React.FC = () => {
   const [searchedColumn, setSearchedColumn] = useState<string>('');
   const searchInput = useRef<InputRef>(null);
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ maxWidth: 768 }); // Define mobile view
 
   const handleSearch = (selectedKeys: string[], confirm: () => void, dataIndex: string) => {
     confirm();
@@ -171,13 +159,11 @@ export const TreeTable: React.FC = () => {
     },
     {
       title: t('Actions'),
-      width: '10%',
       dataIndex: '',
-      render: (_: any, record: TableDataItem) => (
+      render: (_: any, record: Transaction) => (
         <BaseButton
           type="ghost"
-          //  onClick={() =>
-          //   IDBTransaction(record.transaction_id)}
+          onClick={() => navigate(`/transaction/${record.transaction_id}`)}
         >
           {t('Print')}
         </BaseButton>
@@ -186,15 +172,15 @@ export const TreeTable: React.FC = () => {
   ];
 
   return (
-    <div>
+    <ResponsiveTableWrapper>
       <BaseTable
         columns={columns}
         dataSource={tableData.data}
         pagination={tableData.pagination}
         loading={tableData.loading}
-        scroll={{ x: 400, y: 400 }}
+        scroll={{ x: isMobile ? 900 : undefined }} // Enable horizontal scroll on mobile
       />
-    </div>
+    </ResponsiveTableWrapper>
   );
 };
 
