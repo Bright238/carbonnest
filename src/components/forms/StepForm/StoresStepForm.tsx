@@ -181,9 +181,9 @@ export const StoresStepForm = () => {
   };
 
   const steps = [
-    { title: t('Information') },
+    { title: t('Date of Submission') },
+    { title: t('Survey') },
     { title: t('Biochar Production and Process') },
-    // { title: t('Stores documents') },
     // { title: t('Staff') },
     // { title: t('Stores Processes') },
     // { title: t('Asset Management') },
@@ -194,9 +194,9 @@ export const StoresStepForm = () => {
     <Step1 key="1" handleChange={handleChange} form={form} />,
     <Step2 key="2" handleChange={handleChange} />,
     <Step3 key="3" handleChange={handleChange} />,
-    <Step4 key="4" handleChange={handleChange} />,
-    <Step5 key="5" handleChange={handleChange} />,
-    <Step6 key="6" handleChange={handleChange} />,
+    // <Step4 key="4" handleChange={handleChange} />,
+    // <Step5 key="5" handleChange={handleChange} />,
+    // <Step6 key="6" handleChange={handleChange} />,
     <Step9 key="9" formValues={fields} />,
   ];
 
