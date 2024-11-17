@@ -24,6 +24,7 @@ const UserManagementPage = React.lazy(() => import('@app/pages/UserManagementPag
 const MembersPage = React.lazy(() => import('@app/pages/MembersRegisterPage'));
 
 import ProfileLayout from '@app/components/profile/ProfileLayout';
+import { NewsFeed } from '../apps/newsFeed/NewsFeed';
 const PersonalInfoPage = React.lazy(() => import('@app/pages/PersonalInfoPage'));
 const CarbonSinkProfile = React.lazy(() => import('@app/pages/CarbonSinkProfile'));
 const SecuritySettingsPage = React.lazy(() => import('@app/pages/SecuritySettingsPage'));
@@ -158,6 +159,10 @@ export const AppRouter: React.FC = () => {
           <Route path="/users-management-portal" element={<UsersPortal />} />
           <Route path="visualization-dashboards" element={<SuperSetPageDashboards />} />
 
+          <Route path="apps">
+            <Route path="feed" element={<NewsFeed />} />
+          </Route>
+          
           <Route path="apps">
             <Route path="households-register" element={<HouseholdsRegister />} />
             <Route path="vcas-register" element={<VcasRegister />} />

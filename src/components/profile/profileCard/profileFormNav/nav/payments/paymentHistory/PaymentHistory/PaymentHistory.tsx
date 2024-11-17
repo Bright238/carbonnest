@@ -48,7 +48,7 @@ export const PaymentHistory: React.FC = () => {
           <S.ContentWrapper isEmptyHistory={history.length === 0}>
             {mobileOnly && (history.length > 0 ? payments : <S.Text>{t('profile.nav.payments.noHistory')}</S.Text>)}
 
-            {isTablet && <PaymentsTable payments={history} />}
+            {isTablet && <PaymentsTable />}
           </S.ContentWrapper>
         </BaseCol>
       </BaseRow>

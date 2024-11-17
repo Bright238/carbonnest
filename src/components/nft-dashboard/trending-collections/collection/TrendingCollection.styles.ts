@@ -92,7 +92,6 @@ export const Card = styled(NFTCard)<CardInternalProps>`
 
   &:hover {
     & {
-      background: ${(props) => `url(${props.$img})`};
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;

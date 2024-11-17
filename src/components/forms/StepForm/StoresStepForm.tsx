@@ -182,7 +182,7 @@ export const StoresStepForm = () => {
 
   const steps = [
     { title: t('Date of Submission') },
-    { title: t('Survey') },
+    { title: t('Monitoring and Verification') },
     { title: t('Biochar Production and Process') },
     // { title: t('Staff') },
     // { title: t('Stores Processes') },

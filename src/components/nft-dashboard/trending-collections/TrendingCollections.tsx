@@ -11,6 +11,7 @@ import { getTrendingActivities, TrendingActivity } from '@app/api/activity.api';
 import * as S from './TrendingCollections.styles';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
+import { TitleHeader } from '@app/components/apps/newsFeed/NewsFilter/NewsFilter.styles';
 
 export const TrendingCollections: React.FC = () => {
   const [trending, setTrending] = useState<TrendingActivity[]>([]);
@@ -41,6 +42,9 @@ export const TrendingCollections: React.FC = () => {
   return (
     <>
       <NFTCardHeader title={t('For Buyers')}>
+      <TitleHeader>
+      
+      </TitleHeader> <br />
         {isTabletOrHigher && (
           <BaseRow align="middle">
             <BaseCol>
@@ -68,7 +72,7 @@ export const TrendingCollections: React.FC = () => {
         {isTabletOrHigher && trending.length > 0 && (
           <BaseCarousel
             ref={sliderRef}
-            slidesToShow={3}
+            slidesToShow={10}
             responsive={[
               {
                 breakpoint: 1900,
