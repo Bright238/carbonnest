@@ -11,6 +11,12 @@ dayjs.extend(isBetween);
 export type AppDate = Dayjs;
 
 export class Dates {
+  static now() {
+    throw new Error('Method not implemented.');
+  }
+  static now() {
+    throw new Error('Method not implemented.');
+  }
   static setLocale(locale: string): void {
     dayjs.locale(locale);
   }

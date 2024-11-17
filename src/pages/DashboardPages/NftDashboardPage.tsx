@@ -73,7 +73,7 @@ const MedicalDashboardPage: React.FC = () => {
             size="large"
             onClick={handleGetStarted}
           >
-            Get Started
+           Create Account
           </Button>
         </BaseCol>
       </BaseRow>
@@ -143,7 +143,7 @@ const MedicalDashboardPage: React.FC = () => {
               size="large"
               onClick={handleGetStarted}
             >
-              Get Started
+              Create Account
             </Button>
           </div>
 
