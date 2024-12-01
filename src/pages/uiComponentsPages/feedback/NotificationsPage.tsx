@@ -10,7 +10,6 @@ const NotificationsPage: React.FC = () => {
 
   return (
     <>
-      <PageTitle>{t('common.notification')}</PageTitle>
       <BaseCol>
         <S.Card title={t('notifications.basic')}>
           <BaseButton

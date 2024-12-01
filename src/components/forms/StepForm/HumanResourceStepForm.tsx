@@ -10,6 +10,7 @@ import { Step2 } from './HumanResourceSteps/Step2';
 import { Step3 } from './HumanResourceSteps/Step3';
 import { Step4 } from './HumanResourceSteps/Step4';
 import { Step9 } from './HumanResourceSteps/Step9';
+import { Divider, Typography } from 'antd';
 
 interface FormData {
   date_of_assessment: string;
@@ -286,6 +287,15 @@ export const HumanResourceStepForm = () => {
 
   return (
     <BaseForm form={form} onFinish={onFinish} initialValues={getInitialValues()}>
+      <Typography style={{ fontWeight: 'bold', fontSize: '25px' }}>
+        Biochar Project Tracker
+      </Typography>
+
+      <Divider style={{ margin: '1.5rem 0' }} />
+      <Typography style={{ fontSize: '16px', marginTop: '0.5rem' }}>
+        If prompted, please allow the form to record your location.
+      </Typography>
+      <Divider style={{ margin: '1.5rem 0' }} />
       <Steps size="small" current={current} items={steps} />
       <div>{formFieldsUi[current]}</div>
       <div style={{ display: 'flex', gap: '8px' }}>

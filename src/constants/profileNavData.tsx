@@ -1,4 +1,4 @@
-import { BellOutlined, DollarOutlined, SecurityScanOutlined, UploadOutlined, UserOutlined } from '@ant-design/icons';
+import { DollarOutlined, FileAddOutlined, InfoCircleOutlined, UploadOutlined, UserOutlined, VideoCameraAddOutlined, WarningOutlined } from '@ant-design/icons';
 import React from 'react';
 
 interface ProfileNavItem {
@@ -19,10 +19,10 @@ export const profileNavData: ProfileNavItem[] = [
   },
   {
     id: 2,
-    name: 'Carbon Trade Credits',
-    icon: <BellOutlined />,
-    color: 'error',
-    href: 'notifications',
+    name: 'Add Farmer Agreement Form',
+    icon: <InfoCircleOutlined />,
+    color: 'success',
+    href: 'farmer-agreement-form',
   },
   {
     id: 3,
@@ -33,16 +33,51 @@ export const profileNavData: ProfileNavItem[] = [
   },
   {
     id: 4,
-    name: 'Upload and Track Project',
+    name: 'Add Farm and Farmer Survey',
     icon: <UploadOutlined />,
     color: 'success',
-    href: 'upload',
+    href: 'farm-and-farmer-survery',
   },
   {
     id: 5,
-    name: 'profile.nav.securitySettings.title',
-    icon: <SecurityScanOutlined />,
+    name: 'Add Biochar Project Tracker',
+    icon: <FileAddOutlined />,
+    color: 'error',
+    href: 'biochar-project-tracker',
+  },
+  {
+    id: 6,
+    name: 'Add Farmer feedback',
+    icon: <UploadOutlined />,
     color: 'success',
-    href: 'security-settings',
+    href: 'farmer-feedback-form',
+  },
+  {
+    id: 7,
+    name: 'Add Traning Session',
+    icon: <VideoCameraAddOutlined />,
+    color: 'success',
+    href: 'biochar-training-session',
+  },
+  {
+    id: 8,
+    name: 'Add Time Tracking',
+    icon: <UploadOutlined />,
+    color: 'success',
+    href: 'farmer-agreement-form',
+  },
+  // {
+  //   id: 9,
+  //   name: 'Submit a sanction event',
+  //   icon: <FileAddOutlined />,
+  //   color: 'success',
+  //   href: 'farmer-agreement-form',
+  // },
+  {
+    id: 10,
+    name: 'Submit a complaint',
+    icon: <WarningOutlined />,
+    color: 'success',
+    href: 'farmer-agreement-form',
   },
 ];

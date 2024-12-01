@@ -94,7 +94,7 @@ export const Step1: React.FC<Step1Props> = ({ handleChange, form }) => {
 
       <NarrowFormItem
         name="date_of_assessment"
-        label={t('Date of Assessment')}
+        label={t('Date')}
         rules={[{ required: true, message: t('Date is a required field') }]}
       >
         <NarrowPicker format="DD-MM-YYYY" onChange={(date: any) => handleChange('date_of_assessment', date)} />
@@ -108,13 +108,59 @@ export const Step1: React.FC<Step1Props> = ({ handleChange, form }) => {
         <NarrowInput disabled />
       </NarrowFormItem>
 
-      <NarrowFormItem name="department" label={t('Department')}>
+      <NarrowFormItem name="village" label={t('Village')}>
         <NarrowInput disabled />
       </NarrowFormItem>
 
-      <NarrowFormItem label={t('List of District Participants')}>
+      {/* <NarrowFormItem label={t('List of District Participants')}>
         <DynamicForm ref={dynamicFormRef} form={form} handleChange={handleDynamicFormChange} />
+      </NarrowFormItem> */}
+
+      <NarrowFormItem name="activityType" label={t('Activity type')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <Typography>
+          Please select "Make" when recording the farmer making biochar and select
+          "Use" when recording the farmer using the biochar in the field.
+        </Typography>
+        <NarrowInput />
       </NarrowFormItem>
+
+      <NarrowFormItem name="verifierName" label={t('Name of Verifier')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <Typography>Please select the verifier recording the farmer activities.</Typography>
+        <NarrowInput />
+      </NarrowFormItem>
+
+      <NarrowFormItem name="farmerName" label={t('Name of Farmer')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <Typography>Please select the ID/farmer.  If you do not see your farmer in the list, please notify your Country Manager.</Typography>
+        <NarrowInput />
+      </NarrowFormItem>
+
+      <NarrowFormItem name="department" label={t('Location coordinates')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <Typography>***Please allow the form to record your location***</Typography>
+        <NarrowInput />
+      </NarrowFormItem>
+
+      <NarrowFormItem name="coordiniatesManual" label={t('Coordinates (manual)')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <Typography>Coordinates (manual) If the form does not automatically determine your coordinates above then you can enter the latitude and longitude manually below.</Typography>
+        <NarrowInput />
+      </NarrowFormItem>
+
+      <NarrowFormItem name="qtyBiochar" label={t('Quantity of biochar')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <Typography>Please specify quantity in kilogram (kg).</Typography>
+        <NarrowInput />
+      </NarrowFormItem>
+
     </S.FormContent>
   );
 };

@@ -16,6 +16,7 @@ import RequireAuth from '@app/components/router/RequireAuth';
 import { withLoading } from '@app/hocs/withLoading.hoc';
 import NftDashboardPage from '@app/pages/DashboardPages/NftDashboardPage';
 import MedicalDashboardPage from '@app/pages/DashboardPages/MedicalDashboardPage';
+import AnalyticsPage from '@app/pages/DashboardPages/Analytics';
 
 const HouseholdsPage = React.lazy(() => import('@app/pages/HouseholdsRegisterPage'));
 
@@ -76,8 +77,10 @@ const Logout = React.lazy(() => import('./Logout'));
 
 export const NFT_DASHBOARD_PATH = '/';
 export const MEDICAL_DASHBOARD_PATH = '/biochar-projects-marketplace';
+export const ANALYTICS_DASHBOARD_PATH = '/analytics';
 
 const MedicalDashboard = withLoading(MedicalDashboardPage);
+const AnalyticsDashboardPage = withLoading(AnalyticsPage);
 const NftDashboard = withLoading(NftDashboardPage);
 const HouseholdsRegister = withLoading(HouseholdsPage);
 
@@ -156,6 +159,8 @@ export const AppRouter: React.FC = () => {
           <Route index element={<NftDashboard />} />
           <Route path={MEDICAL_DASHBOARD_PATH} element={<MedicalDashboard />} />
 
+          <Route path={ANALYTICS_DASHBOARD_PATH} element={<AnalyticsDashboardPage />} />
+
           <Route path="/users-management-portal" element={<UsersPortal />} />
           <Route path="visualization-dashboards" element={<SuperSetPageDashboards />} />
 
@@ -171,7 +176,6 @@ export const AppRouter: React.FC = () => {
           <Route path="forms">
             <Route path="case-management-district-self-assessment" element={<AdvancedForm />} />
             <Route path="stores-district-self-assessment" element={<StoresAdvancedForm />} />
-            <Route path="procurement-district-self-assessment" element={<ProcurementAdvancedForm />} />
             <Route path="finance-district-self-assessment" element={<FinanceAdvancedForm />} />
           </Route>
           <Route path="data-tables" element={<DataTables />} />
@@ -186,10 +190,12 @@ export const AppRouter: React.FC = () => {
           <Route path="404" element={<Error404 />} />
 
           <Route path="profile" element={<ProfileLayout />}>
-            <Route path="upload" element={<StoresAdvancedForm />} />
+            <Route path="farm-and-farmer-survery" element={<StoresAdvancedForm />} />
+            <Route path="farmer-feedback-form" element={<ProcurementAdvancedForm />} />
+            <Route path="biochar-training-session" element={<FinanceAdvancedForm />} />
             <Route path="personal-info" element={<PersonalInfo />} />
-            <Route path="security-settings" element={<SecuritySettings />} />
-            <Route path="notifications" element={<Notifications />} />
+            <Route path="farmer-agreement-form" element={<SecuritySettings />} />
+            <Route path="biochar-project-tracker" element={<Notifications />} />
             <Route path="payments" element={<Payments />} />
           </Route>
 

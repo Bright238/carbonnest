@@ -10,10 +10,6 @@ export const Notifications: React.FC = () => {
 
   return (
     <BaseCard>
-      <BaseButtonsForm.Item>
-        <BaseButtonsForm.Title>{t('profile.nav.notifications.settings')}</BaseButtonsForm.Title>
-      </BaseButtonsForm.Item>
-      <S.Description>{t('profile.nav.notifications.description')}</S.Description>
       <NotificationsTypes />
     </BaseCard>
   );

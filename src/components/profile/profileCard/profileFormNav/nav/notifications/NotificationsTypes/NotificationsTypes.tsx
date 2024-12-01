@@ -10,6 +10,7 @@ import { notificationController } from '@app/controllers/notificationController'
 import { BaseCheckbox } from '@app/components/common/BaseCheckbox/BaseCheckbox';
 import TreeTable from '@app/components/tables/TreeTable/TreeTable';
 import { BaseForm } from '@app/components/common/forms/BaseForm/BaseForm';
+import HumanResourceStepForm from '@app/components/forms/StepForm/HumanResourceStepForm';
 
 interface Notifications {
   1: string[];
@@ -101,7 +102,7 @@ export const NotificationsTypes: React.FC = () => {
       footer={<BaseButtonsGroup loading={isLoading} onCancel={onCancel} />}
     >
       <S.Wrapper>
-        <TreeTable />
+        <HumanResourceStepForm />
       </S.Wrapper>
     </BaseButtonsForm>
   );

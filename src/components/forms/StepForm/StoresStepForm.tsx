@@ -181,9 +181,9 @@ export const StoresStepForm = () => {
   };
 
   const steps = [
-    { title: t('Date of Submission') },
-    { title: t('Monitoring and Verification') },
-    { title: t('Biochar Production and Process') },
+    { title: t('Primary Information') },
+    // { title: t('Monitoring and Verification') },
+    // { title: t('Biochar Production and Process') },
     // { title: t('Staff') },
     // { title: t('Stores Processes') },
     // { title: t('Asset Management') },

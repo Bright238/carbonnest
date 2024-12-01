@@ -94,7 +94,7 @@ export const Step1: React.FC<Step1Props> = ({ handleChange, form }) => {
 
       <NarrowFormItem
         name="date_of_assessment"
-        label={t('Date of Assessment')}
+        label={t('Date')}
         rules={[{ required: true, message: t('Date is a required field') }]}
       >
         <NarrowPicker format="DD-MM-YYYY" onChange={(date: any) => handleChange('date_of_assessment', date)} />

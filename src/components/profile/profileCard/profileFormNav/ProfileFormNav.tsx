@@ -4,6 +4,7 @@ import { Payments } from './nav/payments/Payments';
 import { PersonalInfo } from './nav/PersonalInfo/PersonalInfo';
 import { SecuritySettings } from './nav/SecuritySettings/SecuritySettings';
 import StoresDepartmentPage from '@app/pages/StoresDepartmentPage';
+import ProcurementStepForm from '@app/components/forms/StepForm/ProcurementStepForm';
 
 interface ProfileFormNavProps {
   menu: string;
@@ -18,7 +19,7 @@ export const ProfileFormNav: React.FC<ProfileFormNavProps> = ({ menu }) => {
       break;
     }
 
-    case 'upload': {
+    case 'farm-and-farmer-survery': {
       currentMenu = <StoresDepartmentPage />;
       break;
     }
@@ -28,8 +29,13 @@ export const ProfileFormNav: React.FC<ProfileFormNavProps> = ({ menu }) => {
       break;
     }
 
-    case 'notifications': {
+    case 'biochar-project-tracker': {
       currentMenu = <Notifications />;
+      break;
+    }
+
+    case 'farmer-feedback-form': {
+      currentMenu = <ProcurementStepForm />;
       break;
     }
 

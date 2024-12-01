@@ -25,7 +25,7 @@ export const ProfileInfo: React.FC<ProfileInfoProps> = ({ profileData }) => {
       <S.Title>Bright Kapamulomo Mafungautsi</S.Title>
       {/* <S.Title>{`${profileData?.first_name} ${profileData?.last_name}`}</S.Title> */}
       <S.Subtitle>{profileData?.userName}</S.Subtitle>
-      <BaseForm.Title>{t('Artisan C - Sink Pro')}</BaseForm.Title>
+      <BaseForm.Title>{t('Carbon Sink Verifier - Pro')}</BaseForm.Title>
       <S.FullnessWrapper>
         <S.FullnessLine width={fullness}>{fullness}%</S.FullnessLine>
       </S.FullnessWrapper>

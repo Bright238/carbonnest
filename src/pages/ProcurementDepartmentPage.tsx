@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { BaseCard } from '@app/components/common/BaseCard/BaseCard';
 import { BaseRow } from '@app/components/common/BaseRow/BaseRow';
 import { BaseCol } from '@app/components/common/BaseCol/BaseCol';
-import { Typography, Spin } from 'antd';
+import { Typography, Spin, Divider } from 'antd';
+import ProcurementStepForm from '@app/components/forms/StepForm/ProcurementStepForm';
 
 interface User {
   id: string;
@@ -41,13 +42,22 @@ const ProcurementDepartmentPage: React.FC = () => {
 
   return (
     <>
-      <Typography style={{ fontWeight: 'bold', fontSize: '30px' }}>
-        {loading ? <Spin size="small" /> : `${user?.location}`} District
-      </Typography>
-      <Typography style={{ fontWeight: 'bold', fontSize: '30px' }}>Procurement Department</Typography>
+
       <BaseRow gutter={[30, 30]}>
         <BaseCol xs={24} sm={24} md={24} lg={24} xl={24}>
-          <BaseCard id="step-form" title={t('forms.stepForm')} padding="1.25rem"></BaseCard>
+          <BaseCard id="step-form" title={t('forms.stepForm')} padding="1.25rem">
+            <Typography style={{ fontWeight: 'bold', fontSize: '25px' }}>
+              Feedback from the farmer
+            </Typography>
+
+            <Divider style={{ margin: '1.5rem 0' }} />
+            <Typography style={{ fontSize: '16px', marginTop: '0.5rem' }}>
+              Include information you have captured from farmers feedback.
+            </Typography>
+
+            <Divider style={{ margin: '1.5rem 0' }} />
+            <ProcurementStepForm />
+          </BaseCard>
         </BaseCol>
       </BaseRow>
     </>

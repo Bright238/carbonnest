@@ -8,11 +8,7 @@ export const References: React.FC = () => {
       <S.Text>
         Carbonnest{' '}
         <a href="" rel="noreferrer">
-          Trap Carbon and Earn Carbon Credits Using Biochar <br />
-        </a>
-        in 2024 &copy;.{' '}
-        <a href="" rel="noreferrer">
-          SImple farming concepts
+          - simple farming and income generation methods &copy;.{' '} 2024 | All rights reserved.
         </a>
       </S.Text>
     </S.ReferencesWrapper>

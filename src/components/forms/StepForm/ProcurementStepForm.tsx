@@ -265,12 +265,12 @@ export const ProcurementStepForm = () => {
   };
 
   const steps = [
-    { title: t('Assessee Info') },
-    { title: t('Guidelines') },
-    { title: t('Staff') },
-    { title: t('Planning') },
-    { title: t('Process') },
-    { title: t('Market Price') },
+    { title: t('Feedback Information') },
+    // { title: t('Guidelines') },
+    // { title: t('Staff') },
+    // { title: t('Planning') },
+    // { title: t('Process') },
+    // { title: t('Market Price') },
     { title: t('Submit') },
   ];
 
