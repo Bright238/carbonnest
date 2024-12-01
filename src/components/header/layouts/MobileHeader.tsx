@@ -21,16 +21,20 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({ toggleSider, isSider
 
       <BaseCol>
         <BaseRow align="middle">
-          <BaseCol>
+          {/* <BaseCol>
             <NotificationsDropdown />
           </BaseCol>
 
           <BaseCol>
             <HeaderSearch />
-          </BaseCol>
+          </BaseCol> */}
 
           <BaseCol>
             <SettingsDropdown />
+          </BaseCol>
+
+          <BaseCol>
+            <S.GHButton />
           </BaseCol>
         </BaseRow>
       </BaseCol>

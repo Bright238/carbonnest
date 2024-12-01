@@ -39,60 +39,28 @@ interface User {
 const roleId = '6cb62a51-f2d3-4618-b63a-e5678a3c2fc1'; // Specific role ID
 
 // Define the valid province names as a union type
-type Province = 'All' | 'Central Province' | 'Southern Province' | 'Western Province';
+type Province = 'All' | 'Copperbelt Province' | 'Lusaka Province';
 
 const provinceOptions = [
   { value: 'All', label: 'All' },
-  { value: 'Central Province', label: 'Central Province' },
-  { value: 'Southern Province', label: 'Southern Province' },
-  { value: 'Western Province', label: 'Western Province' },
+  { value: 'Lusaka Province', label: 'Lusaka Province' },
+  { value: 'Copperbelt Province', label: 'Copperbelt Province' },
 ];
 
 // Define districts in each province
 const districtOptions: Record<Province, string[]> = {
   All: ['All'],
-  'Central Province': [
-    'Serenje',
-    'Kapiri Mposhi',
-    'Mkushi',
-    'Mumbwa',
-    'Chibombo',
-    'Chisamba',
-    'Ngabwe',
-    'Shibuyunji',
-    'Chitambo',
+  'Copperbelt Province': [
+    'Mpongwe'
   ],
-  'Southern Province': [
-    'Monze',
-    'Mazabuka',
-    'Kazungula',
-    'Choma',
-    'Gwembe',
-    'Kalomo',
-    'Livingstone',
-    'Namwala',
-    'Siavonga',
-    'Zimba',
-    'Sesheke',
-    'Mwandi',
-  ],
-  'Western Province': [
-    'Mongu',
-    'Limulunga',
-    'Kalabo',
-    'Sesheke',
-    'Barotse',
-    'Nkeyema',
-    'Shangombo',
-    'Liunga',
-    'Senanga',
-    'Kaoma',
+  'Lusaka Province': [
+    'Lusaka',
   ],
 };
 
 const roleOptions = [
-  { value: 'Administrator', label: 'Administrator' },
-  { value: 'System User', label: 'System User' },
+  { value: 'Verifier', label: 'Verifier' },
+  { value: 'Farmer', label: 'Farmer' },
 ];
 
 export const UserManagementTreeTable: React.FC = () => {
@@ -157,7 +125,7 @@ export const UserManagementTreeTable: React.FC = () => {
     }
   };
 
-  const hasPermission = () => currentUser?.description === 'Administrator';
+  const hasPermission = () => currentUser?.description === 'Verifier';
 
   const createUser = async (newUser: any) => {
     if (!hasPermission()) {

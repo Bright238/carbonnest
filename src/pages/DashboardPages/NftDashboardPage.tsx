@@ -15,9 +15,9 @@ const MedicalDashboardPage: React.FC = () => {
   const navigate = useNavigate();
 
   // Placeholder counts (replace these with real data fetching logic)
-  const [farmersCount, setFarmersCount] = useState(100);
+  const [farmersCount, setFarmersCount] = useState(468);
   const [projectsCount, setProjectsCount] = useState(20);
-  const [carbonCreditsCount, setCarbonCreditsCount] = useState(5000);
+  const [carbonCreditsCount, setCarbonCreditsCount] = useState(350);
 
   // Modal state
   const [isModalVisible, setIsModalVisible] = useState(false);

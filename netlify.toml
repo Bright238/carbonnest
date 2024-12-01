@@ -1,0 +1,3 @@
+[build]
+  publish = "public" # Use the folder containing the entry files like index.html
+  command = "yarn start" # If needed

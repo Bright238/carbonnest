@@ -40,11 +40,17 @@ export const sidebarNavigation: SidebarNavigationItem[] = [
         icon: <UserOutlined />,
       },
       {
-        title: 'Marketplace',
+        title: 'Analytics',
         key: 'vcas-register',
-        url: '/biochar-projects-marketplace',
+        url: '/analytics',
         icon: <ProjectOutlined />,
       },
+      // {
+      //   title: 'Marketplace',
+      //   key: 'vcas-register',
+      //   url: '/biochar-projects-marketplace',
+      //   icon: <ProjectOutlined />,
+      // },
     ],
   },
   {

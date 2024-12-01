@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { LeftOutlined } from '@ant-design/icons';
+import { LeftCircleOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -36,18 +36,28 @@ const ProfileLayout: React.FC = () => {
     <>
       <PageTitle>{t('profile.title')}</PageTitle>
       {!isTitleShown && (
+
         <Button
-          icon={<LeftOutlined />}
+          style={{
+            borderRadius: '50px',
+            background: 'linear-gradient(to right, #f5af19, #f12711)',
+            color: 'white',
+            borderTopRightRadius: '90%',
+            border: 'none',
+            padding: '10px 20px',
+            fontWeight: 'bold',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            display: 'flex',
+            alignItems: 'center',
+          }}
+          icon={<LeftCircleOutlined />}
           type="primary"
           size="small"
-          shape="round"
           onClick={() => navigate('/profile')}
-          style={{ borderRadius: '12px' }}
         >
           {t('common.back')}
         </Button>
       )}
-      <br />
       <br />
       <BaseRow gutter={[30, 30]}>
         {isTitleShown && (

@@ -47,9 +47,6 @@ export const Payments: React.FC = () => {
           <BaseCol span={isDesktop || isTablet ? 12 : 24}>
             <PaymentMethod />
           </BaseCol>
-          <BaseCol span={isDesktop || isTablet ? 12 : 24}>
-            <CarbonSequestered />
-          </BaseCol>
         </BaseRow>
       </BaseCol>
       {/* Third row with PaymentHistory */}

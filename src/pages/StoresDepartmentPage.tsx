@@ -47,7 +47,7 @@ const CarbonProjectDashboard: React.FC = () => {
         <BaseCol xs={24} sm={24} md={24} lg={24} xl={24}>
           <BaseCard id="carbon-project-form" title={t('forms.stepForm')} padding="1.25rem">
             <Typography style={{ fontWeight: 'bold', fontSize: '25px' }}>
-              Upload and Manage Your Biochar Carbon Removal Project
+              Farm and Farmer Survey
             </Typography>
 
             <Divider style={{ margin: '1.5rem 0' }} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Form, Skeleton, Typography } from 'antd';
+import { Form, Input, Skeleton, Typography } from 'antd';
 import axios from 'axios';
 import { FormInstance } from 'antd/es/form';
 import { BaseInput } from '@app/components/common/inputs/BaseInput/BaseInput';
@@ -8,7 +8,7 @@ import { BaseDatePicker } from '@app/components/common/pickers/BaseDatePicker';
 import { DynamicForm } from './DynamicForm';
 import styled from 'styled-components';
 import * as S from '../StepForm.styles';
-
+const { TextArea } = Input;
 const NarrowInput = styled(BaseInput)`
   width: 400px !important;
 `;
@@ -90,11 +90,11 @@ export const Step1: React.FC<Step1Props> = ({ handleChange, form }) => {
 
   return (
     <S.FormContent>
-      <Typography.Title level={4}>{t('Assessment Information')}</Typography.Title>
+      <Typography.Title level={4}>{t('Information')}</Typography.Title>
 
       <NarrowFormItem
         name="date_of_assessment"
-        label={t('Date of Assessment')}
+        label={t('Date')}
         rules={[{ required: true, message: t('Date is a required field') }]}
       >
         <NarrowPicker format="DD-MM-YYYY" onChange={(date: any) => handleChange('date_of_assessment', date)} />
@@ -108,13 +108,61 @@ export const Step1: React.FC<Step1Props> = ({ handleChange, form }) => {
         <NarrowInput disabled />
       </NarrowFormItem>
 
-      <NarrowFormItem name="department" label={t('Department')}>
+      <NarrowFormItem name="village" label={t('Village')}>
         <NarrowInput disabled />
       </NarrowFormItem>
 
-      <NarrowFormItem label={t('List of District Participants')}>
-        <DynamicForm ref={dynamicFormRef} form={form} handleChange={handleDynamicFormChange} />
+      <NarrowFormItem name="verifierName" label={t('Name of Verifier')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <Typography>Please select the verifier recording the farmer activities.</Typography>
+        <NarrowInput />
       </NarrowFormItem>
+
+      <NarrowFormItem name="farmerName" label={t('Name of Farmer')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <Typography>Please select the ID/farmer.  If you do not see your farmer in the list, please notify your Country Manager.</Typography>
+        <NarrowInput />
+      </NarrowFormItem>
+
+      <NarrowFormItem name="feedback" label={t('Feedback from the farmer')}>
+        <TextArea onChange={(e) => handleChange('feedback', e.target.value)} />
+      </NarrowFormItem>
+
+      <NarrowFormItem name="biocharIncomeBenefits" label={t('Biochar Income Benefits')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <NarrowInput />
+      </NarrowFormItem>
+
+      <NarrowFormItem name="alternativeIncome" label={t('Alternative Income')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <NarrowInput />
+      </NarrowFormItem>
+
+      <NarrowFormItem name="alternantiveIncomeSource" label={t('Alternative Income Source')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <NarrowInput />
+      </NarrowFormItem>
+
+      <NarrowFormItem name="otherIncome" label={t('Other Income')}
+        rules={[{ required: true, message: t('This is a required field') }]}
+      >
+        <NarrowInput />
+      </NarrowFormItem>
+
+
+      {/* <NarrowFormItem name="department" label={t('Department')}>
+        <NarrowInput disabled />
+      </NarrowFormItem> */}
+
+      {/* <NarrowFormItem label={t('List of District Participants')}>
+        <DynamicForm ref={dynamicFormRef} form={form} handleChange={handleDynamicFormChange} />
+      </NarrowFormItem> */}
+
     </S.FormContent>
   );
 };

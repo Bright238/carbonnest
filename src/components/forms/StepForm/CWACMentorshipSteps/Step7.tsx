@@ -56,7 +56,7 @@ export const Step7: React.FC<Step2Props> = ({ handleChange }) => {
       <Typography.Title level={5}>Date of next meeting</Typography.Title>
       <NarrowFormItem
         name="date_of_assessment"
-        label={t('Date of Assessment')}
+        label={t('Date')}
         rules={[{ required: true, message: t('Date is a required field') }]}
       >
         <NarrowPicker format="DD-MM-YYYY" />

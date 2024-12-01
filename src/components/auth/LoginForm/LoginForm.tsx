@@ -43,7 +43,7 @@ export const LoginForm: React.FC = () => {
     <Auth.FormWrapper>
       <BaseForm layout="vertical" onFinish={handleSubmit} requiredMark="optional" initialValues={initValues}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <img src="/carbonnest-logo.png" alt="logo" style={{ width: '280px', height: 'auto' }} />
+          <img src="public/carbonnest-logo.png" alt="logo" style={{ width: '280px', height: 'auto' }} />
         </div>
         <br />
         <Typography style={{ fontWeight: 'bold', textAlign: 'center' }}>Your carbon removal you can trust</Typography>

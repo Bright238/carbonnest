@@ -337,7 +337,7 @@ export const components: Component[] = [
   {
     name: 'Security settings',
     title: 'profile.nav.securitySettings.title',
-    url: `/profile/security-settings`,
+    url: `/profile/farmer-agreement-form`,
     categories: ['data tables'],
     keywords: ['security settings', 'data tables'],
   },

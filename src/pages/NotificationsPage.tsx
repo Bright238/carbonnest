@@ -8,7 +8,7 @@ const NotificationsPage: React.FC = () => {
 
   return (
     <>
-      <PageTitle>{t('profile.nav.notifications.title')}</PageTitle>
+      <PageTitle>{t('Biochar Project Tracker')}</PageTitle>
       <Notifications />
     </>
   );
