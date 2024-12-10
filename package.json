@@ -154,5 +154,5 @@
     "ant-design",
     "react"
   ],
-  "homepage": "https://altence.github.io/lightence-admin"
+  "homepage": "."
 }
