@@ -11,6 +11,3 @@ echo "export NODE_OPTIONS=--openssl-legacy-provider" >> ~/.zshrc
 source ~/.bashrc
 # or for zsh
 source ~/.zshrc
-
-HjN!2kB@
-jjj
